@@ -80,7 +80,7 @@ namespace MusicManager.Controls
                 DirectoryInfo dir = new DirectoryInfo(media);
                 foreach (FileInfo file in dir.GetFiles("*.*", SearchOption.AllDirectories))
                 {
-                    if (file.Extension == ".wmv" || file.Extension == ".mp3" || file.Extension == ".mp4" || file.Extension == ".flac" || file.Extension == ".wma" || file.Extension == ".m4a")
+                    if (file.Extension == ".wmv" || file.Extension == ".mp3" || file.Extension == ".mp4" || file.Extension == ".flac" || file.Extension == ".wma" || file.Extension == ".m4a" || file.Extension == ".wav")
                     {
                         music_list.Add(file.Name);
                     }

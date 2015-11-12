@@ -24,5 +24,10 @@ namespace MusicManager
         {
             InitializeComponent();
         }
+
+        private void SongListView_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

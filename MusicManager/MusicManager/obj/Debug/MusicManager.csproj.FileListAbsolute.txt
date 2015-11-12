@@ -28,3 +28,34 @@ C:\Users\NTL\Documents\Visual Studio 2012\Projects\MusicManager\MusicManager\obj
 C:\Users\NTL\Documents\Visual Studio 2012\Projects\MusicManager\MusicManager\obj\Debug\MusicManager.csproj.GenerateResource.Cache
 C:\Users\NTL\Documents\Visual Studio 2012\Projects\MusicManager\MusicManager\obj\Debug\MusicManager.exe
 C:\Users\NTL\Documents\Visual Studio 2012\Projects\MusicManager\MusicManager\obj\Debug\MusicManager.pdb
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\bin\Debug\MusicManager.exe.config
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.exe
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.pdb
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\bin\Debug\MusicManager.exe
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\bin\Debug\MusicManager.pdb
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.csprojResolveAssemblyReference.cache
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\ArtistView.baml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\PlayingSong.baml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\PlaylistView.baml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\TextEditBox.baml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\Track.baml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\AlbumView.g.cs
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\ArtistView.g.cs
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\PlayingSong.g.cs
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\PlaylistView.g.cs
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\SongListView.g.cs
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\TextEditBox.g.cs
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\Track.g.cs
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\TrackInfoView.g.cs
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\MainWindow.g.cs
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\App.g.cs
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager_MarkupCompile.cache
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager_MarkupCompile.lref
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\AlbumView.baml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\SongListView.baml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\TrackInfoView.baml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\MainWindow.baml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.g.resources
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.Properties.Resources.resources
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.csproj.GenerateResource.Cache
