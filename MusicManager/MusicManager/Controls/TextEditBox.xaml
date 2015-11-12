@@ -1,0 +1,11 @@
+﻿<UserControl x:Class="MusicManager.Controls.TextEditBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignHeight="23" d:DesignWidth="240">
+    <Grid x:Name="Editor">
+        <TextBlock x:Name="tb_Presenter" Text="Example" Foreground="#FFF9FF" FontSize="15" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" MouseDown="tb_Presenter_MouseDown"/>
+        <Button x:Name="btn_EditText" HorizontalAlignment="Left" Margin="216,0,0,0" VerticalAlignment="Top" Width="24" Height="23" Click="btn_EditText_Click"/>
+    </Grid>
+</UserControl>

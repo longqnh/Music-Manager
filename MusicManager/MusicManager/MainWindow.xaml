@@ -1,0 +1,14 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MusicManager.Controls" x:Class="MusicManager.MainWindow"
+        Title="MusicManager" Height="588" Width="981">
+    <Grid>
+        <Controls:SongListView HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Border x:Name="BorderNo1" BorderBrush="#FF837C83" BorderThickness="1" HorizontalAlignment="Left" Height="506" Margin="341,20,0,0" VerticalAlignment="Top"/>
+        <Controls:PlaylistView HorizontalAlignment="Left" Margin="342,0,0,0" VerticalAlignment="Top" Height="554"/>      
+        <Border x:Name="BorderNo2" BorderBrush="#FF837C83" BorderThickness="1" HorizontalAlignment="Left" Height="506" Margin="682,20,0,0" VerticalAlignment="Top"/>
+        <Controls:TrackInfoView HorizontalAlignment="Left" Margin="683,0,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,16 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MusicManager.Controls" x:Class="MusicManager.Controls.SongListView" 
+             mc:Ignorable="d" Height="554" Width="342">
+    <Grid Background="#140A12">
+        <TextBlock x:Name="tbAlbum"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" TextWrapping="Wrap" Text="Album" FontSize="18" Foreground="#FFF9F9" MouseLeftButtonDown="tbAlbum_MouseLeftButtonDown"/>
+        <TextBlock x:Name="tbArtist" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="69,10,0,0" TextWrapping="Wrap" Text="Artist" FontSize="18" Foreground="#514F54" MouseLeftButtonDown="tbArtist_MouseLeftButtonDown"/>
+        <local:AlbumView x:Name="ctAlbumView" HorizontalAlignment="Left" Margin="0,39,0,0" VerticalAlignment="Top"/>
+        <local:ArtistView x:Name="ctArtistView" HorizontalAlignment="Left" Margin="0,39,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <Button Content="Test:Add Song" HorizontalAlignment="Left" Margin="132,10,0,0" VerticalAlignment="Top" Width="93" Click="Button_Click"/>
+        <Button x:Name="btn_browse" Content="Browse" HorizontalAlignment="Left" Margin="225,10,0,0" VerticalAlignment="Top" Width="93" Click="btn_browse_Click"/>
+    </Grid>
+</UserControl>
