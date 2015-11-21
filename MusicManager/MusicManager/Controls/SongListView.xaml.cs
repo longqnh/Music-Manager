@@ -25,7 +25,6 @@ namespace MusicManager.Controls
         public SongListView()
         {
             InitializeComponent();
-            PassCoverPath();
         }
 
         #region Propertis
@@ -51,8 +50,8 @@ namespace MusicManager.Controls
             ctArtistView.pnTrackList.Children.Add(track);
             i++;
             //UltraID3 Tag = new UltraID3();
-            //Tag.Read("C:/Users/Administrator/Music/松浦亜弥/20-(20.10.2004)-Single-Watarasebashi/1 - Watarasebashi.mp3");
-            //MessageBox.Show(Tag.Album);
+            //Tag.Read("C:/Users/Administrator/Desktop/02-(13.06.2001)-Single-Tropica~l-Koishite~ru/1.mp3");
+            //MessageBox.Show(Tag.Duration.Minutes.ToString());
         }
         #endregion
 
@@ -83,14 +82,6 @@ namespace MusicManager.Controls
         #endregion
 
         #region Methods
-        private void PassCoverPath()
-        {
-            // for testing
-            string[] AlbumPath = {"/Albums/1.jpg","/Albums/2.jpg","/Albums/3.jpg","/Albums/4.jpg",
-                                    "/Albums/5.jpg","/Albums/6.jpg"};
-            ctAlbumView.RecCoverPath(AlbumPath);
-        }
-
         #endregion
     }
 }

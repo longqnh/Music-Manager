@@ -6,37 +6,25 @@ using System.Threading.Tasks;
 
 namespace MusicManager.Classes
 {
-    class Album
+    public class Album
     {
         #region Constructor
         public Album()
         {
-            _TrackList = new List<Song>();
+            TrackList = new List<Song>();
         }
         #endregion
 
         #region Properties
-        private string _Name;
-        private int _Year;
-        private List<Song> _TrackList;
-
-        public string Name
-        {
-            get { return _Name; }
-            set { _Name = value; }
-        }
-        public int Year
-        {
-            get { return _Year; }
-            set { _Year = value; }
-        }
+        public string Name { get; set; }
+        public string AlbumArtist { get; set; }
+        public int Year { get; set; }
+        public List<Song> TrackList { get; set; }
+        public string CoverPath { get; set; }
         #endregion
 
         #region Methods
-        public void AddTrack(Song song)
-        {
-            this._TrackList.Add(song);
-        }
+
         #endregion
     }
 }

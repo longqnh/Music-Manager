@@ -14,7 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
 using System.IO;
-
+using MusicManager.Classes;
+using HundredMilesSoftware.UltraID3Lib;
 namespace MusicManager
 {
     /// <summary>
@@ -30,13 +31,13 @@ namespace MusicManager
 
         #region Properties
         private string _Media;
-        private List<string> _MusicList; //list of files that are music file
+        private List<FileInfo> _MusicList; //list of files that are music file
         #endregion
 
         #region Events
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _MusicList = new List<string>();
+            _MusicList = new List<FileInfo>();
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             if (fbd.ShowDialog() != System.Windows.Forms.DialogResult.Cancel)
             {
@@ -47,9 +48,52 @@ namespace MusicManager
                     if (file.Extension == ".wmv" || file.Extension == ".mp3" || file.Extension == ".mp4"
                         || file.Extension == ".flac" || file.Extension == ".wma"
                         || file.Extension == ".m4a" || file.Extension == ".wav")
-                        _MusicList.Add(file.FullName);
+                        _MusicList.Add(file);                    
+                }
+                this.CreateAlbumList(_MusicList);
+            }
+        }
+        #endregion
+
+        #region Methods
+        private void CreateAlbumList(List<FileInfo> MusicList) // find all album of music list
+        {
+            List<Album> AlbumList = new List<Album>();
+            foreach(FileInfo musicfile in MusicList)
+            {
+                UltraID3 Tag = new UltraID3();
+                Tag.Read(musicfile.FullName);
+                string albumName = Tag.Album; // current musicfile's albumname
+                int i;
+                for (i = 0; i < AlbumList.Count; i++) 
+                {
+                    if (albumName == AlbumList[i].Name) // found it's album in the albumlist
+                    {
+                        //create a song
+                        Song aSong = new Song(Tag.Title, Tag.Artist, Tag.Album, Tag.Year, Tag.Genre, 
+                            Tag.TrackNum, Tag.GetMPEGTrackInfo().AverageBitRate, Tag.Duration);
+                        AlbumList[i].TrackList.Add(aSong);
+                        break;
+                    }                   
+                }
+                if (i == AlbumList.Count) // current musicfile's albumname not in the album list
+                {
+                    //create new album
+                    Album NewAlbum = new Album();
+                    NewAlbum.Name = albumName;
+                    //NewAlbum.CoverPath =???;
+                    AlbumList.Add(NewAlbum);
+
+                    //create a song
+                    Song aSong = new Song(Tag.Title, Tag.Artist, Tag.Album, Tag.Year, Tag.Genre, 
+                            Tag.TrackNum, Tag.GetMPEGTrackInfo().AverageBitRate, Tag.Duration);
+                    AlbumList[i].TrackList.Add(aSong);
+
+                    //add song to album
+                    NewAlbum.TrackList.Add(aSong);
                 }
             }
+            this.SongList.ctAlbumView.ReceiveAlbumList(AlbumList, this);
         }
         #endregion
     }

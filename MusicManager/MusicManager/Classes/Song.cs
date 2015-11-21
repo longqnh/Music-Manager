@@ -6,82 +6,33 @@ using System.Threading.Tasks;
 
 namespace MusicManager.Classes
 {
-    class Duration
+    public class Song
     {
         #region Constructor
-        public Duration()
+        public Song(string title, string artist, string album, short? year, string genre, short? track, short bitrate, TimeSpan dur)
         {
-            _Minute = _Second = 0;
+            Title = title;
+            Artist = artist;
+            Album = album;
+            Year = year;
+            Genre = genre;
+            Track = track;
+            Bitrate = bitrate;
+            Dur = dur;
         }
         #endregion
 
         #region Properties
-        private int _Minute;
-        private int _Second;
-
-        public int Minute
-        {
-            get { return _Minute; }
-            set { _Minute = value; }
-        }
-        public int Second
-        {
-            get { return _Second; }
-            set { _Second = value; }
-        }
+        public string Title { get; set; }
+        public string Artist { get; set; }
+        public string Album { get; set; }
+        public short? Year { get; set; }
+        public string Genre { get; set; }
+        public short? Track { get; set; }
+        public int Bitrate { get; set; }
+        public TimeSpan Dur { get; set; }
+      
         #endregion
-
-        #region methods
-        public override string ToString()
-        {
-            string data = String.Format("{0}:{1}", this._Minute, this._Second);
-            return data;
-        }
-        #endregion
-    }
-    class Song
-    {
-        #region Constructor
-        public Song()
-        {
-
-        }
-        #endregion
-
-        #region Properties
-        private string _Title;
-        private string _Album;
-        private string _Artist;
-        private Duration _Dur;
-        private int _Bitrate;
-
-        public string Title
-        {
-            get { return _Title; }
-            set { _Title = value; }
-        }
-        public string Album
-        {
-            get { return _Album; }
-            set { _Album = value; }
-        }
-        public string Artist
-        {
-            get { return _Artist; }
-            set { _Artist = value; }
-        }
-        public Duration Dur
-        {
-            get { return _Dur; }
-            set { _Dur = value; }
-        }
-        public int Bitrate
-        {
-            get { return _Bitrate; }
-            set { _Bitrate = value; }
-        }
-        #endregion
-
         #region Methods
         #endregion
     }
