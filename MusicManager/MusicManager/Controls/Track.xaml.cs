@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MusicManager.Classes;
 
 namespace MusicManager.Controls
 {
@@ -20,23 +21,31 @@ namespace MusicManager.Controls
     /// </summary>
     public partial class Track : UserControl
     {
-        public Track(MainWindow main)
+        #region Constructor
+        public Track(MainWindow main, short index, short trackno)
         {
             InitializeComponent();
             this._Main = main;
+            this._Index = index;
+            this._TrackNo = trackno;
         }
+        #endregion
 
         #region Properties
         private MainWindow _Main;
+        private short _Index;
+        private short _TrackNo;
         #endregion
 
         #region Events
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this._Main.TrackInfo.LoadInfo(this); // load trackinfo
+            Song tmp = this._Main.SongList.ctAlbumView.SongX_OfAlbum(_Index, _TrackNo);
+
+            this._Main.TrackInfo.LoadInfo(tmp); // load trackinfo
             if (e.LeftButton == MouseButtonState.Pressed && e.ClickCount == 2)
             {
-                this._Main.PlayList.AddtoList(this); // add track to playlist
+                this._Main.PlayList.AddtoList(tmp); // add track to playlist
             }
 
         }

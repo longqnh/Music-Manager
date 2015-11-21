@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MusicManager.Classes;
 
 namespace MusicManager.Controls
 {
@@ -20,50 +21,39 @@ namespace MusicManager.Controls
     /// </summary>
     public partial class PlaylistView : UserControl
     {
+        #region Constructor
         public PlaylistView()
         {
             InitializeComponent();
         }
+        #endregion 
 
         #region Properies
         private int i = 1;
-
-        private MainWindow _Main;
-
-        public MainWindow Main
-        {
-            set { _Main = value; }
-        }
-        #endregion
-
-        #region fortesting
-        //int a = 1;
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    PlayingSong song = new PlayingSong();
-        //    //song.tbNo.Text = i.ToString() + ".";
-        //    //song.tbTitle.Text += i.ToString();
-        //    pnPlayList.Children.Add(song);
-        //    i++;
-        //}
+        private List<Song> _PlayingList = new List<Song>();
+        public MainWindow Main { get; set; }
         #endregion
 
         #region Methods
-        public void AddtoList(Track track)
+        public void AddtoList(Song song) // add from songlist(track)
         {
-            PlayingSong song = new PlayingSong(this._Main);
+            PlayingSong songtoshow = new PlayingSong(this.Main, (short)(i - 1));
             //add in info
-            song.tbNo.Text = i.ToString() + ".";
+            songtoshow.tbNo.Text = i.ToString() + "."; songtoshow.Checklength(); // if the title is too long, set tooltip
+            songtoshow.tbTitle.Text = song.Title;
+            songtoshow.tbArtist.Text = song.Artist;
+            songtoshow.tbAlbum.Text = song.Album;
+            songtoshow.tbDur.Text = "0" + song.Dur.Minutes.ToString() + ":" + song.Dur.Seconds;
 
-            song.tbTitle.Text = track.tbTitle.Text;
-            //song.tbArtist.Text = track.tbartist;
-            //song.tbAlbum.Text - track.tbalbum;
-            song.tbDur.Text = track.tbDur.Text;
-
-            song.Checklength(); // if the title is too long, set tooltip
             //add song to playlist
-            pnPlayList.Children.Add(song);
+            this._PlayingList.Add(song);
+            pnPlayList.Children.Add(songtoshow);
             i++;
+        }
+        public Song SongX_inList(short x)
+        {
+            int tmp = this._PlayingList.Count;
+            return this._PlayingList[x];
         }
         #endregion
 

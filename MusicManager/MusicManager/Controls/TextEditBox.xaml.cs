@@ -20,39 +20,43 @@ namespace MusicManager.Controls
     /// </summary>
     public partial class TextEditBox : UserControl
     {
+        #region Constructor
         public TextEditBox()
         {
             InitializeComponent();
         }
+        #endregion
+
         #region Properties
-        private bool isEditing = false;
-        private TextBox TextEditor;
+        private bool _isEditing = false;
+        private TextBox _TextEditor;
         private string _FullText;
         #endregion
 
         #region Events
         private void btnEditText_Click(object sender, RoutedEventArgs e)
         {
-            if (!isEditing)
+            if (!_isEditing)
             {
-                TextEditor = new TextBox();
-                TextEditor.HorizontalAlignment = HorizontalAlignment.Left;
-                TextEditor.Width = 141;
-                TextEditor.KeyDown += TextEditor_KeyDown;
+                _TextEditor = new TextBox();
+                _TextEditor.HorizontalAlignment = HorizontalAlignment.Left;
+                _TextEditor.Width = 161;
+                _TextEditor.KeyDown += TextEditor_KeyDown;
 
-                TextEditor.Text = tbText.Text; // copy current text to editor
-                Editor.Children.Add(TextEditor);    // show editor to edit     
+                _TextEditor.Text = this._FullText; // copy current text to editor
+                Editor.Children.Add(_TextEditor);    // show editor to edit     
 
                 tbText.Visibility = Visibility.Hidden; //hide text
-                isEditing = true; //start editing
+                _isEditing = true; //start editing
             }
             else
             {
-                tbText.Text = TextEditor.Text;   //copy edited text back to show
-                Editor.Children.Remove(TextEditor);
-                //TextEditor.Visibility = Visibility.Hidden; // hide editor
+                tbText.Text = _TextEditor.Text;   //copy edited text back to show
+                this.CheckLength();
+
+                Editor.Children.Remove(_TextEditor);
                 
-                isEditing = false; // stop editing
+                _isEditing = false; // stop editing
                 tbText.Visibility = Visibility.Visible; // show text
             }
         }
@@ -60,11 +64,12 @@ namespace MusicManager.Controls
         {
             if(e.Key == Key.Enter)
             {
-                tbText.Text = TextEditor.Text;   //copy edited text back to show
-                Editor.Children.Remove(TextEditor);
-                //TextEditor.Visibility = Visibility.Hidden; // hide editor
+                tbText.Text = _TextEditor.Text;   //copy edited text back to show
+                this.CheckLength();
 
-                isEditing = false; // stop editing
+                Editor.Children.Remove(_TextEditor);
+
+                _isEditing = false; // stop editing
                 tbText.Visibility = Visibility.Visible; // show text
             }
         }
@@ -72,16 +77,16 @@ namespace MusicManager.Controls
         {
             if(e.LeftButton == MouseButtonState.Pressed && e.ClickCount ==2) //double click to start editing
             {                
-                TextEditor = new TextBox();
-                TextEditor.HorizontalAlignment = HorizontalAlignment.Left;
-                TextEditor.Width = 141;
-                TextEditor.KeyDown += TextEditor_KeyDown;
+                _TextEditor = new TextBox();
+                _TextEditor.HorizontalAlignment = HorizontalAlignment.Left;
+                _TextEditor.Width = 161;
+                _TextEditor.KeyDown += TextEditor_KeyDown;
 
-                TextEditor.Text = tbText.Text; // copy current text to editor
-                Editor.Children.Add(TextEditor);    // show editor to edit  
+                _TextEditor.Text = this._FullText; // copy current text to editor
+                Editor.Children.Add(_TextEditor);    // show editor to edit  
 
-                tbText.Visibility = Visibility.Hidden;
-                isEditing = true; //start editing
+                tbText.Visibility = Visibility.Hidden; //hide text
+                _isEditing = true; //start editing
             }
         }
         #endregion
@@ -89,15 +94,19 @@ namespace MusicManager.Controls
         #region Methods
         public void CheckLength()
         {
-            if (tbText.Text.Length > 23)
-            {
-                _FullText = tbText.Text; // back up
+            _FullText = tbText.Text; // back up
 
-                tbText.Text = tbText.Text.Remove(23) + "..."; // set new title
+            if (tbText.Text.Length > 15)
+            {               
+                tbText.Text = tbText.Text.Remove(15) + "..."; // set new title
                 ToolTip aTooltip = new ToolTip();
                 aTooltip.Content = _FullText;
 
                 tbText.ToolTip = aTooltip;
+            }
+            else
+            {
+                tbText.ToolTip = null;
             }
         }
         #endregion

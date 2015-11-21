@@ -15,13 +15,7 @@ namespace MusicManager.Classes
         #endregion
 
         #region Properties
-        private string _Name;
-
-        public string Name
-        {
-            get { return _Name; }
-            set { _Name = value; }
-        }
+        public string Name { get; set; }
         #endregion
     }
 }

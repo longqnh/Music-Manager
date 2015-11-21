@@ -20,10 +20,12 @@ namespace MusicManager.Controls
     /// </summary>
     public partial class AlbumView : UserControl
     {
+        #region Constructor
         public AlbumView()
         {
             InitializeComponent();
         }
+        #endregion
 
         #region Properties
         private int _Cur = 0;
@@ -43,7 +45,6 @@ namespace MusicManager.Controls
             else
                 imgPreAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur - 1].CoverPath, UriKind.Relative));
         }
-
         private void imgNextAlbum_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             imgPreAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
@@ -79,16 +80,22 @@ namespace MusicManager.Controls
             this.pnTrackList.Children.Clear(); // first, remove all the song contenting
             //then add songlist of _AlbumList[index]
             int i;
-            for (i = 0; i < this._AlbumList[index].TrackList.Count; i++)
+            for (i = 1; i < this._AlbumList[index].TrackList.Count; i++)
             {
-                Track track = new Track(_Main);
-                track.tbNo.Text = i + ".";
                 Song tmp = this._AlbumList[index].TrackList[i];
+
+                Track track = new Track(_Main, (short)index, (short)i);
+                track.tbNo.Text = i + ".";
+             
                 track.tbTitle.Text = tmp.Title;
                 track.tbDur.Text = "0" + tmp.Dur.Minutes.ToString() + ":" + tmp.Dur.Seconds;
                 this.pnTrackList.Children.Add(track);
             }
 
+        }
+        public Song SongX_OfAlbum(short index, short x) // return song x of album[index]
+        {
+            return this._AlbumList[index].TrackList[x];
         }
         #endregion
     }

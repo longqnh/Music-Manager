@@ -20,9 +20,11 @@ namespace MusicManager.Controls
     /// </summary>
     public partial class ArtistView : UserControl
     {
+        #region Constructor
         public ArtistView()
         {
             InitializeComponent();
         }
+        #endregion
     }
 }

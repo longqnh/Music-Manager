@@ -33,7 +33,5 @@ namespace MusicManager.Classes
         public TimeSpan Dur { get; set; }
       
         #endregion
-        #region Methods
-        #endregion
     }
 }

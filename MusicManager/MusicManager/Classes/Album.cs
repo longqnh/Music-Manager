@@ -22,9 +22,5 @@ namespace MusicManager.Classes
         public List<Song> TrackList { get; set; }
         public string CoverPath { get; set; }
         #endregion
-
-        #region Methods
-
-        #endregion
     }
 }

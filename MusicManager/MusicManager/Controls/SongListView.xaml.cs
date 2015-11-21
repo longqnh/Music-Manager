@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using MusicManager.Classes;
 using HundredMilesSoftware.UltraID3Lib;
 
 namespace MusicManager.Controls
@@ -22,36 +22,33 @@ namespace MusicManager.Controls
     /// </summary>
     public partial class SongListView : System.Windows.Controls.UserControl
     {
+        #region Constructor
         public SongListView()
         {
             InitializeComponent();
         }
+        #endregion
 
         #region Propertis
         private bool _isAlbumSelected = true;
         private Color _coSelect = Color.FromRgb(255,249,249);
         private Color _coDeSelect = Color.FromRgb(81, 79, 84);
-
-
-        private MainWindow _Main;
-        public MainWindow Main
-        {
-            set { _Main = value; }
-        }
+        public MainWindow Main { get; set; }
         #endregion
 
         #region for testing
         int i = 1;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Track track = new Track(_Main);
-            track.tbNo.Text = i + ".";
-            track.tbTitle.Text += i;
-            ctArtistView.pnTrackList.Children.Add(track);
-            i++;
+            //Track track = new Track(_Main);
+            //track.tbNo.Text = i + ".";
+            //track.tbTitle.Text += i;
+            //ctArtistView.pnTrackList.Children.Add(track);
+            //i++;
             //UltraID3 Tag = new UltraID3();
             //Tag.Read("C:/Users/Administrator/Desktop/02-(13.06.2001)-Single-Tropica~l-Koishite~ru/1.mp3");
             //MessageBox.Show(Tag.Duration.Minutes.ToString());
+
         }
         #endregion
 
@@ -82,6 +79,7 @@ namespace MusicManager.Controls
         #endregion
 
         #region Methods
+        
         #endregion
     }
 }

@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using MusicManager.Classes;
 namespace MusicManager.Controls
 {
     /// <summary>
@@ -20,70 +20,42 @@ namespace MusicManager.Controls
     /// </summary>
     public partial class TrackInfoView : UserControl
     {
+        #region Constructor
         public TrackInfoView()
         {
             InitializeComponent();
         }
+        #endregion 
 
         #region Properties
-        private MainWindow _Main;
-
-        public MainWindow Main
-        {
-            set { _Main = value; }
-        }
+        public MainWindow Main { get; set; }
         #endregion
 
         #region Methods
-        public void LoadInfo(Track track)
+        public void LoadInfo(Song song) // load from songlist (track), playinglist
         {
-            tbTittle.tbText.Text = track.tbTitle.Text;
+            tbTittle.tbText.Text = song.Title;
             tbTittle.CheckLength();
 
-            //tbArtist.tbText.Text
-            //tbArtist.CheckLength();
-
-            //tbAlbum.tbText.Text
-            //tbAlbum.CheckLength();
-
-            //tbDate.tbText.Text
-            //tbDate.CheckLength();
-
-            //tbGenre.tbText.Text
-            //tbGenre.CheckLength();
-
-            //tbTrackNo.tbText.Text
-            //tbTrackNo.CheckLength();
-
-            //tbType.Text
-            //tbBitRate.Text
-            //tbPath.Text
-        }
-        public void LoadInfo(PlayingSong song)
-        {
-            tbTittle.tbText.Text = song.tbTitle.Text;
-            tbTittle.CheckLength();
-
-            tbArtist.tbText.Text = song.tbArtist.Text;
+            tbArtist.tbText.Text = song.Artist;
             tbArtist.CheckLength();
 
-            tbAlbum.tbText.Text = song.tbAlbum.Text;
+            tbAlbum.tbText.Text = song.Album;
             tbAlbum.CheckLength();
 
-            //tbDate.tbText.Text
-            //tbDate.CheckLength();
+            tbDate.tbText.Text = song.Year.ToString();
+            tbDate.CheckLength();
 
-            //tbGenre.tbText.Text
-            //tbGenre.CheckLength();
+            tbGenre.tbText.Text = song.Genre;
+            tbGenre.CheckLength();
 
-            //tbTrackNo.tbText.Text
-            //tbTrackNo.CheckLength();
+            tbTrackNo.tbText.Text = song.Track.ToString();
+            tbTrackNo.CheckLength();
 
             //tbType.Text
-            //tbBitRate.Text
+            tbBitRate.Text = song.Bitrate.ToString() + "kbps";
             //tbPath.Text
         }
-
         #endregion
     }
 }
