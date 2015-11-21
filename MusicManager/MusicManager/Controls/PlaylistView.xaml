@@ -7,6 +7,7 @@
     <Grid Background="#140A12">
         <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="31,516,0,0" VerticalAlignment="Top" Width="76"/>
         <Button x:Name="btnArrow" Content="ArrowDown" HorizontalAlignment="Left" Margin="230,516,0,0" VerticalAlignment="Top" Width="76"/>
+        
         <Button x:Name="btnPlay" Margin="140,482,136,10" Click="btnPlay_Click">
             <StackPanel>
                 <Image Source="/Image/Play Button.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="62" Margin="0,0,2,0" Width="64"/>
@@ -21,9 +22,9 @@
             </Button.Template>
         </Button>
 
-        <ScrollViewer x:Name="srvPlayingList" HorizontalAlignment="Left" Height="463" VerticalAlignment="Top" Width="331" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Margin="0,14,0,0">
-            <StackPanel x:Name="pnPlayList" Height="485" Width="315" Margin="-13,0,0,0"/>
+        <ScrollViewer x:Name="srvPlayingList" HorizontalAlignment="Left" Height="463" VerticalAlignment="Top" Width="341" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Margin="1,10,0,0">
+            <StackPanel x:Name="pnPlayList" Height="485" Width="325" Margin="-13,0,0,0"/>
         </ScrollViewer>
-        <Button Content="Test" HorizontalAlignment="Left" Margin="10,516,0,0" VerticalAlignment="Top" Width="41" Height="28" Click="Button_Click"/>
+        <!--<Button Content="Test" HorizontalAlignment="Left" Margin="10,516,0,0" VerticalAlignment="Top" Width="41" Height="28" Click="Button_Click"/>-->
     </Grid>
 </UserControl>

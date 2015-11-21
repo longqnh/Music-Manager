@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Forms;
+using System.IO;
 
 namespace MusicManager
 {
@@ -23,11 +25,32 @@ namespace MusicManager
         public MainWindow()
         {
             InitializeComponent();
+            SongList.Main = PlayList.Main = TrackInfo.Main = this;
         }
-        //test test
-        private void SongListView_Loaded(object sender, RoutedEventArgs e)
-        {
 
+        #region Properties
+        private string _Media;
+        private List<string> _MusicList; //list of files that are music file
+        #endregion
+
+        #region Events
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            _MusicList = new List<string>();
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if (fbd.ShowDialog() != System.Windows.Forms.DialogResult.Cancel)
+            {
+                _Media = fbd.SelectedPath;
+                DirectoryInfo dir = new DirectoryInfo(_Media);
+                foreach (FileInfo file in dir.GetFiles("*.*", SearchOption.AllDirectories))
+                {
+                    if (file.Extension == ".wmv" || file.Extension == ".mp3" || file.Extension == ".mp4"
+                        || file.Extension == ".flac" || file.Extension == ".wma"
+                        || file.Extension == ".m4a" || file.Extension == ".wav")
+                        _MusicList.Add(file.FullName);
+                }
+            }
         }
+        #endregion
     }
 }

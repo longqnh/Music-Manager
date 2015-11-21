@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using MusicManager.Classes;
 namespace MusicManager.Controls
 {
     /// <summary>
@@ -30,6 +30,7 @@ namespace MusicManager.Controls
         private string[] _CoverPath;
         private int _AlbumCount;
         private int _Current = 0;
+        private List<Album> _AlbumList;
         #endregion
 
         #region Events

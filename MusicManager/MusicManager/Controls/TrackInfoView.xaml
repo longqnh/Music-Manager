@@ -16,11 +16,14 @@
         <Label Content="File Type" HorizontalAlignment="Left" Margin="17,389,0,0" VerticalAlignment="Top" Foreground="#7F7F7F" FontSize="16"/>
         <Label Content="Bitrate" HorizontalAlignment="Left" Margin="17,448,0,0" VerticalAlignment="Top" Foreground="#7F7F7F" FontSize="16"/>
         <Label Content="File Path" HorizontalAlignment="Left" Margin="17,495,0,0" VerticalAlignment="Top" Foreground="#7F7F7F" FontSize="16"/>
-        <local:TextEditBox x:Name="Tittle" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,76,0,0"/>
-        <local:TextEditBox x:Name="Artist" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,130,0,0"/>
-        <local:TextEditBox x:Name="Album" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,188,0,0"/>
-        <local:TextEditBox x:Name="Date" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,245,0,0"/>
-        <local:TextEditBox x:Name="Genre" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,303,0,0"/>
-        <local:TextEditBox x:Name="Track" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,360,0,0"/>
+        <local:TextEditBox x:Name="tbTittle" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,76,0,0"/>
+        <local:TextEditBox x:Name="tbArtist" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,130,0,0"/>
+        <local:TextEditBox x:Name="tbAlbum" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,188,0,0"/>
+        <local:TextEditBox x:Name="tbDate" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,245,0,0"/>
+        <local:TextEditBox x:Name="tbGenre" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,303,0,0"/>
+        <local:TextEditBox x:Name="tbTrackNo" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,360,0,0"/>
+        <TextBlock x:Name="tbType" Text="Example" Foreground="#FFF9FF" FontSize="15" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Margin="40,419,0,0"/>
+        <TextBlock x:Name="tbBitRate" Text="Example" Foreground="#FFF9FF" FontSize="15" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Margin="40,474,0,0"/>
+        <TextBlock x:Name="tbPath" Text="Example" Foreground="#FFF9FF" FontSize="15" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Margin="40,521,0,0"/>
     </Grid>
 </UserControl>

@@ -20,9 +20,26 @@ namespace MusicManager.Controls
     /// </summary>
     public partial class Track : UserControl
     {
-        public Track()
+        public Track(MainWindow main)
         {
             InitializeComponent();
+            this._Main = main;
         }
+
+        #region Properties
+        private MainWindow _Main;
+        #endregion
+
+        #region Events
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this._Main.TrackInfo.LoadInfo(this); // load trackinfo
+            if (e.LeftButton == MouseButtonState.Pressed && e.ClickCount == 2)
+            {
+                this._Main.PlayList.AddtoList(this); // add track to playlist
+            }
+
+        }
+        #endregion
     }
 }

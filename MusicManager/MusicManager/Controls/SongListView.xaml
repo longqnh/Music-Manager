@@ -11,6 +11,5 @@
         <local:AlbumView x:Name="ctAlbumView" HorizontalAlignment="Left" Margin="0,39,0,0" VerticalAlignment="Top"/>
         <local:ArtistView x:Name="ctArtistView" HorizontalAlignment="Left" Margin="0,39,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
         <Button Content="Test:Add Song" HorizontalAlignment="Left" Margin="132,10,0,0" VerticalAlignment="Top" Width="93" Click="Button_Click"/>
-        <Button x:Name="btn_browse" Content="Browse" HorizontalAlignment="Left" Margin="225,10,0,0" VerticalAlignment="Top" Width="93" Click="btn_browse_Click"/>
     </Grid>
 </UserControl>

@@ -3,12 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Height="28.666" Width="292.666">
-    <Grid>
-        <TextBlock x:Name="Song_No" HorizontalAlignment="Left" TextWrapping="Wrap" Text="1." VerticalAlignment="Top" FontSize="16" Foreground="White" />
-        <TextBlock x:Name="Song_Title" HorizontalAlignment="Left" Margin="28,0,0,0" TextWrapping="Wrap" Text="Song " VerticalAlignment="Top" FontSize="16" Foreground="White"/>
-        <TextBlock x:Name="Song_Artist" HorizontalAlignment="Left" Margin="114,0,0,0" TextWrapping="Wrap" Text="Artist" VerticalAlignment="Top" FontSize="16" Foreground="White"/>
-        <TextBlock x:Name="Song_Album" HorizontalAlignment="Left" Margin="181,0,0,0" TextWrapping="Wrap" Text="Album" VerticalAlignment="Top" FontSize="16" Foreground="White"/>
-        <TextBlock x:Name="Songk_Dur" HorizontalAlignment="Left" Margin="246,0,0,0" TextWrapping="Wrap" Text="mm:ss" VerticalAlignment="Top" FontSize="16" Foreground="White"/>
+             mc:Ignorable="d" Height="18.166" Width="292.666">
+    <!--Height="28.666"-->
+    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+        <TextBlock x:Name="tbNo" HorizontalAlignment="Left" TextWrapping="Wrap" Text="1." VerticalAlignment="Top" FontSize="13" Foreground="White" />
+        <TextBlock x:Name="tbTitle" HorizontalAlignment="Left" Margin="21,0,0,0" TextWrapping="Wrap" Text="Song " VerticalAlignment="Top" FontSize="13" Foreground="White" Width="92"/>
+        <TextBlock x:Name="tbArtist" HorizontalAlignment="Left" Margin="127,0,0,0" TextWrapping="Wrap" Text="Artist" VerticalAlignment="Top" FontSize="13" Foreground="White" Width="62"/>
+        <TextBlock x:Name="tbAlbum" HorizontalAlignment="Left" Margin="193,0,0,0" TextWrapping="Wrap" Text="Album" VerticalAlignment="Top" FontSize="13" Foreground="White" Width="60"/>
+        <TextBlock x:Name="tbDur" HorizontalAlignment="Left" Margin="254,0,0,0" TextWrapping="Wrap" Text="mm:ss" VerticalAlignment="Top" FontSize="13" Foreground="White"/>
     </Grid>
 </UserControl>

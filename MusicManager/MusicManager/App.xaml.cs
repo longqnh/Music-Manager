@@ -11,7 +11,6 @@ namespace MusicManager
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    /// Note : Hướng dẫn dùng github
     public partial class App : Application
     {
     }

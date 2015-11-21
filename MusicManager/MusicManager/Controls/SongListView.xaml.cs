@@ -12,8 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Forms;
-using System.IO;
+
+using HundredMilesSoftware.UltraID3Lib;
 
 namespace MusicManager.Controls
 {
@@ -27,10 +27,33 @@ namespace MusicManager.Controls
             InitializeComponent();
             PassCoverPath();
         }
+
         #region Propertis
         private bool _isAlbumSelected = true;
         private Color _coSelect = Color.FromRgb(255,249,249);
         private Color _coDeSelect = Color.FromRgb(81, 79, 84);
+
+
+        private MainWindow _Main;
+        public MainWindow Main
+        {
+            set { _Main = value; }
+        }
+        #endregion
+
+        #region for testing
+        int i = 1;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Track track = new Track(_Main);
+            track.tbNo.Text = i + ".";
+            track.tbTitle.Text += i;
+            ctArtistView.pnTrackList.Children.Add(track);
+            i++;
+            //UltraID3 Tag = new UltraID3();
+            //Tag.Read("C:/Users/Administrator/Music/松浦亜弥/20-(20.10.2004)-Single-Watarasebashi/1 - Watarasebashi.mp3");
+            //MessageBox.Show(Tag.Album);
+        }
         #endregion
 
         #region Events
@@ -56,49 +79,7 @@ namespace MusicManager.Controls
                 _isAlbumSelected = false;
             }
         }
-       
-        //int i = 1; // for testing
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-        //    Track track = new Track();
-        //    track.No.Text = i + ".";
-        //    track.Title.Text += i;
-        //    ctAlbumView.pnTrackList.Children.Add(track);
-        //    i++;
-        }
 
-        int count = 1;
-        List<string> music_list;
-        string media = string.Empty;
-        private void btn_browse_Click(object sender, RoutedEventArgs e)
-        {
-            music_list = new List<string>();
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            if (fbd.ShowDialog() != System.Windows.Forms.DialogResult.Cancel)
-            {
-                media = fbd.SelectedPath;
-                DirectoryInfo dir = new DirectoryInfo(media);
-                foreach (FileInfo file in dir.GetFiles("*.*", SearchOption.AllDirectories))
-                {
-                    if (file.Extension == ".wmv" || file.Extension == ".mp3" || file.Extension == ".mp4" || file.Extension == ".flac" || file.Extension == ".wma" || file.Extension == ".m4a" || file.Extension == ".wav")
-                    {
-                        music_list.Add(file.Name);
-                    }
-                }
-
-                if (music_list != null)
-                {
-                    foreach (string ms_file in music_list)
-                    {
-                        Track track = new Track();
-                        track.No.Text = count + ".";
-                        track.Title.Text += ms_file;
-                        ctAlbumView.pnTrackList.Children.Add(track);
-                        count++;
-                    }
-                }
-            }
-        }
         #endregion
 
         #region Methods
@@ -109,8 +90,7 @@ namespace MusicManager.Controls
                                     "/Albums/5.jpg","/Albums/6.jpg"};
             ctAlbumView.RecCoverPath(AlbumPath);
         }
+
         #endregion
-
-
     }
 }

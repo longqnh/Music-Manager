@@ -24,5 +24,66 @@ namespace MusicManager.Controls
         {
             InitializeComponent();
         }
+
+        #region Properties
+        private MainWindow _Main;
+
+        public MainWindow Main
+        {
+            set { _Main = value; }
+        }
+        #endregion
+
+        #region Methods
+        public void LoadInfo(Track track)
+        {
+            tbTittle.tbText.Text = track.tbTitle.Text;
+            tbTittle.CheckLength();
+
+            //tbArtist.tbText.Text
+            //tbArtist.CheckLength();
+
+            //tbAlbum.tbText.Text
+            //tbAlbum.CheckLength();
+
+            //tbDate.tbText.Text
+            //tbDate.CheckLength();
+
+            //tbGenre.tbText.Text
+            //tbGenre.CheckLength();
+
+            //tbTrackNo.tbText.Text
+            //tbTrackNo.CheckLength();
+
+            //tbType.Text
+            //tbBitRate.Text
+            //tbPath.Text
+        }
+        public void LoadInfo(PlayingSong song)
+        {
+            tbTittle.tbText.Text = song.tbTitle.Text;
+            tbTittle.CheckLength();
+
+            tbArtist.tbText.Text = song.tbArtist.Text;
+            tbArtist.CheckLength();
+
+            tbAlbum.tbText.Text = song.tbAlbum.Text;
+            tbAlbum.CheckLength();
+
+            //tbDate.tbText.Text
+            //tbDate.CheckLength();
+
+            //tbGenre.tbText.Text
+            //tbGenre.CheckLength();
+
+            //tbTrackNo.tbText.Text
+            //tbTrackNo.CheckLength();
+
+            //tbType.Text
+            //tbBitRate.Text
+            //tbPath.Text
+        }
+
+        #endregion
     }
 }

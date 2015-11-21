@@ -25,19 +25,53 @@ namespace MusicManager.Controls
             InitializeComponent();
         }
 
-        int i = 1;
-        private void Button_Click(object sender, RoutedEventArgs e)
+        #region Properies
+        private int i = 1;
+
+        private MainWindow _Main;
+
+        public MainWindow Main
         {
-            PlayingSong song = new PlayingSong();
-            song.Song_No.Text = i.ToString() + ".";
-            song.Song_Title.Text += i.ToString();
+            set { _Main = value; }
+        }
+        #endregion
+
+        #region fortesting
+        //int a = 1;
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    PlayingSong song = new PlayingSong();
+        //    //song.tbNo.Text = i.ToString() + ".";
+        //    //song.tbTitle.Text += i.ToString();
+        //    pnPlayList.Children.Add(song);
+        //    i++;
+        //}
+        #endregion
+
+        #region Methods
+        public void AddtoList(Track track)
+        {
+            PlayingSong song = new PlayingSong(this._Main);
+            //add in info
+            song.tbNo.Text = i.ToString() + ".";
+
+            song.tbTitle.Text = track.tbTitle.Text;
+            //song.tbArtist.Text = track.tbartist;
+            //song.tbAlbum.Text - track.tbalbum;
+            song.tbDur.Text = track.tbDur.Text;
+
+            song.Checklength(); // if the title is too long, set tooltip
+            //add song to playlist
             pnPlayList.Children.Add(song);
             i++;
         }
+        #endregion
 
+        #region Events
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Music starting......");
         }
+        #endregion
     }
 }

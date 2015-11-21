@@ -5,12 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Height="497" Width="342">
     <Grid>
-        <Image x:Name="imgCurrent" HorizontalAlignment="Left" Height="100" Margin="117,10,0,0" VerticalAlignment="Top" Width="100"/>
-        <Image x:Name="imgPrevious" HorizontalAlignment="Left" Height="66" Margin="35,29,0,0"  VerticalAlignment="Top" Width="66"/>
-        <Image x:Name="imgNext" HorizontalAlignment="Left" Height="66" Margin="234,29,0,0" VerticalAlignment="Top" Width="66"/>
-        <TextBlock x:Name="tbArtistName" HorizontalAlignment="Left" Margin="112,122,0,0" TextWrapping="Wrap" Text="ArtistName" VerticalAlignment="Top" FontSize="20" Foreground="White"/>        
-        <ScrollViewer x:Name="srvTrackList" HorizontalAlignment="Left" Height="293" Margin="1,204,0,0" VerticalAlignment="Top" Width="329" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
-            <StackPanel x:Name="pnTrackList" Height="293" Width="290"/>
+        <Image x:Name="imgCurArtist" HorizontalAlignment="Left" Height="100" Margin="117,10,0,0" VerticalAlignment="Top" Width="100"/>
+        <Image x:Name="imgPreArtist" HorizontalAlignment="Left" Height="66" Margin="35,29,0,0"  VerticalAlignment="Top" Width="66"/>
+        <Image x:Name="imgNextArtist" HorizontalAlignment="Left" Height="66" Margin="234,29,0,0" VerticalAlignment="Top" Width="66"/>
+        <TextBlock x:Name="tbArtistName" HorizontalAlignment="Left" Margin="112,122,0,0" TextWrapping="Wrap" Text="ArtistName" VerticalAlignment="Top" FontSize="20" Foreground="White"/>
+        <ScrollViewer x:Name="srvTrackList" HorizontalAlignment="Left" Height="329" Margin="1,168,0,0" VerticalAlignment="Top" Width="329" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="pnTrackList" Height="329" Width="290"/>
         </ScrollViewer>
     </Grid>
 </UserControl>
