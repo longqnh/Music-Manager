@@ -59,3 +59,6 @@ D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\MainWindow.ba
 D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.g.resources
 D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.Properties.Resources.resources
 D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.csproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\MusicManager.exe.config
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.exe
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.pdb
