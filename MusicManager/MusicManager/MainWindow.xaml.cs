@@ -27,6 +27,7 @@ namespace MusicManager
         {
             InitializeComponent();
             SongList.Main = PlayList.Main = TrackInfo.Main = this;
+
         }
 
         #region Properties

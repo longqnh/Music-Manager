@@ -3,28 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
+             xmlns:local="clr-namespace:MusicManager.Controls"
              mc:Ignorable="d" Height="554" Width="342">
-    <Grid Background="#140A12">
-        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="31,516,0,0" VerticalAlignment="Top" Width="76"/>
-        <Button x:Name="btnArrow" Content="ArrowDown" HorizontalAlignment="Left" Margin="230,516,0,0" VerticalAlignment="Top" Width="76"/>
-        
-        <Button x:Name="btnPlay" Margin="140,482,136,10" Click="btnPlay_Click">
-            <StackPanel>
-                <Image Source="/Image/Play Button.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="62" Margin="0,0,2,0" Width="64"/>
-            </StackPanel>
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <Ellipse Height="50" Width="50"/>
-                        <ContentPresenter/>
-                    </Grid>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-
-        <ScrollViewer x:Name="srvPlayingList" HorizontalAlignment="Left" Height="463" VerticalAlignment="Top" Width="341" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Margin="1,10,0,0">
-            <StackPanel x:Name="pnPlayList" Height="485" Width="325" Margin="-13,0,0,0"/>
+    <Grid Background="#140A12">            
+        <ScrollViewer x:Name="srvPlayingList" HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="341" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Margin="1,10,0,0">
+            <StackPanel x:Name="pnPlayList" Height="445" Width="325" Margin="-13,0,0,0"/>
         </ScrollViewer>
-        <!--<Button Content="Test" HorizontalAlignment="Left" Margin="10,516,0,0" VerticalAlignment="Top" Width="41" Height="28" Click="Button_Click"/>-->
+        <local:SongPlayer HorizontalAlignment="Left" Margin="0,460,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </UserControl>

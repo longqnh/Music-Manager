@@ -122,3 +122,5 @@ C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManage
 C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.g.resources
 C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.Properties.Resources.resources
 C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.csproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\SongPlayer.baml
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\SongPlayer.g.cs
