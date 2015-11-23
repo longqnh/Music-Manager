@@ -16,6 +16,7 @@ using System.Windows.Forms;
 using System.IO;
 using MusicManager.Classes;
 using HundredMilesSoftware.UltraID3Lib;
+using System.Data.SQLite;
 namespace MusicManager
 {
     /// <summary>
@@ -98,6 +99,31 @@ namespace MusicManager
             }
             this.SongList.ctAlbumView.ReceiveAlbumList(AlbumList, this);
         }
+        //--- Hàm thêm list<fileinfo> vào database 
+        void AddListToDB(List<FileInfo> List, int Idstarform) // lưu ý hàm này nhận một số int vào để bắt đầu đánh dấu ID trong DB ++
+        {
+
+            SQLiteConnection sqlite_conn;
+            SQLiteCommand sqlite_cmd;
+            TagLib.File song;
+            // create a connection 
+            sqlite_conn = new SQLiteConnection("Data Source = music.sqlite");
+            //Open connection 
+            sqlite_conn.Open();
+            //create command
+            sqlite_cmd = sqlite_conn.CreateCommand();
+            //   sqlite_cmd.CommandText = "ALTER TABLE Album ADD FOREIGN KEY (AlbumName) REFERENCES Song(Album);"; cái này t test tạo khóa mà vẫn chưa được
+            sqlite_cmd.ExecuteNonQuery();
+            foreach (FileInfo musicfile in List)
+            {
+                song = TagLib.File.Create((string)(musicfile.FullName)); // with a path of file we create a file tag;
+                sqlite_cmd.CommandText = "INSERT INTO Song(Songid,Title,Dur,Year,Album,Artist,Path,Bitrate,Genre) VALUES ('" + Idstarform + "','" + song.Tag.Title + "','" + song.Properties.Duration + "','" + song.Tag.Year + "','" + song.Tag.Album + "','" + song.Tag.Artists[0] + "','" + musicfile.DirectoryName + "'," + song.Properties.AudioBitrate + ",'" + song.Tag.Genres[0] + "');";
+                sqlite_cmd.ExecuteNonQuery();
+                Idstarform++;
+            };
+            sqlite_conn.Close();
+        }
+        //-- kết thúc
         #endregion
     }
 }

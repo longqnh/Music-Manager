@@ -124,3 +124,13 @@ C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManage
 C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.csproj.GenerateResource.Cache
 C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\SongPlayer.baml
 C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\SongPlayer.g.cs
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\bin\Debug\EntityFramework.dll
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\bin\Debug\System.Data.SQLite.dll
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\bin\Debug\System.Data.SQLite.EF6.dll
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\bin\Debug\System.Data.SQLite.Linq.dll
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\bin\Debug\EntityFramework.xml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\bin\Debug\System.Data.SQLite.xml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\SongPlayer.baml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\SongPlayer.g.cs
