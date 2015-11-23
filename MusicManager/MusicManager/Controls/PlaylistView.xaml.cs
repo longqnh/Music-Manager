@@ -31,7 +31,12 @@ namespace MusicManager.Controls
         #region Properies
         private int i = 1;
         private List<Song> _PlayingList = new List<Song>();
+        private short _SelectedSong;
         public MainWindow Main { get; set; }
+        #endregion
+
+        #region Events
+
         #endregion
 
         #region Methods
@@ -52,12 +57,24 @@ namespace MusicManager.Controls
         }
         public Song SongX_inList(short x)
         {
-            int tmp = this._PlayingList.Count;
             return this._PlayingList[x];
+        }
+        public void SongX_Selected(short x)
+        {
+            //Load info
+            this.Main.TrackInfo.LoadInfo(_PlayingList[x]);
+            //song ready to play
+            Player.SelectedSong(_PlayingList[x].Path);
+            //change color of the selected song to default
+            ((PlayingSong)pnPlayList.Children[_SelectedSong]).DeSelected();
+            //update new selected song
+            _SelectedSong = x;
+            ((PlayingSong)pnPlayList.Children[_SelectedSong]).Selected();
         }
         #endregion
 
-        #region Events
-        #endregion     
+          
+
+
     }
 }

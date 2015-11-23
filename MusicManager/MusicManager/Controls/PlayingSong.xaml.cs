@@ -40,8 +40,8 @@ namespace MusicManager.Controls
         #region Events
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Song tmp = this._Main.PlayList.SongX_inList(_No);
-            this._Main.TrackInfo.LoadInfo(tmp);
+            //select song from play list
+            this._Main.PlayList.SongX_Selected(_No);
         }
         #endregion
 
@@ -58,6 +58,24 @@ namespace MusicManager.Controls
                 //set the tooltip to title
                 tbTitle.ToolTip = aTooltip;
             }
+        }
+        public void Selected()
+        {
+            Color coSelected = Color.FromRgb(162, 24, 102);
+            tbNo.Foreground = new SolidColorBrush(coSelected);
+            tbTitle.Foreground = new SolidColorBrush(coSelected);
+            tbArtist.Foreground = new SolidColorBrush(coSelected);
+            tbAlbum.Foreground = new SolidColorBrush(coSelected);
+            tbDur.Foreground = new SolidColorBrush(coSelected);
+        }
+        public void DeSelected()
+        {
+            Color coSelected = Colors.White;
+            tbNo.Foreground = new SolidColorBrush(coSelected);
+            tbTitle.Foreground = new SolidColorBrush(coSelected);
+            tbArtist.Foreground = new SolidColorBrush(coSelected);
+            tbAlbum.Foreground = new SolidColorBrush(coSelected);
+            tbDur.Foreground = new SolidColorBrush(coSelected);
         }
         #endregion
     }

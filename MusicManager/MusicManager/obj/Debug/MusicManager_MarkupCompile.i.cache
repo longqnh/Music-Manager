@@ -16,5 +16,5 @@ C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManage
 17-565803959
 Controls\AlbumView.xaml;Controls\ArtistView.xaml;Controls\SongPlayer.xaml;Controls\PlayingSong.xaml;Controls\PlaylistView.xaml;Controls\SongListView.xaml;Controls\TextEditBox.xaml;Controls\Track.xaml;Controls\TrackInfoView.xaml;MainWindow.xaml;
 
-False
+True
 

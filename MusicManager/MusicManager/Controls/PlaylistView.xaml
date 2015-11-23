@@ -9,7 +9,6 @@
         <ScrollViewer x:Name="srvPlayingList" HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="341" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Margin="1,10,0,0">
             <StackPanel x:Name="pnPlayList" Height="445" Width="325" Margin="-13,0,0,0"/>
         </ScrollViewer>
-        <local:SongPlayer HorizontalAlignment="Left" Margin="0,460,0,0" VerticalAlignment="Top"/>
-
+        <local:SongPlayer x:Name="Player" HorizontalAlignment="Left" Margin="0,460,0,0" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

@@ -30,7 +30,7 @@ namespace MusicManager.Controls
 
         #region Properties
         private MediaPlayer _Song = new MediaPlayer();
-        private Song _SongtoPlay;
+        private string _SongtoPlay;
         private System.Windows.Threading.DispatcherTimer _Timer = new System.Windows.Threading.DispatcherTimer();
         #endregion
 
@@ -42,34 +42,36 @@ namespace MusicManager.Controls
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
-            //_Song.Open(new Uri(_Songtoplay.FullPath);
-            _Song.Open(new Uri("C:/Users/Administrator/Desktop/New folder/1/Dokki doki! Love mail.mp3"));
-            if(_Song.NaturalDuration.HasTimeSpan)
+            if (_SongtoPlay != null)
             {
-                TimeSpan dur = _Song.NaturalDuration.TimeSpan;
-                //set the song duration lable
-                tbSongDur.Text = dur.ToString(@"mm\:ss"); //"/ 0" + dur.Minutes.ToString() + ":" + dur.Seconds.ToString();
-                tbCurDur.Text = "00:00";
-                //set the seekbar
-                SeekBar.Maximum = dur.TotalSeconds;
-                SeekBar.SmallChange = 1;
-                SeekBar.LargeChange = Math.Min(10, dur.Seconds / 10);
-                //set the volume bar
-                VolumeBar.Maximum = _Song.Volume;
-                VolumeBar.Value = _Song.Volume;
-                //start the ticker timer
-                _Timer.Interval = TimeSpan.FromMilliseconds(500);
-                _Timer.Tick += _Timer_Tick;
-                _Timer.Start();
-                //start playing song
-                _Song.Play();
-               
+                _Song.Open(new Uri(_SongtoPlay));
+                if (_Song.NaturalDuration.HasTimeSpan)
+                {
+                    TimeSpan dur = _Song.NaturalDuration.TimeSpan;
+                    //set the song duration lable
+                    tbSongDur.Text = dur.ToString(@"mm\:ss"); //"/ 0" + dur.Minutes.ToString() + ":" + dur.Seconds.ToString();
+                    tbCurDur.Text = "00:00";
+                    //set the seekbar
+                    SeekBar.Maximum = dur.TotalSeconds;
+                    SeekBar.SmallChange = 1;
+                    SeekBar.LargeChange = Math.Min(10, dur.Seconds / 10);
+                    //set the volume bar
+                    VolumeBar.Maximum = _Song.Volume;
+                    VolumeBar.Value = _Song.Volume;
+                    //start the ticker timer
+                    _Timer.Interval = TimeSpan.FromMilliseconds(500);
+                    _Timer.Tick += _Timer_Tick;
+                    _Timer.Start();
+                    //start playing song
+                    _Song.Play();
+                }
             }
         }
 
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
-            _Song.Pause();
+            MessageBox.Show(_SongtoPlay);
+            //_Song.Pause();
         }
 
         private void _Timer_Tick(object sender, EventArgs e)
@@ -89,6 +91,11 @@ namespace MusicManager.Controls
         }
         #endregion
 
-
+        #region Method
+        public void SelectedSong(String path)
+        {
+            _SongtoPlay = path;
+        }
+        #endregion
     }
 }

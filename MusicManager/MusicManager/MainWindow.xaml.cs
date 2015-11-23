@@ -73,6 +73,7 @@ namespace MusicManager
                         //create a song
                         Song aSong = new Song(Tag.Title, Tag.Artist, Tag.Album, Tag.Year, Tag.Genre, 
                             Tag.TrackNum, Tag.GetMPEGTrackInfo().AverageBitRate, Tag.Duration);
+                        aSong.Path = musicfile.FullName;
                         AlbumList[i].TrackList.Add(aSong);
                         break;
                     }                   
@@ -88,6 +89,7 @@ namespace MusicManager
                     //create a song
                     Song aSong = new Song(Tag.Title, Tag.Artist, Tag.Album, Tag.Year, Tag.Genre, 
                             Tag.TrackNum, Tag.GetMPEGTrackInfo().AverageBitRate, Tag.Duration);
+                    aSong.Path = musicfile.FullName;
                     AlbumList[i].TrackList.Add(aSong);
 
                     //add song to album

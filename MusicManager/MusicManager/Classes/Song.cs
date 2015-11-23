@@ -31,7 +31,7 @@ namespace MusicManager.Classes
         public short? Track { get; set; }
         public int Bitrate { get; set; }
         public TimeSpan Dur { get; set; }
-      
+        public string Path { get; set; }
         #endregion
     }
 }
