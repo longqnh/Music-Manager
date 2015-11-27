@@ -36,24 +36,54 @@ namespace MusicManager
         private List<FileInfo> _MusicList; //list of files that are music file
         #endregion
 
+        #region Thread
+        public class DialogState
+        {
+            public DialogResult result;
+            public FolderBrowserDialog dialog;
+
+
+            public void ThreadProcShowDialog()
+            {
+                result = dialog.ShowDialog();
+            }
+        }
+        private DialogResult STAShowDialog(FolderBrowserDialog dialog)
+        {
+            DialogState state = new DialogState();
+            state.dialog = dialog;
+            System.Threading.Thread t = new
+                   System.Threading.Thread(state.ThreadProcShowDialog);
+            t.SetApartmentState(System.Threading.ApartmentState.STA);
+            t.Start();
+            t.Join();
+            return state.result;
+        }
+        #endregion
+
         #region Events
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             _MusicList = new List<FileInfo>();
             FolderBrowserDialog fbd = new FolderBrowserDialog();
-            if (fbd.ShowDialog() != System.Windows.Forms.DialogResult.Cancel)
+            System.Windows.Forms.DialogResult _result = STAShowDialog(fbd);
+            if (_result == System.Windows.Forms.DialogResult.OK)
             {
                 _Media = fbd.SelectedPath;
-                DirectoryInfo dir = new DirectoryInfo(_Media);
-                foreach (FileInfo file in dir.GetFiles("*.*", SearchOption.AllDirectories))
-                {
-                    if (file.Extension == ".wmv" || file.Extension == ".mp3" || file.Extension == ".mp4"
-                        || file.Extension == ".flac" || file.Extension == ".wma"
-                        || file.Extension == ".m4a" || file.Extension == ".wav")
-                        _MusicList.Add(file);                    
-                }
-                this.CreateAlbumList(_MusicList);
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            DirectoryInfo dir = new DirectoryInfo(_Media);
+            foreach (FileInfo file in dir.GetFiles("*.*", SearchOption.AllDirectories))
+            {
+                if (file.Extension == ".wmv" || file.Extension == ".mp3" || file.Extension == ".mp4"
+                    || file.Extension == ".flac" || file.Extension == ".wma"
+                    || file.Extension == ".m4a" || file.Extension == ".wav")
+                    _MusicList.Add(file);
+            }
+            this.CreateAlbumList(_MusicList);
         }
         #endregion
 
@@ -123,6 +153,8 @@ namespace MusicManager
             };
             sqlite_conn.Close();
         }
+
+
         //-- kết thúc
         #endregion
     }

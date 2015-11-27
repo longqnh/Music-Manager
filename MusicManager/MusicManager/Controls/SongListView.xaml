@@ -10,6 +10,5 @@
         <TextBlock x:Name="tbArtist" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="69,10,0,0" TextWrapping="Wrap" Text="Artist" FontSize="18" Foreground="#514F54" MouseLeftButtonDown="tbArtist_MouseLeftButtonDown"/>
         <local:AlbumView x:Name="ctAlbumView" HorizontalAlignment="Left" Margin="0,39,0,0" VerticalAlignment="Top"/>
         <local:ArtistView x:Name="ctArtistView" HorizontalAlignment="Left" Margin="0,39,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-        <Button Content="Test:Add Song" HorizontalAlignment="Left" Margin="132,10,0,0" VerticalAlignment="Top" Width="93" Click="Button_Click"/>
     </Grid>
 </UserControl>
