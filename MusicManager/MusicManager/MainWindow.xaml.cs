@@ -29,7 +29,10 @@ namespace MusicManager
             InitializeComponent();
             SongList.Main = PlayList.Main = TrackInfo.Main = this;
 
+
         }
+        SQLiteConnection sqlite_conn = new SQLiteConnection("Data Source = music.db");
+        SQLiteCommand sqlite_cmd;
 
         #region Properties
         private string _Media;
@@ -62,7 +65,7 @@ namespace MusicManager
         #endregion
 
         #region Events
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e) //brown
         {
             _MusicList = new List<FileInfo>();
             FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -73,8 +76,20 @@ namespace MusicManager
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e) //load
         {
+            sqlite_conn.Open();                                 //xóa sạch database trước khi add data mới vào 
+            sqlite_cmd = sqlite_conn.CreateCommand();
+            sqlite_cmd.CommandText = "delete from Song";
+            sqlite_cmd.ExecuteNonQuery();
+            sqlite_cmd.CommandText = "delete from Album";
+            sqlite_cmd.ExecuteNonQuery();
+            sqlite_cmd.CommandText = "delete from Artist";
+            sqlite_cmd.ExecuteNonQuery();
+            sqlite_cmd.CommandText = "delete from SongAlbum";
+            sqlite_cmd.ExecuteNonQuery();
+            sqlite_conn.Close();
+
             DirectoryInfo dir = new DirectoryInfo(_Media);
             foreach (FileInfo file in dir.GetFiles("*.*", SearchOption.AllDirectories))
             {
@@ -84,6 +99,7 @@ namespace MusicManager
                     _MusicList.Add(file);
             }
             this.CreateAlbumList(_MusicList);
+            this.AddListToDB(_MusicList, 0);
         }
         #endregion
 
@@ -91,23 +107,23 @@ namespace MusicManager
         private void CreateAlbumList(List<FileInfo> MusicList) // find all album of music list
         {
             List<Album> AlbumList = new List<Album>();
-            foreach(FileInfo musicfile in MusicList)
+            foreach (FileInfo musicfile in MusicList)
             {
                 UltraID3 Tag = new UltraID3();
                 Tag.Read(musicfile.FullName);
                 string albumName = Tag.Album; // current musicfile's albumname
                 int i;
-                for (i = 0; i < AlbumList.Count; i++) 
+                for (i = 0; i < AlbumList.Count; i++)
                 {
                     if (albumName == AlbumList[i].Name) // found it's album in the albumlist
                     {
                         //create a song
-                        Song aSong = new Song(Tag.Title, Tag.Artist, Tag.Album, Tag.Year, Tag.Genre, 
+                        Song aSong = new Song(Tag.Title, Tag.Artist, Tag.Album, Tag.Year, Tag.Genre,
                             Tag.TrackNum, Tag.GetMPEGTrackInfo().AverageBitRate, Tag.Duration);
                         aSong.Path = musicfile.FullName;
                         AlbumList[i].TrackList.Add(aSong);
                         break;
-                    }                   
+                    }
                 }
                 if (i == AlbumList.Count) // current musicfile's albumname not in the album list
                 {
@@ -118,7 +134,7 @@ namespace MusicManager
                     AlbumList.Add(NewAlbum);
 
                     //create a song
-                    Song aSong = new Song(Tag.Title, Tag.Artist, Tag.Album, Tag.Year, Tag.Genre, 
+                    Song aSong = new Song(Tag.Title, Tag.Artist, Tag.Album, Tag.Year, Tag.Genre,
                             Tag.TrackNum, Tag.GetMPEGTrackInfo().AverageBitRate, Tag.Duration);
                     aSong.Path = musicfile.FullName;
                     AlbumList[i].TrackList.Add(aSong);
@@ -133,22 +149,22 @@ namespace MusicManager
         void AddListToDB(List<FileInfo> List, int Idstarform) // lưu ý hàm này nhận một số int vào để bắt đầu đánh dấu ID trong DB ++
         {
 
-            SQLiteConnection sqlite_conn;
-            SQLiteCommand sqlite_cmd;
             TagLib.File song;
-            // create a connection 
-            sqlite_conn = new SQLiteConnection("Data Source = music.sqlite");
             //Open connection 
             sqlite_conn.Open();
             //create command
             sqlite_cmd = sqlite_conn.CreateCommand();
-            //   sqlite_cmd.CommandText = "ALTER TABLE Album ADD FOREIGN KEY (AlbumName) REFERENCES Song(Album);"; cái này t test tạo khóa mà vẫn chưa được
-            sqlite_cmd.ExecuteNonQuery();
+
             foreach (FileInfo musicfile in List)
             {
-                song = TagLib.File.Create((string)(musicfile.FullName)); // with a path of file we create a file tag;
-                sqlite_cmd.CommandText = "INSERT INTO Song(Songid,Title,Dur,Year,Album,Artist,Path,Bitrate,Genre) VALUES ('" + Idstarform + "','" + song.Tag.Title + "','" + song.Properties.Duration + "','" + song.Tag.Year + "','" + song.Tag.Album + "','" + song.Tag.Artists[0] + "','" + musicfile.DirectoryName + "'," + song.Properties.AudioBitrate + ",'" + song.Tag.Genres[0] + "');";
+                song = TagLib.File.Create((string)(musicfile.FullName)); // with a path of file we create a file tag
+                sqlite_cmd.CommandText = "INSERT INTO Song(Songid,Title,Dur,Year,Artist,Path,Bitrate,Genre) VALUES ('" + Idstarform + "','" + song.Tag.Title + "','" + song.Properties.Duration + "','" + song.Tag.Year + "','" + song.Tag.Artists[0] + "','" + musicfile.DirectoryName + "'," + song.Properties.AudioBitrate + ",'" + song.Tag.Genres[0] + "');";
                 sqlite_cmd.ExecuteNonQuery();
+                sqlite_cmd.CommandText = "insert into Album(AlbumID, AlbumName) values (' " + Idstarform + " ',' " + song.Tag.Album + "')";
+                sqlite_cmd.ExecuteNonQuery();
+                sqlite_cmd.CommandText = "insert into Artist(ArtistID, ArtistName) values (' " + Idstarform + " ',' " + song.Tag.Artists[0] + "')";
+                sqlite_cmd.ExecuteNonQuery();
+
                 Idstarform++;
             };
             sqlite_conn.Close();
