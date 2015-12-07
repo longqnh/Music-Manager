@@ -37,6 +37,9 @@ namespace MusicManager
         #region Properties
         private string _Media;
         private List<FileInfo> _MusicList; //list of files that are music file
+        int ID_Album = 0;
+        int ID_Artist = 0;
+        int ID_Song = 0;
         #endregion
 
         #region Thread
@@ -85,8 +88,6 @@ namespace MusicManager
             sqlite_cmd.CommandText = "delete from Album";
             sqlite_cmd.ExecuteNonQuery();
             sqlite_cmd.CommandText = "delete from Artist";
-            sqlite_cmd.ExecuteNonQuery();
-            sqlite_cmd.CommandText = "delete from SongAlbum";
             sqlite_cmd.ExecuteNonQuery();
             sqlite_conn.Close();
 
@@ -145,6 +146,12 @@ namespace MusicManager
             }
             this.SongList.ctAlbumView.ReceiveAlbumList(AlbumList, this);
         }
+        //hàm lấy albumid
+        int getAlbumID(TagLib.File a)
+        {
+            sqlite_cmd.CommandText = "select AlbumID from Album where AlbumName = '" + a.Tag.Album + "';";
+            return (int)sqlite_cmd.ExecuteScalar();
+        }
         //--- Hàm thêm list<fileinfo> vào database 
         void AddListToDB(List<FileInfo> List, int Idstarform) // lưu ý hàm này nhận một số int vào để bắt đầu đánh dấu ID trong DB ++
         {
@@ -154,17 +161,61 @@ namespace MusicManager
             sqlite_conn.Open();
             //create command
             sqlite_cmd = sqlite_conn.CreateCommand();
-
+            int tmp_ID_Album, t;
             foreach (FileInfo musicfile in List)
             {
                 song = TagLib.File.Create((string)(musicfile.FullName)); // with a path of file we create a file tag
-                sqlite_cmd.CommandText = "INSERT INTO Song(Songid,Title,Dur,Year,Artist,Path,Bitrate,Genre) VALUES ('" + Idstarform + "','" + song.Tag.Title + "','" + song.Properties.Duration + "','" + song.Tag.Year + "','" + song.Tag.Artists[0] + "','" + musicfile.DirectoryName + "'," + song.Properties.AudioBitrate + ",'" + song.Tag.Genres[0] + "');";
-                sqlite_cmd.ExecuteNonQuery();
-                sqlite_cmd.CommandText = "insert into Album(AlbumID, AlbumName) values (' " + Idstarform + " ',' " + song.Tag.Album + "')";
-                sqlite_cmd.ExecuteNonQuery();
-                sqlite_cmd.CommandText = "insert into Artist(ArtistID, ArtistName) values (' " + Idstarform + " ',' " + song.Tag.Artists[0] + "')";
-                sqlite_cmd.ExecuteNonQuery();
+                //sqlite_cmd.CommandText = "INSERT INTO Song(Songid,Title,Dur,Year,Path,Bitrate,Genre) VALUES ('" + Idstarform + "','" + song.Tag.Title + "','" + song.Properties.Duration + "','" + song.Tag.Year + "','" + musicfile.DirectoryName + "'," + song.Properties.AudioBitrate + ",'" + song.Tag.Genres[0] + "');";
+                //sqlite_cmd.ExecuteNonQuery();
+                try
+                {
+                        
+                        sqlite_cmd.CommandText = "insert into Album(AlbumID, AlbumName) values (' " + ID_Album + " ','" + song.Tag.Album + "')";
+                        sqlite_cmd.ExecuteNonQuery();
+                        ID_Album++;
+                }
+                catch (Exception e)
+                {
 
+                }
+                try
+                {
+                    sqlite_cmd.CommandText = "insert into Artist(ArtistID, ArtistName) values (' " + ID_Artist + " ','" + song.Tag.FirstArtist + "')";
+                    sqlite_cmd.ExecuteNonQuery();
+                    ID_Artist++;
+                }
+                catch (Exception)
+                {
+
+                }
+                tmp_ID_Album = getAlbumID(song);
+                try
+                {
+                    
+                    sqlite_cmd.CommandText = "INSERT INTO Song(AlbumID) VALUES ('" + tmp_ID_Album + "');";
+                    sqlite_cmd.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+
+                }
+            
+                
+                //try
+                //{
+                //    sqlite_cmd.CommandText = "select ArtistID from Artist where ArtistName = '" + song.Tag.Artists + "'";
+                //    SQLiteDataReader reader1 = sqlite_cmd.ExecuteReader();
+                //    int tmp_ID_Artist;
+                //    while (reader1.Read())
+                //    {
+                //        tmp_ID_Artist = reader1.GetInt32(0);
+                //        sqlite_cmd.CommandText = "INSERT INTO Song(ArtistID) VALUES ('" + tmp_ID_Artist + "');";
+                //    }
+                //}
+                //catch (Exception)
+                //{
+                //}
+                
                 Idstarform++;
             };
             sqlite_conn.Close();
