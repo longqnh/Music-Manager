@@ -9,7 +9,7 @@ namespace MusicManager.Classes
     public class Song
     {
         #region Constructor
-        public Song(string title, string artist, string album, short? year, string genre, short? track, short bitrate, TimeSpan dur)
+        public Song(string title, string artist, string album, short? year, string genre, short? track, short bitrate, TimeSpan dur, string path)
         {
             Title = title;
             Artist = artist;
@@ -19,6 +19,11 @@ namespace MusicManager.Classes
             Track = track;
             Bitrate = bitrate;
             Dur = dur;
+            this.Path = path;
+        }
+        public Song ()
+        {
+
         }
         #endregion
 
@@ -32,6 +37,7 @@ namespace MusicManager.Classes
         public int Bitrate { get; set; }
         public TimeSpan Dur { get; set; }
         public string Path { get; set; }
+        public string filetype { get; set; }
         #endregion
     }
 }

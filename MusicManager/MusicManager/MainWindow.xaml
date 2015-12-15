@@ -4,7 +4,7 @@
         xmlns:Controls="clr-namespace:MusicManager.Controls" x:Class="MusicManager.MainWindow"
         Title="MusicManager" Height="588" Width="981">
     <Grid>
-        <Controls:SongListView x:Name="SongList" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Controls:SongListView x:Name="SongList" HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="SongList_Loaded"/>
         <Border x:Name="BorderNo1" BorderBrush="#FF837C83" BorderThickness="1" HorizontalAlignment="Left" Height="506" Margin="341,20,0,0" VerticalAlignment="Top"/>
         <Controls:PlaylistView x:Name="PlayList" HorizontalAlignment="Left" Margin="342,0,0,0" VerticalAlignment="Top" Height="554"/>
         <Border x:Name="BorderNo2" BorderBrush="#FF837C83" BorderThickness="1" HorizontalAlignment="Left" Height="506" Margin="682,20,0,0" VerticalAlignment="Top"/>

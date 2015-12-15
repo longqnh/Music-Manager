@@ -28,7 +28,14 @@ namespace MusicManager
         {
             InitializeComponent();
             SongList.Main = PlayList.Main = TrackInfo.Main = this;
-
+            try
+            {
+                CreateAlbumList();
+            }
+            catch
+            {
+                
+            }
 
         }
         SQLiteConnection sqlite_conn = new SQLiteConnection("Data Source = music.db");
@@ -40,6 +47,7 @@ namespace MusicManager
         int ID_Album = 0;
         int ID_Artist = 0;
         int ID_Song = 0;
+        bool loaded = false;
         #endregion
 
         #region Thread
@@ -59,7 +67,7 @@ namespace MusicManager
             DialogState state = new DialogState();
             state.dialog = dialog;
             System.Threading.Thread t = new
-                   System.Threading.Thread(state.ThreadProcShowDialog);
+            System.Threading.Thread(state.ThreadProcShowDialog);
             t.SetApartmentState(System.Threading.ApartmentState.STA);
             t.Start();
             t.Join();
@@ -99,56 +107,18 @@ namespace MusicManager
                     || file.Extension == ".m4a" || file.Extension == ".wav")
                     _MusicList.Add(file);
             }
-       //  ..   this.CreateAlbumList(_MusicList);
-            this.AddListToDB(_MusicList, 0);
+            //  ..   this.CreateAlbumList(_MusicList);
+            loaded = true;
+            this.AddListToDB(_MusicList);
+            CreateAlbumList();
         }
         #endregion
 
         #region Methods
-        private void CreateAlbumList(List<FileInfo> MusicList) // find all album of music list
-        {
-            List<Album> AlbumList = new List<Album>();
-            foreach (FileInfo musicfile in MusicList)
-            {
-                UltraID3 Tag = new UltraID3();
-                Tag.Read(musicfile.FullName);
-                string albumName = Tag.Album; // current musicfile's albumname
-                int i;
-                for (i = 0; i < AlbumList.Count; i++)
-                {
-                    if (albumName == AlbumList[i].Name) // found it's album in the albumlist
-                    {
-                        //create a song
-                        Song aSong = new Song(Tag.Title, Tag.Artist, Tag.Album, Tag.Year, Tag.Genre,
-                            Tag.TrackNum, Tag.GetMPEGTrackInfo().AverageBitRate, Tag.Duration);
-                        aSong.Path = musicfile.FullName;
-                        AlbumList[i].TrackList.Add(aSong);
-                        break;
-                    }
-                }
-                if (i == AlbumList.Count) // current musicfile's albumname not in the album list
-                {
-                    //create new album
-                    Album NewAlbum = new Album();
-                    NewAlbum.Name = albumName;
-                    //NewAlbum.CoverPath =???;
-                    AlbumList.Add(NewAlbum);
-
-                    //create a song
-                    Song aSong = new Song(Tag.Title, Tag.Artist, Tag.Album, Tag.Year, Tag.Genre,
-                            Tag.TrackNum, Tag.GetMPEGTrackInfo().AverageBitRate, Tag.Duration);
-                    aSong.Path = musicfile.FullName;
-                    AlbumList[i].TrackList.Add(aSong);
-
-                    //add song to album
-                    NewAlbum.TrackList.Add(aSong);
-                }
-            }
-            this.SongList.ctAlbumView.ReceiveAlbumList(AlbumList, this);
-        }
+       
         
         //--- Hàm thêm list<fileinfo> vào database 
-        void AddListToDB(List<FileInfo> List, int Idstarform) // lưu ý hàm này nhận một số int vào để bắt đầu đánh dấu ID trong DB ++
+        private void AddListToDB(List<FileInfo> List)
         {
 
             TagLib.File song;
@@ -156,7 +126,7 @@ namespace MusicManager
             sqlite_conn.Open();
             //create command
             sqlite_cmd = sqlite_conn.CreateCommand();
-            int tmp_ID_Album,t,tmp_ID_Artist;
+            int tmp_ID_Album,tmp_ID_Artist;
             sqlite_cmd.CommandText = "insert into Album(AlbumID, AlbumName) values ('0','Unknow')";
             sqlite_cmd.ExecuteNonQuery();
             ID_Album++;
@@ -166,7 +136,7 @@ namespace MusicManager
             foreach (FileInfo musicfile in List)
             {
                 song = TagLib.File.Create((string)(musicfile.FullName)); // with a path of file we create a file tag
-              
+               
                 try
                 {
                         
@@ -211,7 +181,7 @@ namespace MusicManager
                 }
                 try 
                 { 
-                    sqlite_cmd.CommandText = "INSERT INTO Song(Songid,Title,Dur,Year,Path,Bitrate,Genre,AlbumID,ArtistId,Composer) VALUES ('" + ID_Song + "','" + song.Tag.Title + "','" + song.Properties.Duration + "','" + song.Tag.Year + "','" + musicfile.DirectoryName + "'," + song.Properties.AudioBitrate + ",'" + song.Tag.FirstGenre + "','" + tmp_ID_Album + "','"+tmp_ID_Artist+"','"+song.Tag.FirstComposer+"');";
+                    sqlite_cmd.CommandText = "INSERT INTO Song(Songid,Title,Dur,Year,Path,Bitrate,Genre,AlbumID,ArtistId,Composer) VALUES ('" + ID_Song + "','" + song.Tag.Title + "','" + song.Properties.Duration + "','" + song.Tag.Year + "','" + musicfile.FullName + "'," + song.Properties.AudioBitrate + ",'" + song.Tag.FirstGenre + "','" + tmp_ID_Album + "','"+tmp_ID_Artist+"','"+song.Tag.FirstComposer+"');";
                     sqlite_cmd.ExecuteNonQuery();
                     ID_Song++;
                 }
@@ -224,7 +194,92 @@ namespace MusicManager
             };
             sqlite_conn.Close();
         }
+        private void CreateAlbumList()
+        {
+            sqlite_conn.Open();
+            sqlite_cmd = sqlite_conn.CreateCommand();
+            List<Album> Albums = new List<Album>();
+            sqlite_cmd.CommandText = "select * from Album";
+            SQLiteDataReader Dtreader;
+            Dtreader = sqlite_cmd.ExecuteReader();
+            int i=0;
+                while (Dtreader.Read())
+                {
+                    Album temp = new Album();
+                    temp.ID = Dtreader.GetInt32(0);
+                    temp.Name = Dtreader.GetString(1);
+                    Albums.Add(temp);
 
+                }// Create List AlbumName With an Album ADD song;
+            Dtreader.Close();
+            foreach (Album album in Albums) 
+            {
+                sqlite_cmd.CommandText = "SELECT  * FROM Album,Song Where Song.AlbumId = Album.AlbumId and Album.AlbumID="+album.ID+";";
+                Dtreader = sqlite_cmd.ExecuteReader();
+                while (Dtreader.Read())
+                {
+
+                   // Song song = new Song(Dtreader.GetString(3), "test", album.Name, (short?)(Dtreader.GetInt32(5)), Dtreader.GetString(8), 3, (short)Dtreader.GetInt32(7), , Dtreader.GetString(6));
+                    Song asong = new Song();
+                    asong.Title = Dtreader.GetString(3);
+                    asong.Path = Dtreader.GetString(6);
+                    asong.Genre = Dtreader.GetString(8);
+                    asong.Year = (short?)Dtreader.GetInt32(5);
+                    asong.Bitrate = Dtreader.GetInt32(7);
+                    string time = Dtreader.GetString(4);
+                    asong.Dur = TimeSpan.Parse(time);
+                    asong.Album = album.Name;
+                    TagLib.File tlfile2 = TagLib.File.Create(@asong.Path);
+                    string extension;
+                    extension = System.IO.Path.GetExtension(asong.Path);
+                    asong.filetype = Convert.ToString(extension);
+                    asong.Track = (short?)tlfile2.Tag.TrackCount;
+                    if(!album.havecover)
+                    {
+                       try
+                       {
+                           TagLib.File tlfile = TagLib.File.Create(@asong.Path);
+                           TagLib.IPicture pic;
+                           if (tlfile.Tag.Pictures.Length > 0)
+                           {
+                               pic = tlfile.Tag.Pictures[0];
+                               MemoryStream ms = new MemoryStream(pic.Data.Data);
+                               ms.Seek(0, SeekOrigin.Begin);
+
+                               // ImageSource for System.Windows.Controls.Image
+                               BitmapImage bitmap = new BitmapImage();
+                               bitmap.BeginInit();
+                               bitmap.StreamSource = ms;
+                               bitmap.EndInit();
+
+                               // Create a System.Windows.Controls.Image control
+                               System.Windows.Controls.Image img = new System.Windows.Controls.Image();
+                               album.cover = bitmap;
+                           };
+                           album.havecover = true;
+                           album.AlbumArtist = tlfile.Tag.FirstArtist;
+                           asong.Artist = tlfile.Tag.FirstArtist;
+                           
+                       }
+                        catch
+                       {
+
+                       }
+                    
+                       album.TrackList.Add(asong); 
+
+                    }
+                }
+                Dtreader.Close();
+            }
+            this.SongList.ctAlbumView.ReceiveAlbumList(Albums, this);
+            sqlite_conn.Close();
+        }
+
+        private void SongList_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
 
         //-- kết thúc
         #endregion

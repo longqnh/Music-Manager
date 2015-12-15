@@ -9,9 +9,9 @@
         <Image x:Name="imgCurAlbum"  HorizontalAlignment="Left" Height="100" Margin="117,10,0,0" VerticalAlignment="Top" Width="100"/>
         <Image x:Name="imgPreAlbum"  HorizontalAlignment="Left" Height="66" Margin="35,29,0,0"  VerticalAlignment="Top" Width="66" MouseLeftButtonDown="imgPreAlbum_MouseLeftButtonDown"/>
         <Image x:Name="imgNextAlbum" HorizontalAlignment="Left" Height="66" Margin="234,29,0,0" VerticalAlignment="Top" Width="66" MouseLeftButtonDown="imgNextAlbum_MouseLeftButtonDown"/>
-        <TextBlock x:Name="tbAlbumName" HorizontalAlignment="Left" Margin="112,122,0,0" TextWrapping="Wrap" Text="AlbumName" VerticalAlignment="Top" FontSize="20" Foreground="White"/>
-        <TextBlock x:Name="tbArtist" HorizontalAlignment="Left" Margin="141,152,0,0" TextWrapping="Wrap" Text="Artist" VerticalAlignment="Top" FontSize="20" Width="55" Foreground="White"/>
-        <TextBlock x:Name="tbYear" HorizontalAlignment="Left" Margin="147,177,0,0" TextWrapping="Wrap" Text="Year" VerticalAlignment="Top" FontSize="20" Foreground="White"/>
+        <TextBlock x:Name="tbAlbumName" HorizontalAlignment="Left" Margin="10,122,0,0" TextWrapping="Wrap" Text="                   AlbumName" VerticalAlignment="Top" FontSize="20" Foreground="White" Width="332"/>
+        <TextBlock x:Name="tbArtist" HorizontalAlignment="Left" Margin="10,152,0,0" TextWrapping="Wrap" Text="                       Artist" VerticalAlignment="Top" FontSize="20" Width="322" Foreground="White"/>
+        <TextBlock x:Name="tbYear" HorizontalAlignment="Left" Margin="10,177,0,0" TextWrapping="Wrap" Text="                       Year" VerticalAlignment="Top" FontSize="20" Foreground="White" RenderTransformOrigin="0.308,1.222" Width="322"/>
         <ScrollViewer x:Name="srvTrackList" HorizontalAlignment="Left" Height="293" Margin="1,204,0,0" VerticalAlignment="Top" Width="329" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="pnTrackList" Height="293" Width="290"/>
         </ScrollViewer>

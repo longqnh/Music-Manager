@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Media.Imaging;
 namespace MusicManager.Classes
 {
     public class Album
@@ -12,6 +12,7 @@ namespace MusicManager.Classes
         public Album()
         {
             TrackList = new List<Song>();
+            havecover = false;
         }
         #endregion
 
@@ -21,6 +22,9 @@ namespace MusicManager.Classes
         public int Year { get; set; }
         public List<Song> TrackList { get; set; }
         public string CoverPath { get; set; }
+        public int ID { get; set; }
+        public BitmapImage cover { get; set; }
+        public bool havecover { get; set; }
         #endregion
     }
 }

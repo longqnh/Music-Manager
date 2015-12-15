@@ -29,11 +29,13 @@ namespace MusicManager.Controls
 
         #region Properties
         public MainWindow Main { get; set; }
+        private Song SongEditor;
         #endregion
 
         #region Methods
         public void LoadInfo(Song song) // load from songlist (track), playinglist
         {
+            SongEditor = song;
             tbTittle.tbText.Text = song.Title;
             tbTittle.CheckLength();
 
@@ -48,13 +50,19 @@ namespace MusicManager.Controls
 
             tbGenre.tbText.Text = song.Genre;
             tbGenre.CheckLength();
-
-            tbTrackNo.tbText.Text = song.Track.ToString();
+            
             tbTrackNo.CheckLength();
-
+            tbType.Text = song.filetype;
+            tbTrackNo.tbText.Text = Convert.ToString (song.Track);
             //tbType.Text
             tbBitRate.Text = song.Bitrate.ToString() + "kbps";
+            tbPath.Text = song.Path;
             //tbPath.Text
+        }
+
+        public void abc()
+        {
+
         }
         #endregion
     }

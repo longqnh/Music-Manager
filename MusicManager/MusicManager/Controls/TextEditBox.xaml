@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="240"> <!--d:DesignHeight="23"-->
+             mc:Ignorable="d" d:DesignWidth="240">
+    <!--d:DesignHeight="23"-->
     <Grid x:Name="Editor">
         <TextBlock x:Name="tbText" Text="Example" Foreground="#FFF9FF" FontSize="15" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" 
                    VerticalAlignment="Top" MouseDown="tbText_MouseDown" Width="211"/>
-        <Button x:Name="btnEditText" HorizontalAlignment="Left" Margin="216,0,0,0" VerticalAlignment="Top" Width="24" Height="23" Click="btnEditText_Click"/>
+        <Button x:Name="btnEditText" HorizontalAlignment="Left" Margin="216,0,0,0" Width="24" Click="btnEditText_Click" Height="23" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

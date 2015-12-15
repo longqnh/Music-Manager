@@ -62,14 +62,22 @@ namespace MusicManager.Controls
         public void SongX_Selected(short x)
         {
             //Load info
-            this.Main.TrackInfo.LoadInfo(_PlayingList[x]);
-            //song ready to play
-            Player.SelectedSong(_PlayingList[x].Path);
-            //change color of the selected song to default
-            ((PlayingSong)pnPlayList.Children[_SelectedSong]).DeSelected();
-            //update new selected song
-            _SelectedSong = x;
-            ((PlayingSong)pnPlayList.Children[_SelectedSong]).Selected();
+            try
+            {
+                this.Main.TrackInfo.LoadInfo(_PlayingList[x]);
+                //song ready to play
+                Player.SelectedSong(_PlayingList[x].Path);
+                //change color of the selected song to default
+                ((PlayingSong)pnPlayList.Children[_SelectedSong]).DeSelected();
+                //update new selected song
+                _SelectedSong = x;
+                ((PlayingSong)pnPlayList.Children[_SelectedSong]).Selected();
+            } 
+            catch  (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
         }
         #endregion
 

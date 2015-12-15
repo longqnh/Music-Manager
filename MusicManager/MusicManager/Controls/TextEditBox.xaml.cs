@@ -31,6 +31,7 @@ namespace MusicManager.Controls
         private bool _isEditing = false;
         private TextBox _TextEditor;
         private string _FullText;
+        public MainWindow Main { get; set; }
         #endregion
 
         #region Events
@@ -71,6 +72,7 @@ namespace MusicManager.Controls
 
                 _isEditing = false; // stop editing
                 tbText.Visibility = Visibility.Visible; // show text
+                
             }
         }
         private void tbText_MouseDown(object sender, MouseButtonEventArgs e)
