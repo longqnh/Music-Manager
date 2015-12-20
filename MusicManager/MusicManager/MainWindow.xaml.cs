@@ -179,17 +179,29 @@ namespace MusicManager
                 {
                     tmp_ID_Artist = 0;
                 }
-                try 
-                { 
-                    sqlite_cmd.CommandText = "INSERT INTO Song(Songid,Title,Dur,Year,Path,Bitrate,Genre,AlbumID,ArtistId,Composer) VALUES ('" + ID_Song + "','" + song.Tag.Title + "','" + song.Properties.Duration + "','" + song.Tag.Year + "','" + musicfile.FullName + "'," + song.Properties.AudioBitrate + ",'" + song.Tag.FirstGenre + "','" + tmp_ID_Album + "','"+tmp_ID_Artist+"','"+song.Tag.FirstComposer+"');";
+                try
+                {
+                    string titletemp;
+                    
+                        if(song.Tag.Title==null)  titletemp="unknow";
+                            else titletemp=song.Tag.Title;
+
+                        if (song.Tag.Title.IndexOf("'") > 0)
+                        {
+                            int a = song.Tag.Title.IndexOf("'");
+                           titletemp= titletemp.Insert(a,"'");
+                        };
+                    
+                    sqlite_cmd.CommandText = "INSERT INTO Song(Songid,Title,Dur,Year,Path,Bitrate,Genre,AlbumID,ArtistId) VALUES ('" + ID_Song + "','" + titletemp + "','" + song.Properties.Duration + "','" + song.Tag.Year + "','" + musicfile.FullName + "'," + song.Properties.AudioBitrate + ",'" + song.Tag.FirstGenre + "','" + tmp_ID_Album + "','"+tmp_ID_Artist+"');";
                     sqlite_cmd.ExecuteNonQuery();
                     ID_Song++;
                 }
-                catch
+                catch (Exception e)
                 {
                     //sqlite_cmd.CommandText = "INSERT INTO Song(Songid,Title,Dur,Year,Path,Bitrate,Genre,AlbumID,ArtistId,Composer) VALUES ('" + ID_Song + "','" + song.Tag.Title + "','" + song.Properties.Duration + "','" + song.Tag.Year + "','" + musicfile.DirectoryName + "'," + song.Properties.AudioBitrate + ",'" + song.Tag.FirstGenre + "','" + tmp_ID_Album + "','" + tmp_ID_Artist + "','" + song.Tag.FirstComposer + "');";
                     //sqlite_cmd.ExecuteNonQuery();
                     //ID_Song++;
+                    System.Windows.Forms.MessageBox.Show(e.Message);
                 }
             };
             sqlite_conn.Close();
@@ -221,7 +233,6 @@ namespace MusicManager
 
                    // Song song = new Song(Dtreader.GetString(3), "test", album.Name, (short?)(Dtreader.GetInt32(5)), Dtreader.GetString(8), 3, (short)Dtreader.GetInt32(7), , Dtreader.GetString(6));
                     Song asong = new Song();
-                    asong.Title = Dtreader.GetString(3);
                     asong.Path = Dtreader.GetString(6);
                     asong.Genre = Dtreader.GetString(8);
                     asong.Year = (short?)Dtreader.GetInt32(5);
@@ -233,6 +244,7 @@ namespace MusicManager
                     string extension;
                     extension = System.IO.Path.GetExtension(asong.Path);
                     asong.filetype = Convert.ToString(extension);
+                    asong.Title = tlfile2.Tag.Title;
                     asong.Track = (short?)tlfile2.Tag.TrackCount;
                     if(!album.havecover)
                     {

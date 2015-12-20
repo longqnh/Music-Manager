@@ -89,11 +89,13 @@ namespace MusicManager.Controls
             for (int i = 0; i < this._AlbumList.Count; i++)
                 this._AlbumList[i].CoverPath = Path[5];
             // set image on form
-           // imgCurAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
-            imgCurAlbum.Source = _AlbumList[_Cur].cover;
+           if(_AlbumList[_Cur].cover==null) 
+                    imgCurAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
+           else  imgCurAlbum.Source = _AlbumList[_Cur].cover;
+
             this.CreateSongListofAlbum(_Cur);
-           // imgNextAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur+1].CoverPath, UriKind.Relative));
-            imgNextAlbum.Source = _AlbumList[_Cur+1].cover;
+            if (_AlbumList[_Cur + 1].cover==null) imgNextAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur + 1].CoverPath, UriKind.Relative));
+            else imgNextAlbum.Source = _AlbumList[_Cur+1].cover;
            
             #endregion
         }
