@@ -88,7 +88,9 @@ namespace MusicManager
         }
         private void Button_Click_1(object sender, RoutedEventArgs e) //load
         {
-            sqlite_conn.Open();                                 //xóa sạch database trước khi add data mới vào 
+            //sqlite_conn.Open();                                 //xóa sạch database trước khi add data mới vào 
+            if (Convert.ToString(sqlite_conn.State) == "Closed") 
+                sqlite_conn.Open();
             sqlite_cmd = sqlite_conn.CreateCommand();
             sqlite_cmd.CommandText = "delete from Song";
             sqlite_cmd.ExecuteNonQuery();

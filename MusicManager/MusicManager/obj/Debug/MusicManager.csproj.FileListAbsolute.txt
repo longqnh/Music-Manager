@@ -223,3 +223,4 @@ C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManage
 C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\EntityFramework.xml
 C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\System.Data.SQLite.xml
+C:\Users\NTL\Documents\GitHub\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.csprojResolveAssemblyReference.cache
