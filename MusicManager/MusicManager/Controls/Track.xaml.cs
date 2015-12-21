@@ -40,27 +40,13 @@ namespace MusicManager.Controls
         #region Events
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-<<<<<<< HEAD
-            Song tmp = this._Main.SongList.ctAlbumView.SongX_OfAlbum(_Index, _TrackNo);
+            Song tmp;
+            //get song reference
+            tmp = this._Main.SongList.ctAlbumView.SongX_OfAlbum(_Index, _TrackNo); 
 
             this._Main.TrackInfo.LoadInfo(tmp); // load trackinfo
             if (e.LeftButton == MouseButtonState.Pressed && e.ClickCount == 2)
-            {
                 this._Main.PlayList.AddtoList(tmp); // add track to playlist
-            }
-
-=======
-            Song tmp;
-            //get song reference
-            if(!_inArtist)
-                tmp = this._Main.SongList.ctAlbumView.SongX_OfAlbum(_Index, _TrackNo); 
-            else
-                tmp = this._Main.SongList.ctArtistView.SongX_OfAlbum(_Index, _TrackNo);
-
-            this._Main.TrackInfo.LoadInfo(tmp); // load trackinfo
-            if (e.LeftButton == MouseButtonState.Pressed && e.ClickCount == 2 && !_inArtist)
-                this._Main.PlayList.AddtoList(tmp); // add track to playlist
->>>>>>> origin/master
         }
         #endregion
     }

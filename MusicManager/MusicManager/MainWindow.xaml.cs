@@ -39,12 +39,9 @@ namespace MusicManager
 
         }
 
-<<<<<<< HEAD
         SQLiteConnection sqlite_conn = new SQLiteConnection("Data Source = music.db");
         SQLiteCommand sqlite_cmd;
 
-=======
->>>>>>> origin/master
         #region Properties
         private string _Media;
         private List<FileInfo> _MusicList; //list of files that are music file
@@ -280,25 +277,12 @@ namespace MusicManager
                                 bitmap.EndInit();
                                 // Create a System.Windows.Controls.Image control
                                 System.Windows.Controls.Image img = new System.Windows.Controls.Image();
-                                album.Cover = bitmap;
+                                album.cover = bitmap;
                             };
                             album.havecover = true;
                             album.AlbumArtist = tlfile.Tag.FirstArtist;
                             asong.Artist = tlfile.Tag.FirstArtist;
-
-<<<<<<< HEAD
-                               // Create a System.Windows.Controls.Image control
-                               System.Windows.Controls.Image img = new System.Windows.Controls.Image();
-                               album.cover = bitmap;
-                           };
-                           album.havecover = true;
-                           album.AlbumArtist = tlfile.Tag.FirstArtist;
-                           asong.Artist = tlfile.Tag.FirstArtist;
-                           
-                       }
-=======
                         }
->>>>>>> origin/master
                         catch
                         {
 

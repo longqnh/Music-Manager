@@ -4,30 +4,17 @@
 winexe
 C#
 .cs
-<<<<<<< HEAD
-C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\
-=======
-C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\
->>>>>>> origin/master
+C:\Users\NTL\Documents\GitHub\Music-Manager\MusicManager\MusicManager\obj\Debug\
 MusicManager
 none
 false
 DEBUG;TRACE
-<<<<<<< HEAD
-C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\App.xaml
+C:\Users\NTL\Documents\GitHub\Music-Manager\MusicManager\MusicManager\App.xaml
 11-1704285661
 
 181717649508
-241253729542
+24-1598422462
 Controls\AlbumView.xaml;Controls\ArtistView.xaml;Controls\SongPlayer.xaml;Controls\PlayingSong.xaml;Controls\PlaylistView.xaml;Controls\SongListView.xaml;Controls\TextEditBox.xaml;Controls\Track.xaml;Controls\TrackInfoView.xaml;MainWindow.xaml;Controls\SearchWindow.xaml;
-=======
-C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\App.xaml
-10-1176208991
-
-171862185214
-24-638185969
-Controls\AlbumView.xaml;Controls\ArtistView.xaml;Controls\SongPlayer.xaml;Controls\PlayingSong.xaml;Controls\PlaylistView.xaml;Controls\SongListView.xaml;Controls\TextEditBox.xaml;Controls\Track.xaml;Controls\TrackInfoView.xaml;MainWindow.xaml;
->>>>>>> origin/master
 
 False
 
