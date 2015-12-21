@@ -36,18 +36,19 @@ namespace MusicManager
             {
                 
             }
+
         }
-        
+
+        SQLiteConnection sqlite_conn = new SQLiteConnection("Data Source = music.db");
+        SQLiteCommand sqlite_cmd;
+
         #region Properties
-        private string _Path;
+        private string _Media;
         private List<FileInfo> _MusicList; //list of files that are music file
         int ID_Album = 0;
         int ID_Artist = 0;
         int ID_Song = 0;
         bool loaded = false;
-
-        SQLiteConnection sqlite_conn = new SQLiteConnection("Data Source = music.db");
-        SQLiteCommand sqlite_cmd;
         #endregion
 
         #region Thread
@@ -76,16 +77,17 @@ namespace MusicManager
         #endregion
 
         #region Events
-        private void Button_Click(object sender, RoutedEventArgs e) //brown
+        private void Button_Click(object sender, RoutedEventArgs e) //browse
         {
             _MusicList = new List<FileInfo>();
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             System.Windows.Forms.DialogResult _result = STAShowDialog(fbd);
             if (_result == System.Windows.Forms.DialogResult.OK)
             {
-                _Path = fbd.SelectedPath;
+                _Media = fbd.SelectedPath;
             }
         }
+
         private void Button_Click_1(object sender, RoutedEventArgs e) //load
         {
             //sqlite_conn.Open();                                 //xóa sạch database trước khi add data mới vào 
@@ -100,7 +102,7 @@ namespace MusicManager
             sqlite_cmd.ExecuteNonQuery();
             sqlite_conn.Close();
 
-            DirectoryInfo dir = new DirectoryInfo(_Path);
+            DirectoryInfo dir = new DirectoryInfo(_Media);
             foreach (FileInfo file in dir.GetFiles("*.*", SearchOption.AllDirectories))
             {
                 if (file.Extension == ".wmv" || file.Extension == ".mp3" || file.Extension == ".mp4"
@@ -108,14 +110,22 @@ namespace MusicManager
                     || file.Extension == ".m4a" || file.Extension == ".wav")
                     _MusicList.Add(file);
             }
-            //  ..   this.CreateAlbumList(_MusicList);
+            //this.CreateAlbumList(_MusicList);
             loaded = true;
             this.AddListToDB(_MusicList);
             CreateAlbumList();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e) //search
+        {
+            SearchWindow _searchwindow = new SearchWindow();
+            _searchwindow.Show();
+        }
         #endregion
 
         #region Methods
+       
+        
         //--- Hàm thêm list<fileinfo> vào database 
         private void AddListToDB(List<FileInfo> List)
         {
@@ -209,20 +219,19 @@ namespace MusicManager
         {
             sqlite_conn.Open();
             sqlite_cmd = sqlite_conn.CreateCommand();
+            List<Album> Albums = new List<Album>();
             sqlite_cmd.CommandText = "select * from Album";
             SQLiteDataReader Dtreader;
             Dtreader = sqlite_cmd.ExecuteReader();
+            int i=0;
+                while (Dtreader.Read())
+                {
+                    Album temp = new Album();
+                    temp.ID = Dtreader.GetInt32(0);
+                    temp.Name = Dtreader.GetString(1);
+                    Albums.Add(temp);
 
-            //int i=0;
-            List<Album> Albums = new List<Album>();
-            while (Dtreader.Read())
-            {
-                Album temp = new Album();
-                temp.ID = Dtreader.GetInt32(0);
-                temp.Name = Dtreader.GetString(1);
-                Albums.Add(temp);
-
-            }// Create List AlbumName With an Album ADD song;
+                }// Create List AlbumName With an Album ADD song;
             Dtreader.Close();
             foreach (Album album in Albums) 
             {
@@ -241,7 +250,6 @@ namespace MusicManager
                     asong.Dur = TimeSpan.Parse(time);
                     asong.Album = album.Name;
                     TagLib.File tlfile2 = TagLib.File.Create(@asong.Path);
-
                     string extension;
                     extension = System.IO.Path.GetExtension(asong.Path);
                     asong.filetype = Convert.ToString(extension);
@@ -267,7 +275,7 @@ namespace MusicManager
 
                                // Create a System.Windows.Controls.Image control
                                System.Windows.Controls.Image img = new System.Windows.Controls.Image();
-                               album.Cover = bitmap;
+                               album.cover = bitmap;
                            };
                            album.havecover = true;
                            album.AlbumArtist = tlfile.Tag.FirstArtist;
@@ -287,6 +295,11 @@ namespace MusicManager
             }
             this.SongList.ctAlbumView.ReceiveAlbumList(Albums, this);
             sqlite_conn.Close();
+        }
+
+        private void SongList_Loaded(object sender, RoutedEventArgs e)
+        {
+            
         }
 
         //-- kết thúc

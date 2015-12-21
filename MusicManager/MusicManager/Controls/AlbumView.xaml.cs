@@ -36,67 +36,44 @@ namespace MusicManager.Controls
         #region Events
         private void imgPreAlbum_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //set current album cover
             _Cur--;
-            if (_AlbumList[_Cur].Cover == null)
+            if (_AlbumList[_Cur].cover == null)
                 imgCurAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
-            else
-                imgCurAlbum.Source=_AlbumList[_Cur].Cover;
-
-            /////set album info to show
+                else imgCurAlbum.Source=_AlbumList[_Cur].cover; 
+            this.CreateSongListofAlbum(_Cur);
+            if (_AlbumList[_Cur + 1].cover == null)
+                imgNextAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur + 1].CoverPath, UriKind.Relative));
+            else imgNextAlbum.Source = _AlbumList[_Cur + 1].cover;
             tbAlbumName.Text = _AlbumList[_Cur].Name;
             tbArtist.Text = _AlbumList[_Cur].AlbumArtist;
             tbYear.Text = Convert.ToString(_AlbumList[_Cur].Year);
-            this.CreateSongList_ofAlbum(_Cur);
-
-            //set next album cover
-            if (_AlbumList[_Cur + 1].Cover == null)
-                imgNextAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur + 1].CoverPath, UriKind.Relative));
-            else
-                imgNextAlbum.Source = _AlbumList[_Cur + 1].Cover;
-
-            
-            //set previous album cover
             if (_Cur - 1 < 0) // this current album is the last album
                 imgPreAlbum.Source = null;
             else
-                if (_AlbumList[_Cur - 1].Cover == null)
+                if (_AlbumList[_Cur - 1].cover == null)
                     imgPreAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur - 1].CoverPath, UriKind.Relative));
                 else
-                    imgPreAlbum.Source = _AlbumList[_Cur - 1].Cover;
+                    imgPreAlbum.Source = _AlbumList[_Cur - 1].cover;
+
         }
         private void imgNextAlbum_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //set previous album cover
-            if(_AlbumList[_Cur].Cover==null)
-                imgPreAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
-            else
-                imgPreAlbum.Source = _AlbumList[_Cur].Cover;
-
-            //set current album cover
+            if(_AlbumList[_Cur].cover==null) imgPreAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
+            else imgPreAlbum.Source = _AlbumList[_Cur].cover;
             _Cur++;
-            if (_AlbumList[_Cur].Cover == null)
-                imgCurAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
-            else
-                imgCurAlbum.Source=_AlbumList[_Cur].Cover;
-
-            /////set album info to show
+            if (_AlbumList[_Cur].cover == null) imgCurAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
+            else imgCurAlbum.Source=_AlbumList[_Cur].cover;
             tbAlbumName.Text = _AlbumList[_Cur].Name;
             tbArtist.Text = _AlbumList[_Cur].AlbumArtist;
             tbYear.Text = Convert.ToString(_AlbumList[_Cur].Year);
-
-            this.CreateSongList_ofAlbum(_Cur);
-
-            //set next album cover
+            this.CreateSongListofAlbum(_Cur);
             if (_Cur == _AlbumList.Count - 1) // this current album is the last album
                 imgNextAlbum.Source = null;
             else
             {
-                if (_AlbumList[_Cur + 1].Cover == null) 
-                    imgNextAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur + 1].CoverPath, UriKind.Relative));
-                else
-                    imgNextAlbum.Source= _AlbumList[_Cur + 1].Cover;
-            }
+                if (_AlbumList[_Cur + 1].cover == null) imgNextAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur + 1].CoverPath, UriKind.Relative));
+                else imgNextAlbum.Source= _AlbumList[_Cur + 1].cover;
+            };
         }
         #endregion
 
@@ -112,17 +89,17 @@ namespace MusicManager.Controls
             for (int i = 0; i < this._AlbumList.Count; i++)
                 this._AlbumList[i].CoverPath = Path[5];
             // set image on form
-           if(_AlbumList[_Cur].Cover==null) 
+           if(_AlbumList[_Cur].cover==null) 
                     imgCurAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
-           else  imgCurAlbum.Source = _AlbumList[_Cur].Cover;
+           else  imgCurAlbum.Source = _AlbumList[_Cur].cover;
 
-            this.CreateSongList_ofAlbum(_Cur);
-            if (_AlbumList[_Cur + 1].Cover==null) imgNextAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur + 1].CoverPath, UriKind.Relative));
-            else imgNextAlbum.Source = _AlbumList[_Cur+1].Cover;
+            this.CreateSongListofAlbum(_Cur);
+            if (_AlbumList[_Cur + 1].cover==null) imgNextAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur + 1].CoverPath, UriKind.Relative));
+            else imgNextAlbum.Source = _AlbumList[_Cur+1].cover;
            
             #endregion
         }
-        private void CreateSongList_ofAlbum(int index)
+        private void CreateSongListofAlbum(int index)
         {
             this.pnTrackList.Children.Clear(); // first, remove all the song contenting
             //then add songlist of _AlbumList[index]
@@ -138,6 +115,7 @@ namespace MusicManager.Controls
                 track.tbDur.Text = "0" + tmp.Dur.Minutes.ToString() + ":" + tmp.Dur.Seconds;
                 this.pnTrackList.Children.Add(track);
             }
+
         }
         public Song SongX_OfAlbum(short index, short x) // return song x of album[index]
         {

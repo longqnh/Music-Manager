@@ -215,12 +215,46 @@ D:\Study\2015-2016\C#\Project\MM\Music-Manager\MusicManager\MusicManager\obj\Deb
 D:\Study\2015-2016\C#\Project\MM\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.g.resources
 D:\Study\2015-2016\C#\Project\MM\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.Properties.Resources.resources
 D:\Study\2015-2016\C#\Project\MM\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.csproj.GenerateResource.Cache
-C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\EntityFramework.dll
-C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\System.Data.SQLite.dll
-C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\System.Data.SQLite.EF6.dll
-C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\System.Data.SQLite.Linq.dll
-C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\EntityFramework.xml
-C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\System.Data.SQLite.xml
-C:\Users\NTL\Documents\GitHub\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.csprojResolveAssemblyReference.cache
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\bin\Debug\MusicManager.exe.config
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\bin\Debug\MusicManager.exe
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\bin\Debug\MusicManager.pdb
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\bin\Debug\EntityFramework.dll
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\bin\Debug\System.Data.SQLite.dll
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\bin\Debug\EntityFramework.xml
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\bin\Debug\System.Data.SQLite.xml
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\ArtistView.baml
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\SongPlayer.baml
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\PlayingSong.baml
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\TextEditBox.baml
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\Track.baml
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\AlbumView.g.cs
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\ArtistView.g.cs
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\SongPlayer.g.cs
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\PlayingSong.g.cs
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\PlaylistView.g.cs
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\SongListView.g.cs
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\TextEditBox.g.cs
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\Track.g.cs
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\TrackInfoView.g.cs
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\MainWindow.g.cs
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\App.g.cs
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\MusicManager_MarkupCompile.cache
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\MusicManager_MarkupCompile.lref
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\AlbumView.baml
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\PlaylistView.baml
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\SongListView.baml
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\TrackInfoView.baml
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\MainWindow.baml
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\MusicManager.g.resources
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\MusicManager.Properties.Resources.resources
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\MusicManager.csproj.GenerateResource.Cache
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\MusicManager.exe
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\MusicManager.pdb
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\MusicManager.csprojResolveAssemblyReference.cache
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\SearchWindow.baml
+C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\SearchWindow.g.cs

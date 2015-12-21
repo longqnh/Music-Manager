@@ -10,21 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MusicManager.Controls
+namespace MusicManager
 {
     /// <summary>
-    /// Interaction logic for ArtistView.xaml
+    /// Interaction logic for SearchWindow.xaml
     /// </summary>
-    public partial class ArtistView : UserControl
+    public partial class SearchWindow : Window
     {
-        #region Constructor
-        public ArtistView()
+        public SearchWindow()
         {
             InitializeComponent();
         }
-        #endregion
+
+        private void SearchWindow_Load(object sender, RoutedEventArgs e)
+        {
+            cmb.Text = "Theo tên bài hát";
+        }
     }
 }

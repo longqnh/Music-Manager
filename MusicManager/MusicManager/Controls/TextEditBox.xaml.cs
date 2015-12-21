@@ -31,9 +31,7 @@ namespace MusicManager.Controls
         private bool _isEditing = false;
         private TextBox _TextEditor;
         private string _FullText;
-
-        private short _ID;
-        private TrackInfoView _TrackInfo;
+        public MainWindow Main { get; set; }
         #endregion
 
         #region Events
@@ -56,7 +54,6 @@ namespace MusicManager.Controls
             {
                 tbText.Text = _TextEditor.Text;   //copy edited text back to show
                 this.CheckLength();
-                _TrackInfo.EditInfo(this._ID, _TextEditor.Text);
 
                 Editor.Children.Remove(_TextEditor);
                 
@@ -70,7 +67,6 @@ namespace MusicManager.Controls
             {
                 tbText.Text = _TextEditor.Text;   //copy edited text back to show
                 this.CheckLength();
-                _TrackInfo.EditInfo(this._ID, _TextEditor.Text);
 
                 Editor.Children.Remove(_TextEditor);
 
@@ -114,11 +110,6 @@ namespace MusicManager.Controls
             {
                 tbText.ToolTip = null;
             }
-        }
-        public void Load(TrackInfoView infoview, short id)
-        {
-            _TrackInfo = infoview;
-            _ID = id;
         }
         #endregion
     }

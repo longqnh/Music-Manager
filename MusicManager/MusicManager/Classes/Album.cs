@@ -23,7 +23,7 @@ namespace MusicManager.Classes
         public List<Song> TrackList { get; set; }
         public string CoverPath { get; set; }
         public int ID { get; set; }
-        public BitmapImage Cover { get; set; }
+        public BitmapImage cover { get; set; }
         public bool havecover { get; set; }
         #endregion
     }
