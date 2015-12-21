@@ -24,6 +24,7 @@ namespace MusicManager.Controls
         public TrackInfoView()
         {
             InitializeComponent();
+            this.LoadTrackEditor();
         }
         #endregion 
 
@@ -59,10 +60,34 @@ namespace MusicManager.Controls
             tbPath.Text = song.Path;
             //tbPath.Text
         }
-
-        public void abc()
+        private void LoadTrackEditor()
         {
-
+            tbTittle.Load(this, 0);
+            tbArtist.Load(this, 1);
+            tbAlbum.Load(this, 2);
+            tbDate.Load(this, 3);
+            tbGenre.Load(this, 4);
+            tbTrackNo.Load(this, 5);
+        }
+        public void EditInfo(short infoID, string newInfo)
+        {
+            switch (infoID)
+            {
+                case 0: // Title edited, apply changes in newInfo to song's tag here
+                    break;
+                case 1: // Artist edited, apply changes in newInfo to song's tag here
+                    break;
+                case 2: // Album edited, apply changes in newInfo to song's tag here
+                    break;
+                case 3: // Date edited, apply changes in newInfo to song's tag here
+                    break;
+                case 4: // Genre edited, apply changes in newInfo to song's tag here
+                    break;
+                case 5: // Track Number edited, apply changes in newInfo to song's tag here
+                    break;
+                default: // wrong infoID, do nothing
+                    break;
+            }
         }
         #endregion
     }

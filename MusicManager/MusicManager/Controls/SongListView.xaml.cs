@@ -36,22 +36,6 @@ namespace MusicManager.Controls
         public MainWindow Main { get; set; }
         #endregion
 
-        #region for testing
-        int i = 1;
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //Track track = new Track(_Main);
-            //track.tbNo.Text = i + ".";
-            //track.tbTitle.Text += i;
-            //ctArtistView.pnTrackList.Children.Add(track);
-            //i++;
-            //UltraID3 Tag = new UltraID3();
-            //Tag.Read("C:/Users/Administrator/Desktop/02-(13.06.2001)-Single-Tropica~l-Koishite~ru/1.mp3");
-            //MessageBox.Show(Tag.Duration.Minutes.ToString());
-
-        }
-        #endregion
-
         #region Events
         private void tbAlbum_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
