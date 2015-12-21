@@ -43,18 +43,15 @@ namespace MusicManager.Controls
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Song tmp;
-            if (e.LeftButton == MouseButtonState.Pressed && e.ClickCount == 2 && !_inArtist)
-            {
-                tmp = this._Main.SongList.ctAlbumView.SongX_OfAlbum(_Index, _TrackNo);       
-                this._Main.PlayList.AddtoList(tmp); // add track to playlist
-                this._Main.TrackInfo.LoadInfo(tmp); // load trackinfo
-            }
+            //get song reference
+            if(!_inArtist)
+                tmp = this._Main.SongList.ctAlbumView.SongX_OfAlbum(_Index, _TrackNo); 
             else
-            {
                 tmp = this._Main.SongList.ctArtistView.SongX_OfAlbum(_Index, _TrackNo);
+
+            this._Main.TrackInfo.LoadInfo(tmp); // load trackinfo
+            if (e.LeftButton == MouseButtonState.Pressed && e.ClickCount == 2 && !_inArtist)
                 this._Main.PlayList.AddtoList(tmp); // add track to playlist
-                this._Main.TrackInfo.LoadInfo(tmp); // load trackinfo
-            }
         }
         #endregion
     }

@@ -37,10 +37,7 @@ namespace MusicManager
 
             }
         }
-        ~MainWindow()
-        {
 
-        }
         #region Properties
         private string _Path;
         private List<FileInfo> _MusicList; //list of files that are music file
