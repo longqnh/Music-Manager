@@ -4,17 +4,30 @@
 winexe
 C#
 .cs
+<<<<<<< HEAD
 C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\
+=======
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\
+>>>>>>> origin/master
 MusicManager
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
 C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\App.xaml
 11-1704285661
 
 22-972558078
 241253729542
 Controls\AlbumView.xaml;Controls\ArtistView.xaml;Controls\SongPlayer.xaml;Controls\PlayingSong.xaml;Controls\PlaylistView.xaml;Controls\SongListView.xaml;Controls\TextEditBox.xaml;Controls\Track.xaml;Controls\TrackInfoView.xaml;MainWindow.xaml;Controls\SearchWindow.xaml;
+=======
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\App.xaml
+10-1176208991
+
+21-1270292404
+24-638185969
+Controls\AlbumView.xaml;Controls\ArtistView.xaml;Controls\SongPlayer.xaml;Controls\PlayingSong.xaml;Controls\PlaylistView.xaml;Controls\SongListView.xaml;Controls\TextEditBox.xaml;Controls\Track.xaml;Controls\TrackInfoView.xaml;MainWindow.xaml;
+>>>>>>> origin/master
 
 False
 
