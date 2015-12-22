@@ -23,10 +23,5 @@ namespace MusicManager
         {
             InitializeComponent();
         }
-
-        private void SearchWindow_Load(object sender, RoutedEventArgs e)
-        {
-            cmb.Text = "Theo tên bài hát";
-        }
     }
 }

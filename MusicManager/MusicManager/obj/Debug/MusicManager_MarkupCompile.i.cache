@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\
+C:\Users\NTL\Documents\GitHub\Music-Manager\MusicManager\MusicManager\obj\Debug\
 MusicManager
 none
 false
 DEBUG;TRACE
-D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\App.xaml
-11-1704285661
+C:\Users\NTL\Documents\GitHub\Music-Manager\MusicManager\MusicManager\App.xaml
+12-1324959405
 
-221316554524
-24-2126764776
-Controls\AlbumView.xaml;Controls\ArtistView.xaml;Controls\SongPlayer.xaml;Controls\PlayingSong.xaml;Controls\PlaylistView.xaml;Controls\SongListView.xaml;Controls\TextEditBox.xaml;Controls\Track.xaml;Controls\TrackInfoView.xaml;MainWindow.xaml;Controls\SearchWindow.xaml;
+23-2105105160
+24-1598422462
+Controls\AlbumView.xaml;Controls\ArtistView.xaml;Controls\Search.xaml;Controls\SongPlayer.xaml;Controls\PlayingSong.xaml;Controls\PlaylistView.xaml;Controls\SongListView.xaml;Controls\TextEditBox.xaml;Controls\Track.xaml;Controls\TrackInfoView.xaml;MainWindow.xaml;SearchWindow.xaml;
 
 False
 

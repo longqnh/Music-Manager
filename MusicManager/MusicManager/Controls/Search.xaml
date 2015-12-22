@@ -1,0 +1,27 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="MusicManager.Controls.Search" 
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="700">
+    <Grid Width="700" Height="500">
+        <DataGrid AutoGenerateColumns="False" Margin="0,84,0,0" x:Name="dataGrid1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding song}" Header="Tên bài hát" Width="200" />
+                <DataGridTextColumn Binding="{Binding singer}" Header="Tên Ca Sĩ" Width="200" />
+                <DataGridTextColumn Binding="{Binding album}" Header="Tên Album" Width="200"/>
+                <DataGridTextColumn Binding="{Binding year}" Header="Năm Phát Hành" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox HorizontalAlignment="Left" Margin="167,30,0,0" x:Name="txtSearchBox" VerticalAlignment="Top" Width="533" />
+        <Button x:Name="btn_search" Content="Tìm" HorizontalAlignment="Left" Margin="591,57,0,0" VerticalAlignment="Top" Width="99"/>
+        <ComboBox x:Name="cmb" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Width="162" Loaded="cmb_Loaded">
+            <System:String>Tên Bài Hát</System:String>
+            <System:String>Tên Ca Sĩ</System:String>
+            <System:String>Tên Album</System:String>
+            <System:String>Năm Phát Hành</System:String>
+        </ComboBox>
+    </Grid>
+</UserControl>
