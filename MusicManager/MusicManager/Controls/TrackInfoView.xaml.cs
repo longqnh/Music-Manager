@@ -24,8 +24,9 @@ namespace MusicManager.Controls
         public TrackInfoView()
         {
             InitializeComponent();
+            this.LoadTrackEditor();
         }
-        #endregion 
+        #endregion
 
         #region Properties
         public MainWindow Main { get; set; }
@@ -50,19 +51,53 @@ namespace MusicManager.Controls
 
             tbGenre.tbText.Text = song.Genre;
             tbGenre.CheckLength();
-            
+
             tbTrackNo.CheckLength();
             tbType.Text = song.filetype;
-            tbTrackNo.tbText.Text = Convert.ToString (song.Track);
+            tbTrackNo.tbText.Text = Convert.ToString(song.Track);
             //tbType.Text
             tbBitRate.Text = song.Bitrate.ToString() + "kbps";
             tbPath.Text = song.Path;
             //tbPath.Text
         }
-
-        public void abc()
+        private void LoadTrackEditor()
         {
-
+            tbTittle.Load(this, 0);
+            tbArtist.Load(this, 1);
+            tbAlbum.Load(this, 2);
+            tbDate.Load(this, 3);
+            tbGenre.Load(this, 4);
+            tbTrackNo.Load(this, 5);
+        }
+        public void EditInfo(short infoID, string newInfo)
+        {
+            TagLib.File filetag;
+            filetag = TagLib.File.Create(@SongEditor.Path);
+            switch (infoID)
+            {
+                case 0: // Title edited, apply changes in newInfo to song's tag here
+                    filetag.Tag.Title = newInfo;
+                    break;
+                case 1: // Artist edited, apply changes in newInfo to song's tag here
+                    filetag.Tag.Artists =new string[] {newInfo, "Artist 2"};
+                    break;
+                case 2: // Album edited, apply changes in newInfo to song's tag here
+                    filetag.Tag.Album = newInfo;
+                    break;
+                case 3: // Date edited, apply changes in newInfo to song's tag here
+                    filetag.Tag.Year =Convert.ToUInt16 ( newInfo);
+                    break;
+                case 4: // Genre edited, apply changes in newInfo to song's tag here
+                    filetag.Tag.Genres = new string[] { newInfo };
+                    break;
+                case 5: // Track Number edited, apply changes in newInfo to song's tag here
+                    filetag.Tag.TrackCount = Convert.ToUInt32( newInfo) ;
+                    break;
+                default: // wrong infoID, do nothing
+                    break;
+            }
+            filetag.Save();
+            filetag.Dispose();
         }
         #endregion
     }

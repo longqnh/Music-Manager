@@ -31,7 +31,9 @@ namespace MusicManager.Controls
         private bool _isEditing = false;
         private TextBox _TextEditor;
         private string _FullText;
-        public MainWindow Main { get; set; }
+
+        private short _ID;
+        private TrackInfoView _TrackInfo;
         #endregion
 
         #region Events
@@ -54,31 +56,33 @@ namespace MusicManager.Controls
             {
                 tbText.Text = _TextEditor.Text;   //copy edited text back to show
                 this.CheckLength();
+                _TrackInfo.EditInfo(this._ID, _TextEditor.Text);
 
                 Editor.Children.Remove(_TextEditor);
-                
+
                 _isEditing = false; // stop editing
                 tbText.Visibility = Visibility.Visible; // show text
             }
         }
         void TextEditor_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
             {
                 tbText.Text = _TextEditor.Text;   //copy edited text back to show
                 this.CheckLength();
+                _TrackInfo.EditInfo(this._ID, _TextEditor.Text);
 
                 Editor.Children.Remove(_TextEditor);
 
                 _isEditing = false; // stop editing
                 tbText.Visibility = Visibility.Visible; // show text
-                
+
             }
         }
         private void tbText_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(e.LeftButton == MouseButtonState.Pressed && e.ClickCount ==2) //double click to start editing
-            {                
+            if (e.LeftButton == MouseButtonState.Pressed && e.ClickCount == 2) //double click to start editing
+            {
                 _TextEditor = new TextBox();
                 _TextEditor.HorizontalAlignment = HorizontalAlignment.Left;
                 _TextEditor.Width = 161;
@@ -99,7 +103,7 @@ namespace MusicManager.Controls
             _FullText = tbText.Text; // back up
 
             if (tbText.Text.Length > 15)
-            {               
+            {
                 tbText.Text = tbText.Text.Remove(15) + "..."; // set new title
                 ToolTip aTooltip = new ToolTip();
                 aTooltip.Content = _FullText;
@@ -110,6 +114,11 @@ namespace MusicManager.Controls
             {
                 tbText.ToolTip = null;
             }
+        }
+        public void Load(TrackInfoView infoview, short id)
+        {
+            _TrackInfo = infoview;
+            _ID = id;
         }
         #endregion
     }

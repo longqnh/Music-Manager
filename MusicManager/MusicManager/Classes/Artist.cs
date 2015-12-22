@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MusicManager.Classes
 {
-    class Artist
+    public class Artist
     {
         #region Constructor
         public Artist()
@@ -16,6 +16,9 @@ namespace MusicManager.Classes
 
         #region Properties
         public string Name { get; set; }
+        public List<Song> Songlist { get; set; }
+        public string coverpath { get; set; }
+        public int ID { get; set; }
         #endregion
     }
 }

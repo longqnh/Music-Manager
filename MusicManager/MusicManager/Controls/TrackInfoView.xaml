@@ -16,7 +16,7 @@
         <Label Content="File Type" HorizontalAlignment="Left" Margin="17,389,0,0" VerticalAlignment="Top" Foreground="#7F7F7F" FontSize="16"/>
         <Label Content="Bitrate" HorizontalAlignment="Left" Margin="17,448,0,0" VerticalAlignment="Top" Foreground="#7F7F7F" FontSize="16"/>
         <Label Content="File Path" HorizontalAlignment="Left" Margin="17,495,0,0" VerticalAlignment="Top" Foreground="#7F7F7F" FontSize="16"/>
-        <local:TextEditBox x:Name="tbTittle" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,76,0,0"/>
+        <local:TextEditBox x:Name="tbTittle" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,76,0,0" />
         <local:TextEditBox x:Name="tbArtist" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,130,0,0"/>
         <local:TextEditBox x:Name="tbAlbum" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,188,0,0"/>
         <local:TextEditBox x:Name="tbDate" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,245,0,0"/>

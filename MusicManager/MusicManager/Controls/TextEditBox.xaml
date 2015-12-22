@@ -8,6 +8,6 @@
     <Grid x:Name="Editor">
         <TextBlock x:Name="tbText" Text="Example" Foreground="#FFF9FF" FontSize="15" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" 
                    VerticalAlignment="Top" MouseDown="tbText_MouseDown" Width="211"/>
-        <Button x:Name="btnEditText" HorizontalAlignment="Left" Margin="216,0,0,0" Width="24" Click="btnEditText_Click" Height="23" VerticalAlignment="Top"/>
+        <Button x:Name="btnEditText" HorizontalAlignment="Left" Margin="216,0,0,0" Width="24" Click="btnEditText_Click"/>
     </Grid>
 </UserControl>

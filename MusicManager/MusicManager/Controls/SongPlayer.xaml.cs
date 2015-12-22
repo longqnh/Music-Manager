@@ -44,27 +44,27 @@ namespace MusicManager.Controls
         {
             if (_SongtoPlay != null)
             {
-                _Song.Open(new Uri(_SongtoPlay));
-                if (_Song.NaturalDuration.HasTimeSpan)
-                {
-                    TimeSpan dur = _Song.NaturalDuration.TimeSpan;
-                    //set the song duration lable
-                    tbSongDur.Text = dur.ToString(@"mm\:ss"); //"/ 0" + dur.Minutes.ToString() + ":" + dur.Seconds.ToString();
-                    tbCurDur.Text = "00:00";
-                    //set the seekbar
-                    SeekBar.Maximum = dur.TotalSeconds;
-                    SeekBar.SmallChange = 1;
-                    SeekBar.LargeChange = Math.Min(10, dur.Seconds / 10);
-                    //set the volume bar
-                    VolumeBar.Maximum = _Song.Volume;
-                    VolumeBar.Value = _Song.Volume;
-                    //start the ticker timer
-                    _Timer.Interval = TimeSpan.FromMilliseconds(500);
-                    _Timer.Tick += _Timer_Tick;
-                    _Timer.Start();
-                    //start playing song
-                    _Song.Play();
-                }
+                //_Song.Open(new Uri(_SongtoPlay));
+                //if (_Song.NaturalDuration.HasTimeSpan)
+                //{
+                //    TimeSpan dur = _Song.NaturalDuration.TimeSpan;
+                //    //set the song duration lable
+                //    tbSongDur.Text = dur.ToString(@"mm\:ss"); //"/ 0" + dur.Minutes.ToString() + ":" + dur.Seconds.ToString();
+                //    tbCurDur.Text = "00:00";
+                //    //set the seekbar
+                //    SeekBar.Maximum = dur.TotalSeconds;
+                //    SeekBar.SmallChange = 1;
+                //    SeekBar.LargeChange = Math.Min(10, dur.Seconds / 10);
+                //    //set the volume bar
+                //    VolumeBar.Maximum = _Song.Volume;
+                //    VolumeBar.Value = _Song.Volume;
+                //    //start the ticker timer
+                //    _Timer.Interval = TimeSpan.FromMilliseconds(500);
+                //    _Timer.Tick += _Timer_Tick;
+                //    _Timer.Start();
+                //    //start playing song
+                //    _Song.Play();
+                System.Diagnostics.Process.Start(@_SongtoPlay);// hàm này sẽ chạy player mặc định của file mà bạn cài đặc cho máy , nhà mình cài foobar2000 ấn vào nó chạy foobar2000 tuyệt vời
             }
         }
 

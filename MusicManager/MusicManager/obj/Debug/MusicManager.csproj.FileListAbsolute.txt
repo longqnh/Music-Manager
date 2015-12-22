@@ -260,3 +260,5 @@ C:\Users\NTL\Documents\GitHub\Music-Manager\MusicManager\MusicManager\obj\Debug\
 C:\Users\NTL\Documents\GitHub\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.csproj.GenerateResource.Cache
 C:\Users\NTL\Documents\GitHub\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.exe
 C:\Users\NTL\Documents\GitHub\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.pdb
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\SearchWindow.baml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\SearchWindow.g.cs
