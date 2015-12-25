@@ -265,3 +265,15 @@ C:\Users\NTL\Documents\GitHub\Music-Manager\MusicManager\MusicManager\obj\Debug\
 C:\Users\NTL\Documents\GitHub\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.csproj.GenerateResource.Cache
 C:\Users\NTL\Documents\GitHub\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.exe
 C:\Users\NTL\Documents\GitHub\Music-Manager\MusicManager\MusicManager\obj\Debug\MusicManager.pdb
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\System.Data.SQLite.dll
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\System.Data.SQLite.xml
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\Search.baml
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\Search.g.cs
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\SearchWindow.g.cs
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\SearchWindow.baml

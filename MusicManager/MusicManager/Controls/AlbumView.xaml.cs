@@ -58,14 +58,20 @@ namespace MusicManager.Controls
         }
         private void imgNextAlbum_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if(_AlbumList[_Cur].cover==null) imgPreAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
-            else imgPreAlbum.Source = _AlbumList[_Cur].cover;
+            if(_AlbumList[_Cur].cover==null) 
+                imgPreAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
+            else 
+                imgPreAlbum.Source = _AlbumList[_Cur].cover;
             _Cur++;
-            if (_AlbumList[_Cur].cover == null) imgCurAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
-            else imgCurAlbum.Source=_AlbumList[_Cur].cover;
+            if (_AlbumList[_Cur].cover == null) 
+                imgCurAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
+            else 
+                imgCurAlbum.Source=_AlbumList[_Cur].cover;
+
             tbAlbumName.Text = _AlbumList[_Cur].Name;
             tbArtist.Text = _AlbumList[_Cur].AlbumArtist;
             tbYear.Text = Convert.ToString(_AlbumList[_Cur].Year);
+
             this.CreateSongListofAlbum(_Cur);
             if (_Cur == _AlbumList.Count - 1) // this current album is the last album
                 imgNextAlbum.Source = null;
