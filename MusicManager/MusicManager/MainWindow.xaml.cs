@@ -154,7 +154,7 @@ namespace MusicManager
             this.Total = FileList.Count;
             foreach (FileInfo musicfile in FileList)
             {
-                string albumname, artistname;
+                string albumname, artistname,genre,path;
                 int temp;
                 song = TagLib.File.Create((string)(musicfile.FullName)); // with a path of file we create a file tag
                 if (song.Tag.Album != null)
@@ -180,7 +180,7 @@ namespace MusicManager
                 else
                 {
                     artistname = "Unknow";
-                }
+                };
                 try
                 {
                     sqlite_cmd.CommandText = "insert into Album(AlbumID, AlbumName) values (' " + ID_Album + " ','" + albumname + "')";
@@ -190,7 +190,7 @@ namespace MusicManager
                 catch
                 {
 
-                }
+                };
                 try
                 {
                     sqlite_cmd.CommandText = "insert into Artist(ArtistID, ArtistName) values (' " + ID_Artist + " ','" + artistname + "')";
@@ -200,13 +200,13 @@ namespace MusicManager
                 catch
                 {
 
-                }
+                };
                 sqlite_cmd.CommandText = "select AlbumID from Album where AlbumName = '" + albumname + "';";
                 tmp_ID_Album = Convert.ToInt32(sqlite_cmd.ExecuteScalar());
                 sqlite_cmd.CommandText = "select ArtistID from Artist where ArtistName = '" + artistname + "';";
                 tmp_ID_Artist = Convert.ToInt32(sqlite_cmd.ExecuteScalar());
                 string titletemp;
-
+                // Tag
                 if (song.Tag.Title == null)
                     titletemp = "unknow";
                 else
@@ -219,11 +219,26 @@ namespace MusicManager
                         titletemp = titletemp.Insert(a, "'");
                     };
                 };
+                // Genres 
+                if (song.Tag.Genres.Count() > 0) genre = song.Tag.Genres[0];
+                else
+                    if (song.Tag.FirstGenre != null) genre = song.Tag.FirstGenre;
+                    else genre = "unknow";
+                //----- path
+                path = musicfile.FullName;
 
-                sqlite_cmd.CommandText = "INSERT INTO Song(Songid,Title,Dur,Year,Path,Bitrate,Genre,AlbumID,ArtistId) VALUES ('" + ID_Song + "','" + titletemp + "','" + song.Properties.Duration + "','" + song.Tag.Year + "','" + musicfile.FullName + "'," + song.Properties.AudioBitrate + ",'" + song.Tag.Genres[0] + "','" + tmp_ID_Album + "','" + tmp_ID_Artist + "');";
+                    if (path.IndexOf("'") > 0)
+                    {
+                        temp = artistname.IndexOf("'");
+                        path = path.Insert(temp, "'");
+                    }
+                
+                
+                
+
+                sqlite_cmd.CommandText = "INSERT INTO Song(Songid,Title,Dur,Year,Path,Bitrate,Genre,AlbumID,ArtistId) VALUES ('" + ID_Song + "','" + titletemp + "','" + song.Properties.Duration + "','" + song.Tag.Year + "','" + path+ "'," + song.Properties.AudioBitrate + ",'" + genre+ "','" + tmp_ID_Album + "','" + tmp_ID_Artist + "');";
                 sqlite_cmd.ExecuteNonQuery();
                 ID_Song++;
-                this.Count += 1;
             };
             _Timer.Stop();
             sqlite_conn.Close();

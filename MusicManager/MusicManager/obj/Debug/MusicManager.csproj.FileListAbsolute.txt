@@ -218,8 +218,6 @@ C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Ma
 C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\MusicManager.csprojResolveAssemblyReference.cache
 C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\SearchWindow.baml
 C:\Users\NTL\Documents\Visual Studio 2012\Projects\Music-Manager-master\Music-Manager-master\MusicManager\MusicManager\obj\Debug\Controls\SearchWindow.g.cs
-D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\SearchWindow.baml
-D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\SearchWindow.g.cs
 C:\Users\NTL\Documents\GitHub\Music-Manager\MusicManager\MusicManager\bin\Debug\MusicManager.exe.config
 C:\Users\NTL\Documents\GitHub\Music-Manager\MusicManager\MusicManager\bin\Debug\MusicManager.exe
 C:\Users\NTL\Documents\GitHub\Music-Manager\MusicManager\MusicManager\bin\Debug\MusicManager.pdb
@@ -277,3 +275,7 @@ C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManage
 C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\Search.g.cs
 C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\SearchWindow.g.cs
 C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\SearchWindow.baml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\Search.baml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\Search.g.cs
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\SearchWindow.g.cs
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\SearchWindow.baml
