@@ -38,6 +38,7 @@ namespace MusicManager.Controls
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             _Song.Play();
+            
         }
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)

@@ -37,7 +37,10 @@ namespace MusicManager
             {
 
             }
-
+            mWorker.DoWork += mWorker_DoWork;
+            mWorker.RunWorkerCompleted += mWorker_RunWorkerCompleted;
+            _Timer.Tick += _Timer_Tick;
+            _Timer.Interval = TimeSpan.FromMilliseconds(100);
         }
 
         SQLiteConnection sqlite_conn = new SQLiteConnection("Data Source = music.db");
@@ -50,6 +53,12 @@ namespace MusicManager
         int ID_Artist = 0;
         int ID_Song = 0;
         bool loaded = false;
+
+        private List<FileInfo> FileList;
+        private System.ComponentModel.BackgroundWorker mWorker = new System.ComponentModel.BackgroundWorker();
+        private System.Windows.Threading.DispatcherTimer _Timer = new System.Windows.Threading.DispatcherTimer();
+        int Count = 1;
+        int Total = 0;
         #endregion
 
         #region Thread
@@ -88,7 +97,6 @@ namespace MusicManager
                 _Media = fbd.SelectedPath;
             }
         }
-
         private void Button_Click_1(object sender, RoutedEventArgs e) //load
         {
             if (Convert.ToString(sqlite_conn.State) == "Closed") sqlite_conn.Open();
@@ -113,29 +121,23 @@ namespace MusicManager
                 //this.CreateAlbumList(_MusicList);
                 loaded = true;
                 this.AddListToDB(_MusicList);
-                CreateAlbumList();
-                CreateArtistList();
+                //CreateAlbumList();
+                //CreateArtistList();
             }
             else
             {
                 System.Windows.Forms.MessageBox.Show("Không thể load !");
             }
         }
-
         private void Button_Click_2(object sender, RoutedEventArgs e) //search
         {
             SearchWindow _searchwindow = new SearchWindow();
             _searchwindow.Show();
         }
-        #endregion
-
-        #region Methods
-       
-        
-        //--- Hàm thêm list<fileinfo> vào database 
-        private void AddListToDB(List<FileInfo> List)
+        private void mWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-
+            #region AddListtoDtb
+            _Timer.Start();
             TagLib.File song;
             //Open connection 
             if (Convert.ToString(sqlite_conn.State) == "Closed") sqlite_conn.Open();
@@ -149,7 +151,8 @@ namespace MusicManager
             sqlite_cmd.ExecuteNonQuery();
             ID_Artist++;
 
-            foreach (FileInfo musicfile in List)
+            this.Total = FileList.Count;
+            foreach (FileInfo musicfile in FileList)
             {
                 string albumname, artistname;
                 int temp;
@@ -220,8 +223,32 @@ namespace MusicManager
                 sqlite_cmd.CommandText = "INSERT INTO Song(Songid,Title,Dur,Year,Path,Bitrate,Genre,AlbumID,ArtistId) VALUES ('" + ID_Song + "','" + titletemp + "','" + song.Properties.Duration + "','" + song.Tag.Year + "','" + musicfile.FullName + "'," + song.Properties.AudioBitrate + ",'" + song.Tag.Genres[0] + "','" + tmp_ID_Album + "','" + tmp_ID_Artist + "');";
                 sqlite_cmd.ExecuteNonQuery();
                 ID_Song++;
+                this.Count += 1;
             };
+            _Timer.Stop();
             sqlite_conn.Close();
+            #endregion
+            this.Title = "MusicManager - Load Completed";
+            this.CreateAlbumList();
+            this.CreateArtistList();
+        }
+        private void mWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            this.Title = "MusicManager - Load Completed";
+        }
+        void _Timer_Tick(object sender, EventArgs e)
+        {
+            this.Title = "MusicManager - Loading: " + this.Count.ToString() + " of " + this.Total.ToString();
+        }
+        #endregion
+
+        #region Methods
+ 
+        //--- Hàm thêm list<fileinfo> vào database 
+        private void AddListToDB(List<FileInfo> List)
+        {
+            FileList = List;
+            mWorker.RunWorkerAsync();
         }
         private void CreateAlbumList()
         {
@@ -232,14 +259,13 @@ namespace MusicManager
             SQLiteDataReader Dtreader;
             Dtreader = sqlite_cmd.ExecuteReader();
             int i=0;
-                while (Dtreader.Read())
-                {
-                    Album temp = new Album();
-                    temp.ID = Dtreader.GetInt32(0);
-                    temp.Name = Dtreader.GetString(1);
-                    Albums.Add(temp);
-
-                }// Create List AlbumName With an Album ADD song;
+            while (Dtreader.Read())
+            {
+                Album temp = new Album();
+                temp.ID = Dtreader.GetInt32(0);
+                temp.Name = Dtreader.GetString(1);
+                Albums.Add(temp);
+            }// Create List AlbumName With an Album ADD song;
             Dtreader.Close();
             foreach (Album album in Albums)
             {
@@ -247,7 +273,6 @@ namespace MusicManager
                 Dtreader = sqlite_cmd.ExecuteReader();
                 while (Dtreader.Read())
                 {
-
                     // Song song = new Song(Dtreader.GetString(3), "test", album.Name, (short?)(Dtreader.GetInt32(5)), Dtreader.GetString(8), 3, (short)Dtreader.GetInt32(7), , Dtreader.GetString(6));
                     Song asong = new Song();
                     asong.Path = Dtreader.GetString(6);
@@ -292,17 +317,14 @@ namespace MusicManager
                         {
 
                         }
-
-                        album.TrackList.Add(asong);
-
                     }
+                    album.TrackList.Add(asong);
                 }
                 Dtreader.Close();
             }
             this.SongList.ctAlbumView.ReceiveAlbumList(Albums, this);
             sqlite_conn.Close();
-        }
-        
+        }       
         private void CreateArtistList()
         {
              sqlite_conn.Open();
@@ -351,12 +373,10 @@ namespace MusicManager
             sqlite_conn.Close();
            this.SongList.ctArtistView.ReceiveArtistList(AL, this);
         }
-
         private void SongList_Loaded(object sender, RoutedEventArgs e)
         {
             
         }
-
         //-- kết thúc
         #endregion
     }
