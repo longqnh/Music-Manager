@@ -7,21 +7,19 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="700">
     <Grid Width="700" Height="500">
-        <DataGrid AutoGenerateColumns="False" Margin="0,84,0,0" x:Name="dataGrid1">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding song}" Header="Tên bài hát" Width="200" />
-                <DataGridTextColumn Binding="{Binding singer}" Header="Tên Ca Sĩ" Width="200" />
-                <DataGridTextColumn Binding="{Binding album}" Header="Tên Album" Width="200"/>
-                <DataGridTextColumn Binding="{Binding year}" Header="Năm Phát Hành" Width="100"/>
-            </DataGrid.Columns>
-        </DataGrid>
         <TextBox HorizontalAlignment="Left" Margin="167,30,0,0" x:Name="txtSearchBox" VerticalAlignment="Top" Width="533" />
-        <Button x:Name="btn_search" Content="Tìm" HorizontalAlignment="Left" Margin="591,57,0,0" VerticalAlignment="Top" Width="99"/>
+        <Button x:Name="btn_search" Content="Tìm" HorizontalAlignment="Left" Margin="591,57,0,0" VerticalAlignment="Top" Width="99" Click="btn_search_Click"/>
         <ComboBox x:Name="cmb" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Width="162" Loaded="cmb_Loaded">
             <System:String>Tên Bài Hát</System:String>
             <System:String>Tên Ca Sĩ</System:String>
             <System:String>Tên Album</System:String>
-            <System:String>Năm Phát Hành</System:String>
         </ComboBox>
+        <DataGrid x:Name="datagrid" HorizontalAlignment="Left" Margin="0,92,0,0" VerticalAlignment="Top" Height="408" Width="700">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Title}" ClipboardContentBinding="{x:Null}" Width="240" Header="Tên Bài Hát"/>
+                <DataGridTextColumn Binding="{Binding ArtistName}" ClipboardContentBinding="{x:Null}" Width="230" Header="Tên Ca Sĩ"/>
+                <DataGridTextColumn Binding="{Binding AlbumName}" ClipboardContentBinding="{x:Null}" Width="230" Header="Tên Album"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

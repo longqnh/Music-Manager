@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
+using System.Data.SQLite;
 
 namespace MusicManager.Controls
 {
@@ -25,9 +27,45 @@ namespace MusicManager.Controls
             InitializeComponent();
         }
 
+        public SearchWindow searchwindow {get ; set;}
+
         private void cmb_Loaded(object sender, RoutedEventArgs e)
         {
             cmb.Text = "Tên Bài Hát";
+        }
+
+        SQLiteConnection sqlite_conn = new SQLiteConnection("Data Source = music.db");
+        SQLiteCommand sqlite_cmd;
+
+        private void btn_search_Click(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show(cmb.Text);
+            if (txtSearchBox.Text != null) sqlite_conn.Open();
+            sqlite_cmd = sqlite_conn.CreateCommand();
+            if (cmb.Text == "Tên Bài Hát")
+            {
+                sqlite_cmd.CommandText = "select Title, ArtistName, AlbumName from Song,Artist,Album where (Song.Title='" + txtSearchBox.Text + "') and (Song.AlbumID=Album.AlbumID) and (Song.ArtistID=Artist.ArtistID)";
+            }
+            else
+            {
+                if (cmb.Text == "Tên Ca Sĩ")
+                {
+                    sqlite_cmd.CommandText = "select Title, ArtistName, AlbumName from Song,Artist,Album where (Artist.ArtistName='" + txtSearchBox.Text + "') and (Song.AlbumID=Album.AlbumID) and (Song.ArtistID=Artist.ArtistID)";
+                }
+                else
+                {
+                    sqlite_cmd.CommandText = "select Title, ArtistName, AlbumName from Song,Artist,Album where (Album.AlbumName='" + txtSearchBox.Text + "') and (Song.AlbumID=Album.AlbumID) and (Song.ArtistID=Artist.ArtistID)";
+                }
+            }
+            
+            DataSet dataSet = new DataSet();
+            SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(sqlite_cmd.CommandText, sqlite_conn);
+            dataAdapter.Fill(dataSet);
+
+            datagrid.ItemsSource = dataSet.Tables[0].DefaultView;
+            datagrid.CanUserAddRows = false;
+            datagrid.CanUserDeleteRows = false;
+            sqlite_conn.Close();
         }
     }
 }
