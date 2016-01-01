@@ -37,9 +37,41 @@ namespace MusicManager.Controls
         SQLiteConnection sqlite_conn = new SQLiteConnection("Data Source = music.db");
         SQLiteCommand sqlite_cmd;
 
+
+        private void txtSearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtSearchBox.Text != null) sqlite_conn.Open();
+                else datagrid.ItemsSource = null;
+            sqlite_cmd = sqlite_conn.CreateCommand();
+            if (cmb.Text == "Tên Bài Hát")
+            {
+                sqlite_cmd.CommandText = "select Title, ArtistName, AlbumName from Song,Artist,Album where (Song.Title like '" + txtSearchBox.Text + "%') and (Song.AlbumID=Album.AlbumID) and (Song.ArtistID=Artist.ArtistID)";
+            }
+            else
+            {
+                if (cmb.Text == "Tên Ca Sĩ")
+                {
+                    sqlite_cmd.CommandText = "select Title, ArtistName, AlbumName from Song,Artist,Album where (Artist.ArtistName like '" + txtSearchBox.Text + "%') and (Song.AlbumID=Album.AlbumID) and (Song.ArtistID=Artist.ArtistID)";
+                }
+                else
+                {
+                    sqlite_cmd.CommandText = "select Title, ArtistName, AlbumName from Song,Artist,Album where (Album.AlbumName like '" + txtSearchBox.Text + "%') and (Song.AlbumID=Album.AlbumID) and (Song.ArtistID=Artist.ArtistID)";
+                }
+            }
+
+            DataSet dataSet = new DataSet();
+            SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(sqlite_cmd.CommandText, sqlite_conn);
+            dataAdapter.Fill(dataSet);
+
+            datagrid.ItemsSource = dataSet.Tables[0].DefaultView;
+            datagrid.CanUserAddRows = false;
+            datagrid.CanUserDeleteRows = false;
+            sqlite_conn.Close();
+        }
+
+
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show(cmb.Text);
             if (txtSearchBox.Text != null) sqlite_conn.Open();
             sqlite_cmd = sqlite_conn.CreateCommand();
             if (cmb.Text == "Tên Bài Hát")
