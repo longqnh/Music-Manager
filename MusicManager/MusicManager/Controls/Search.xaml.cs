@@ -45,17 +45,17 @@ namespace MusicManager.Controls
             sqlite_cmd = sqlite_conn.CreateCommand();
             if (cmb.Text == "Tên Bài Hát")
             {
-                sqlite_cmd.CommandText = "select Title, ArtistName, AlbumName from Song,Artist,Album where (Song.Title like '" + txtSearchBox.Text + "%') and (Song.AlbumID=Album.AlbumID) and (Song.ArtistID=Artist.ArtistID)";
+                sqlite_cmd.CommandText = "select Title, ArtistName, AlbumName from Song,Artist,Album where (Song.Title like '%" + txtSearchBox.Text + "%') and (Song.AlbumID=Album.AlbumID) and (Song.ArtistID=Artist.ArtistID)";
             }
             else
             {
                 if (cmb.Text == "Tên Ca Sĩ")
                 {
-                    sqlite_cmd.CommandText = "select Title, ArtistName, AlbumName from Song,Artist,Album where (Artist.ArtistName like '" + txtSearchBox.Text + "%') and (Song.AlbumID=Album.AlbumID) and (Song.ArtistID=Artist.ArtistID)";
+                    sqlite_cmd.CommandText = "select Title, ArtistName, AlbumName from Song,Artist,Album where (Artist.ArtistName like '%" + txtSearchBox.Text + "%') and (Song.AlbumID=Album.AlbumID) and (Song.ArtistID=Artist.ArtistID)";
                 }
                 else
                 {
-                    sqlite_cmd.CommandText = "select Title, ArtistName, AlbumName from Song,Artist,Album where (Album.AlbumName like '" + txtSearchBox.Text + "%') and (Song.AlbumID=Album.AlbumID) and (Song.ArtistID=Artist.ArtistID)";
+                    sqlite_cmd.CommandText = "select Title, ArtistName, AlbumName from Song,Artist,Album where (Album.AlbumName like '%" + txtSearchBox.Text + "%') and (Song.AlbumID=Album.AlbumID) and (Song.ArtistID=Artist.ArtistID)";
                 }
             }
 

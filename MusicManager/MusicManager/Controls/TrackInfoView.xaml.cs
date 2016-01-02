@@ -71,6 +71,8 @@ namespace MusicManager.Controls
         }
         public void EditInfo(short infoID, string newInfo)
         {
+            try
+            {
             TagLib.File filetag;
             filetag = TagLib.File.Create(@SongEditor.Path);
             switch (infoID)
@@ -80,6 +82,7 @@ namespace MusicManager.Controls
                     break;
                 case 1: // Artist edited, apply changes in newInfo to song's tag here
                     filetag.Tag.Artists =new string[] {newInfo, "Artist 2"};
+                    SongEditor.Artist = newInfo;
                     break;
                 case 2: // Album edited, apply changes in newInfo to song's tag here
                     filetag.Tag.Album = newInfo;
@@ -96,8 +99,14 @@ namespace MusicManager.Controls
                 default: // wrong infoID, do nothing
                     break;
             }
-            filetag.Save();
-            filetag.Dispose();
+            
+                filetag.Save();
+                filetag.Dispose();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(" Có lỗi rồi dongok:   " + e.Message);
+            }
         }
         #endregion
     }

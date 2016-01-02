@@ -9,8 +9,8 @@
         <Controls:PlaylistView x:Name="PlayList" HorizontalAlignment="Left" Margin="342,0,0,0" VerticalAlignment="Top" Height="554"/>
         <Border x:Name="BorderNo2" BorderBrush="#FF837C83" BorderThickness="1" HorizontalAlignment="Left" Height="506" Margin="682,20,0,0" VerticalAlignment="Top"/>
         <Controls:TrackInfoView x:Name="TrackInfo" HorizontalAlignment="Left" Margin="683,0,0,0" VerticalAlignment="Top"/>
-        <Button Content="Browse" HorizontalAlignment="Left" Margin="199,10,0,0" VerticalAlignment="Top" Width="66" Click="Button_Click"/>
-        <Button Content="Load" HorizontalAlignment="Left" Margin="128,10,0,0" VerticalAlignment="Top" Width="66" Click="Button_Click_1"/>
-        <Button Content="Search" HorizontalAlignment="Left" Margin="270,10,0,0" VerticalAlignment="Top" Width="66" Click="Button_Click_2"/>
+        <Button Content="Browse" HorizontalAlignment="Left" Margin="199,9,0,0" VerticalAlignment="Top" Width="66" Click="Button_Click" Foreground="#FF1432B9" Background="#FF140A12" BorderBrush="#FF140A12" FontFamily="Traditional Arabic" FontSize="14" RenderTransformOrigin="0.576,0.741"/>
+        <Button x:Name="Loadbutt" Content="Load" HorizontalAlignment="Left" Margin="128,10,0,0" VerticalAlignment="Top" Width="66" Click="Button_Click_1" FontFamily="Traditional Arabic" Background="#FF140A12" BorderBrush="#FF140A12" Foreground="#FF2654CF" FontSize="14" OpacityMask="#FFE60D0D"/>
+        <Button Content="Search" HorizontalAlignment="Left" Margin="270,9,0,0" VerticalAlignment="Top" Width="66" Click="Button_Click_2" Background="#FF140A12" Foreground="#FF112CDA" FontFamily="Traditional Arabic" FontSize="14" Height="27" BorderBrush="#FF140A12"/>
     </Grid>
 </Window>

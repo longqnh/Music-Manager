@@ -50,31 +50,20 @@ namespace MusicManager.Controls
 
         }
         public void ReceiveArtistList(List<Artist> list, MainWindow main)
-        {
-            this._Main = main;
-            this._Cur = 0;
+        {          
             this._ArtistList = list;
-
             for (int i = 0; i < this._ArtistList.Count; i++)
                 this._ArtistList[i].coverpath = "/Albums/6.jpg";
+
+            this._Main = main;
 
             //imgCurArtist.Source = new BitmapImage(new Uri(_ArtistList[_Cur].coverpath, UriKind.Relative));
             imgCurArtist.Source = _ArtistList[_Cur].cover;
             CreateSongListofArtist(_Cur);
+            //imgNextArtist.Source = new BitmapImage(new Uri(_ArtistList[_Cur + 1].coverpath, UriKind.Relative));
+            imgNextArtist.Source = _ArtistList[_Cur + 1].cover;
+        }
 
-            if (this._ArtistList.Count > 1)
-            {
-                //imgNextArtist.Source = new BitmapImage(new Uri(_ArtistList[_Cur + 1].coverpath, UriKind.Relative));
-                imgNextArtist.Source = _ArtistList[_Cur + 1].cover;
-            }
-        }
-        public void ResetArtistList()
-        {
-            this._ArtistList.Clear();
-            imgCurArtist.Source = null;
-            imgNextArtist.Source = null;
-            imgPreArtist.Source = null;
-        }
         private void imgPreArtist_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             _Cur--;

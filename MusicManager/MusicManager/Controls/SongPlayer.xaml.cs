@@ -13,7 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MusicManager.Classes;
-
+using CSCore.Codecs;
+using CSCore.CoreAudioAPI;
+using CSCore.SoundOut;
+using CSCore.Streams;
+using System.Collections.ObjectModel;
+using AudioPlayerSample;
 namespace MusicManager.Controls
 {
     /// <summary>
@@ -25,6 +30,21 @@ namespace MusicManager.Controls
         public SongPlayer()
         {
             InitializeComponent();
+            using (var mmdeviceEnumerator = new MMDeviceEnumerator())
+            {
+                using (
+                    var mmdeviceCollection = mmdeviceEnumerator.EnumAudioEndpoints(DataFlow.Render, DeviceState.Active))
+                {
+                    foreach (var device in mmdeviceCollection)
+                    {
+                        _devices.Add(device);
+                        break;
+                    }
+                }
+                btnPlay.IsEnabled = true;
+                imgplay.Source = new BitmapImage(new Uri("/Image/Play Button.png", UriKind.Relative));
+            }
+        
         }
         #endregion
 
@@ -32,63 +52,100 @@ namespace MusicManager.Controls
         private MediaPlayer _Song = new MediaPlayer();
         private string _SongtoPlay;
         private System.Windows.Threading.DispatcherTimer _Timer = new System.Windows.Threading.DispatcherTimer();
+        public AudioPlayerSample.MusicPlayer player =new MusicPlayer();
+        private readonly ObservableCollection<MMDevice> _devices = new ObservableCollection<MMDevice>(); 
+
         #endregion
 
         #region Events
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private void btnStop_Click(object sender, RoutedEventArgs e)
         {
-            _Song.Play();
-            
+            if (Convert.ToString(player.PlaybackState) == "Playing")
+            {
+                player.Stop();
+                tbCurDur.Text = "00:00";
+                imgplay.Source = new BitmapImage(new Uri("/Image/Play Button.png", UriKind.Relative));
+                this.imgplay.UpdateLayout();
+            };
         }
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
+            
             if (_SongtoPlay != null)
             {
-                //_Song.Open(new Uri(_SongtoPlay));
-                //if (_Song.NaturalDuration.HasTimeSpan)
-                //{
-                //    TimeSpan dur = _Song.NaturalDuration.TimeSpan;
-                //    //set the song duration lable
-                //    tbSongDur.Text = dur.ToString(@"mm\:ss"); //"/ 0" + dur.Minutes.ToString() + ":" + dur.Seconds.ToString();
-                //    tbCurDur.Text = "00:00";
-                //    //set the seekbar
-                //    SeekBar.Maximum = dur.TotalSeconds;
-                //    SeekBar.SmallChange = 1;
-                //    SeekBar.LargeChange = Math.Min(10, dur.Seconds / 10);
-                //    //set the volume bar
-                //    VolumeBar.Maximum = _Song.Volume;
-                //    VolumeBar.Value = _Song.Volume;
-                //    //start the ticker timer
-                //    _Timer.Interval = TimeSpan.FromMilliseconds(500);
-                //    _Timer.Tick += _Timer_Tick;
-                //    _Timer.Start();
-                //    //start playing song
-                //    _Song.Play();
-                System.Diagnostics.Process.Start(@_SongtoPlay);// hàm này sẽ chạy player mặc định của file mà bạn cài đặc cho máy , nhà mình cài foobar2000 ấn vào nó chạy foobar2000 tuyệt vời
+                imgplay.Source =new BitmapImage(new Uri("/Image/Playing.png", UriKind.Relative));
+                this.imgplay.UpdateLayout();
+                TagLib.File file;
+                file=TagLib.File.Create((string)(_SongtoPlay));
+                    TimeSpan dur = file.Properties.Duration;
+                    //set the song duration lable
+                    tbSongDur.Text = dur.ToString(@"mm\:ss"); //"/ 0" + dur.Minutes.ToString() + ":" + dur.Seconds.ToString();
+                    tbCurDur.Text = "00:00";
+                    //    //set the seekbar
+                    SeekBar.Maximum = dur.TotalSeconds;
+                    SeekBar.SmallChange = 1;
+                    SeekBar.LargeChange = Math.Min(10, dur.Seconds / 10);
+                    //set the volume bar
+                    VolumeBar.Maximum = player.Volume;
+                    VolumeBar.Value = player.Volume;
+                    //start the ticker timer
+                    _Timer.Interval = TimeSpan.FromMilliseconds(500);
+                    _Timer.Tick += _Timer_Tick;
+                    _Timer.Start();
+                    //start playing song
+                    _Song.Play();
+                    // System.Diagnostics.Process.Start(@_SongtoPlay);// hàm này sẽ chạy player mặc định của file mà bạn cài đặc cho máy , nhà mình cài foobar2000 ấn vào nó chạy foobar2000 tuyệt vời
+                    player.Open(_SongtoPlay, _devices[0]);
+                    player.Play();
+                
             }
+            else
+            {
+                MessageBox.Show(" Đường dẫn null ");
+            }
+            
         }
 
-        private void btnLoad_Click(object sender, RoutedEventArgs e)
+        private void btnPause_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(_SongtoPlay);
-            //_Song.Pause();
+
+            if (Convert.ToString(player.PlaybackState) == "Playing")
+                player.Pause();
+            else
+                if (Convert.ToString(player.PlaybackState) == "Paused")
+            {
+                player.Play();
+            }
+           
         }
 
         private void _Timer_Tick(object sender, EventArgs e)
         {
-            SeekBar.Value = _Song.Position.TotalSeconds;
-            tbCurDur.Text = _Song.Position.ToString(@"mm\:ss");
+            TimeSpan position = player.Position;
+            TimeSpan length = player.Length;
+            if (position > length)
+                length = position;
+            if (length != TimeSpan.Zero && position != TimeSpan.Zero)
+            {
+            tbCurDur.Text = String.Format(@"{0:mm\:ss}", position);
+            double perc = position.TotalMilliseconds / length.TotalMilliseconds * SeekBar.Maximum;
+            SeekBar.Value = (int)perc;
+           
+               
+            }
+           
+          
         }
 
         private void SeekBar_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
-            _Song.Position = TimeSpan.FromSeconds(SeekBar.Value);
+           player.Position = TimeSpan.FromSeconds(SeekBar.Value);
         }
 
         private void VolumeBar_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
-            _Song.Volume = VolumeBar.Value;
+            player.Volume =Convert.ToInt32( VolumeBar.Value);
         }
         #endregion
 

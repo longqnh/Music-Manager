@@ -17,6 +17,7 @@ using System.IO;
 using MusicManager.Classes;
 using HundredMilesSoftware.UltraID3Lib;
 using System.Data.SQLite;
+using AudioPlayerSample;
 namespace MusicManager
 {
     /// <summary>
@@ -32,6 +33,8 @@ namespace MusicManager
             {
                 CreateAlbumList();
                 CreateArtistList();
+
+                
             }
             catch
             {
@@ -41,6 +44,9 @@ namespace MusicManager
             mWorker.RunWorkerCompleted += mWorker_RunWorkerCompleted;
             _Timer.Tick += _Timer_Tick;
             _Timer.Interval = TimeSpan.FromMilliseconds(100);
+            Loadbutt.IsEnabled = false;
+            
+           
         }
 
         SQLiteConnection sqlite_conn = new SQLiteConnection("Data Source = music.db");
@@ -95,7 +101,9 @@ namespace MusicManager
             if (_result == System.Windows.Forms.DialogResult.OK)
             {
                 _Media = fbd.SelectedPath;
+                Loadbutt.IsEnabled = true;
             }
+            
         }
         private void Button_Click_1(object sender, RoutedEventArgs e) //load
         {
@@ -120,9 +128,11 @@ namespace MusicManager
                 }
                 //this.CreateAlbumList(_MusicList);
                 loaded = true;
+                if (_MusicList != null) Loadbutt.IsEnabled = true;
                 this.AddListToDB(_MusicList);
                 //CreateAlbumList();
                 //CreateArtistList();
+                
             }
             else
             {
@@ -137,6 +147,7 @@ namespace MusicManager
         private void mWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             #region AddListtoDtb
+            Count = 0;
             _Timer.Start();
             TagLib.File song;
             //Open connection 
@@ -213,7 +224,9 @@ namespace MusicManager
                 string titletemp;
                 // Tag
                 if (song.Tag.Title == null)
-                    titletemp = "unknow";
+                {
+                    titletemp = musicfile.Name;
+                }
                 else
                 {
                     titletemp = song.Tag.Title;
@@ -249,12 +262,15 @@ namespace MusicManager
             sqlite_conn.Close();
             #endregion
             this.Title = "MusicManager - Load Completed";
-            this.CreateAlbumList();
-            this.CreateArtistList();
+            
         }
         private void mWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             this.Title = "MusicManager - Load Completed";
+            this.SongList.ctAlbumView.ResetAlbumList();
+            this.CreateAlbumList();
+            this.SongList.ctArtistView.ResetArtistList();
+            this.CreateArtistList();
         }
         void _Timer_Tick(object sender, EventArgs e)
         {
@@ -311,7 +327,7 @@ namespace MusicManager
                     string extension;
                     extension = System.IO.Path.GetExtension(asong.Path);
                     asong.filetype = Convert.ToString(extension);
-                    asong.Title = tlfile2.Tag.Title;
+                    asong.Title = Dtreader.GetString(3);
                     asong.Track = (short?)tlfile2.Tag.TrackCount;
                     if (!album.havecover)
                     {
@@ -393,7 +409,7 @@ namespace MusicManager
                     string extension;
                     extension = System.IO.Path.GetExtension(asong.Path);
                     asong.filetype = Convert.ToString(extension);
-                    asong.Title = tlfile2.Tag.Title;
+                    asong.Title = Dtreader.GetString(3);
                     asong.Track = (short?)tlfile2.Tag.TrackCount;
                     asong.Album = tlfile2.Tag.Album;
                     art.Songlist.Add(asong);

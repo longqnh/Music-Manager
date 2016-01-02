@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Width="342" Height="84">
     <Grid>
-        <Button x:Name="btnSave" Margin="73,22,213,6" Click="btnSave_Click">
+        <Button x:Name="btnStop" Margin="73,22,213,6" Click="btnStop_Click">
             <StackPanel>
-                <Image Source="/Image/Save Button.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="55" Margin="1,0"/>
+                <Image x:Name="imgStop" Source="/Image/Save Button.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="55" Margin="1,0"/>
             </StackPanel>
             <Button.Template>
                 <ControlTemplate TargetType="Button">
@@ -20,7 +20,7 @@
 
         <Button x:Name="btnPlay" Margin="140,22,148,6" Click="btnPlay_Click">
             <StackPanel>
-                <Image Source="/Image/Play Button.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="55"/>
+                <Image x:Name="imgplay" Source="/Image/Play Button.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="55"/>
             </StackPanel>
             <Button.Template>
                 <ControlTemplate TargetType="Button">
@@ -31,9 +31,9 @@
             </Button.Template>
         </Button>
 
-        <Button x:Name="btnLoad" Margin="205,22,87,6" Click="btnLoad_Click">
+        <Button x:Name="btnPause" Margin="205,22,87,6" Click="btnPause_Click">
             <StackPanel>
-                <Image Source="/Image/Load Button.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="56"/>
+                <Image Source="/Image/Load Button.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="56" Margin="-3,0"/>
             </StackPanel>
             <Button.Template>
                 <ControlTemplate TargetType="Button">
@@ -45,8 +45,8 @@
         </Button>
 
         <Slider x:Name="SeekBar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="275" Height="22" Margin="38,0,0,0" Thumb.DragCompleted="SeekBar_DragCompleted"/>
-        <Slider x:Name="VolumeBar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="63" Height="23" Margin="269,51,0,0" Thumb.DragCompleted="VolumeBar_DragCompleted"/>
-        <TextBlock x:Name="tbCurDur" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Text="mm:ss" Foreground="White" Margin="250,11,0,0" FontSize="13"/>
+        <Slider x:Name="VolumeBar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="63" Height="23" Margin="269,51,0,0" Thumb.DragCompleted="VolumeBar_DragCompleted" />
+        <TextBlock x:Name="tbCurDur" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Text="mm:ss" Foreground="White" Margin="250,11,0,0" FontSize="13" RenderTransformOrigin="0.111,0.765"/>
         <TextBlock x:Name="tbSongDur" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Text="/ mm:ss" Foreground="White" Margin="288,11,0,0" FontSize="13"/>
     </Grid>
 </UserControl>

@@ -279,3 +279,7 @@ D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\Sear
 D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\Controls\Search.g.cs
 D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\SearchWindow.g.cs
 D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\SearchWindow.baml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\bin\Debug\CSCore.dll
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\bin\Debug\CSCore.xml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\UserControl1.baml
+D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\UserControl1.g.cs
