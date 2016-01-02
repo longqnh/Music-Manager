@@ -70,16 +70,6 @@ namespace MusicManager.Controls
             }
         }
         public void ResetArtistList()
-<<<<<<< HEAD
-        {
-            this._ArtistList.Clear();
-            imgCurArtist.Source = null;
-            imgNextArtist.Source = null;
-            imgPreArtist.Source = null;
-        }
-        private void imgPreArtist_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-=======
->>>>>>> origin/master
         {
             this._ArtistList.Clear();
             imgCurArtist.Source = null;

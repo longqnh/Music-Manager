@@ -65,6 +65,7 @@ namespace MusicManager.Controls
                 player.Stop();
                 tbCurDur.Text = "00:00";
                 imgplay.Source = new BitmapImage(new Uri("/Image/Play Button.png", UriKind.Relative));
+                imgStop.Source = new BitmapImage(new Uri("/Image/stop 1.png", UriKind.Relative));
                 this.imgplay.UpdateLayout();
             };
         }
@@ -75,6 +76,8 @@ namespace MusicManager.Controls
             if (_SongtoPlay != null)
             {
                 imgplay.Source =new BitmapImage(new Uri("/Image/Playing.png", UriKind.Relative));
+                imgStop.Source = new BitmapImage(new Uri("/Image/stop 2.png", UriKind.Relative));
+                imgpause.Source = new BitmapImage(new Uri("/Image/pause.png", UriKind.Relative));
                 this.imgplay.UpdateLayout();
                 TagLib.File file;
                 file=TagLib.File.Create((string)(_SongtoPlay));
@@ -111,12 +114,17 @@ namespace MusicManager.Controls
         {
 
             if (Convert.ToString(player.PlaybackState) == "Playing")
+            {
                 player.Pause();
+               
+                imgpause.Source = new BitmapImage(new Uri("/Image/Play Button.png", UriKind.Relative));
+            }
             else
                 if (Convert.ToString(player.PlaybackState) == "Paused")
-            {
-                player.Play();
-            }
+                {
+                    player.Play();
+                    imgpause.Source = new BitmapImage(new Uri("/Image/pause.png", UriKind.Relative));
+                }
            
         }
 

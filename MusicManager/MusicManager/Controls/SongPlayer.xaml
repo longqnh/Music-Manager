@@ -7,7 +7,7 @@
     <Grid>
         <Button x:Name="btnStop" Margin="73,22,213,6" Click="btnStop_Click">
             <StackPanel>
-                <Image x:Name="imgStop" Source="/Image/Save Button.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="55" Margin="1,0"/>
+                <Image x:Name="imgStop" Source="/Image/Stop 1.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="55" Margin="1,0"/>
             </StackPanel>
             <Button.Template>
                 <ControlTemplate TargetType="Button">
@@ -20,11 +20,10 @@
 
         <Button x:Name="btnPlay" Margin="140,22,148,6" Click="btnPlay_Click">
             <StackPanel>
-<<<<<<< HEAD
                 <Image x:Name="imgplay" Source="/Image/Play Button.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="55"/>
-=======
+
                 <Image x:Name="imgState" Source="/Image/Play Button.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="55"/>
->>>>>>> origin/master
+
             </StackPanel>
             <Button.Template>
                 <ControlTemplate TargetType="Button">
@@ -37,7 +36,7 @@
 
         <Button x:Name="btnPause" Margin="205,22,87,6" Click="btnPause_Click">
             <StackPanel>
-                <Image Source="/Image/Load Button.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="56" Margin="-3,0"/>
+                <Image x:Name="imgpause" Source="/Image/pause 1.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="56" Margin="-3,0"/>
             </StackPanel>
             <Button.Template>
                 <ControlTemplate TargetType="Button">

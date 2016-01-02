@@ -36,7 +36,6 @@ namespace MusicManager.Controls
         #region Events
         private void imgPreAlbum_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-<<<<<<< HEAD
             _Cur--;
             if (_AlbumList[_Cur].cover == null)
                 imgCurAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
@@ -62,29 +61,28 @@ namespace MusicManager.Controls
                     imgPreAlbum.Source = _AlbumList[_Cur - 1].cover;
 
         }
-        private void imgNextAlbum_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if(_AlbumList[_Cur].cover==null) 
-                imgPreAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
-            else 
-                imgPreAlbum.Source = _AlbumList[_Cur].cover;
+        //private void imgNextAlbum_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    if(_AlbumList[_Cur].cover==null) 
+        //        imgPreAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
+        //    else 
+        //        imgPreAlbum.Source = _AlbumList[_Cur].cover;
 
-            _Cur++;
-            if (_AlbumList[_Cur].cover == null) 
-                imgCurAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
-            else 
-                imgCurAlbum.Source=_AlbumList[_Cur].cover;
+        //    _Cur++;
+        //    if (_AlbumList[_Cur].cover == null) 
+        //        imgCurAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
+        //    else 
+        //        imgCurAlbum.Source=_AlbumList[_Cur].cover;
 
-            tbAlbumName.Text = _AlbumList[_Cur].Name;
-            tbArtist.Text = _AlbumList[_Cur].AlbumArtist;
-            tbYear.Text = Convert.ToString(_AlbumList[_Cur].Year);
+        //    tbAlbumName.Text = _AlbumList[_Cur].Name;
+        //    tbArtist.Text = _AlbumList[_Cur].AlbumArtist;
+        //    tbYear.Text = Convert.ToString(_AlbumList[_Cur].Year);
 
-            this.CreateSongListofAlbum(_Cur);
-            if (_Cur == _AlbumList.Count - 1) // this current album is the last album
-                imgNextAlbum.Source = null;
-=======
-            this.PreAlbum();
-        }
+        //    this.CreateSongListofAlbum(_Cur);
+        //    if (_Cur == _AlbumList.Count - 1) // this current album is the last album
+        //        imgNextAlbum.Source = null;
+        //    this.PreAlbum();
+        //}
         private void imgNextAlbum_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.NextAlbum();
@@ -93,7 +91,6 @@ namespace MusicManager.Controls
         {
             if (e.Delta > 0)
                 this.NextAlbum();
->>>>>>> origin/master
             else
                 this.PreAlbum();
         }
@@ -102,9 +99,6 @@ namespace MusicManager.Controls
         #region Methods
         public void ResetAlbumList()
         {
-<<<<<<< HEAD
-          
-=======
             this._AlbumList.Clear();
             imgCurAlbum.Source = null;
             imgNextAlbum.Source = null;
@@ -112,7 +106,6 @@ namespace MusicManager.Controls
         }
         public void ReceiveAlbumList(List<Album> list, MainWindow main)
         {           
->>>>>>> origin/master
             this._AlbumList = list;
             this._Main = main;
             this._Cur = 0;
@@ -135,10 +128,7 @@ namespace MusicManager.Controls
                else
                    imgNextAlbum.Source = _AlbumList[_Cur + 1].cover;
            }
-<<<<<<< HEAD
            CreateSongListofAlbum(0);
-=======
->>>>>>> origin/master
         }
         private void CreateSongListofAlbum(int index)
         {
@@ -162,14 +152,6 @@ namespace MusicManager.Controls
         {
             return this._AlbumList[index].TrackList[x];
         }
-<<<<<<< HEAD
-        public void ResetAlbumList()
-        {
-            this._AlbumList.Clear();
-            imgCurAlbum.Source = null;
-            imgNextAlbum.Source = null;
-            imgPreAlbum.Source = null;
-=======
         private void NextAlbum()
         {
             if (_Cur + 1 < this._AlbumList.Count)
@@ -228,7 +210,6 @@ namespace MusicManager.Controls
                     else
                         imgPreAlbum.Source = _AlbumList[_Cur - 1].cover;
             }
->>>>>>> origin/master
         }
         #endregion
     }

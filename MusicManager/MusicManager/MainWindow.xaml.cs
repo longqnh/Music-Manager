@@ -261,19 +261,11 @@ namespace MusicManager
             _Timer.Stop();
             sqlite_conn.Close();
             #endregion
-<<<<<<< HEAD
             this.Title = "MusicManager - Load Completed";
-            
-=======
->>>>>>> origin/master
         }
         private void mWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             this.Title = "MusicManager - Load Completed";
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
             this.SongList.ctAlbumView.ResetAlbumList();
             this.CreateAlbumList();
             this.SongList.ctArtistView.ResetArtistList();
