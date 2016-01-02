@@ -141,6 +141,11 @@ namespace MusicManager
             TagLib.File song;
             //Open connection 
             if (Convert.ToString(sqlite_conn.State) == "Closed") sqlite_conn.Open();
+            else
+            {
+                sqlite_conn.Close();
+                sqlite_conn.Open();
+            }
             //create command
             sqlite_cmd = sqlite_conn.CreateCommand();
             int tmp_ID_Album, tmp_ID_Artist;
@@ -168,7 +173,7 @@ namespace MusicManager
                     };
                 }
                 else albumname = "Unknow";
-                if (song.Tag.Artists[0] != null)
+                if (song.Tag.Artists.Count()>0)
                 {
                     artistname = song.Tag.Artists[0];
                     if (artistname.IndexOf("'") > 0)
@@ -226,10 +231,9 @@ namespace MusicManager
                     else genre = "unknow";
                 //----- path
                 path = musicfile.FullName;
-
-                    if (path.IndexOf("'") > 0)
+                if (path.IndexOf("'") > 0)
                     {
-                        temp = artistname.IndexOf("'");
+                        temp = path.IndexOf("'");
                         path = path.Insert(temp, "'");
                     }
                 
@@ -239,6 +243,7 @@ namespace MusicManager
                 sqlite_cmd.CommandText = "INSERT INTO Song(Songid,Title,Dur,Year,Path,Bitrate,Genre,AlbumID,ArtistId) VALUES ('" + ID_Song + "','" + titletemp + "','" + song.Properties.Duration + "','" + song.Tag.Year + "','" + path+ "'," + song.Properties.AudioBitrate + ",'" + genre+ "','" + tmp_ID_Album + "','" + tmp_ID_Artist + "');";
                 sqlite_cmd.ExecuteNonQuery();
                 ID_Song++;
+                Count++;
             };
             _Timer.Stop();
             sqlite_conn.Close();
@@ -267,7 +272,12 @@ namespace MusicManager
         }
         private void CreateAlbumList()
         {
-            sqlite_conn.Open();
+            if (Convert.ToString(sqlite_conn.State) == "Closed") sqlite_conn.Open();
+            else
+            {
+                sqlite_conn.Close();
+                sqlite_conn.Open();
+            }
             sqlite_cmd = sqlite_conn.CreateCommand();
             List<Album> Albums = new List<Album>();
             sqlite_cmd.CommandText = "select * from Album";
@@ -342,7 +352,12 @@ namespace MusicManager
         }       
         private void CreateArtistList()
         {
-             sqlite_conn.Open();
+            if (Convert.ToString(sqlite_conn.State) == "Closed") sqlite_conn.Open();
+            else
+            {
+                sqlite_conn.Close();
+                sqlite_conn.Open();
+            }
             sqlite_cmd = sqlite_conn.CreateCommand();
             sqlite_cmd.CommandText = "select * from Artist";
             SQLiteDataReader Dtreader;
