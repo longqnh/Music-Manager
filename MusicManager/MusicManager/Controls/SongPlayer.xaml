@@ -20,7 +20,11 @@
 
         <Button x:Name="btnPlay" Margin="140,22,148,6" Click="btnPlay_Click">
             <StackPanel>
+<<<<<<< HEAD
                 <Image x:Name="imgplay" Source="/Image/Play Button.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="55"/>
+=======
+                <Image x:Name="imgState" Source="/Image/Play Button.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="55"/>
+>>>>>>> origin/master
             </StackPanel>
             <Button.Template>
                 <ControlTemplate TargetType="Button">
