@@ -33,12 +33,9 @@ namespace MusicManager
             {
                 CreateAlbumList();
                 CreateArtistList();
-
-
             }
             catch
             {
-
             }
             mWorker.DoWork += mWorker_DoWork;
             mWorker.RunWorkerCompleted += mWorker_RunWorkerCompleted;
@@ -48,7 +45,7 @@ namespace MusicManager
 
 
         }
-
+        
         SQLiteConnection sqlite_conn = new SQLiteConnection("Data Source = music.db");
         SQLiteCommand sqlite_cmd;
 
@@ -425,6 +422,16 @@ namespace MusicManager
         private void SongList_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (Convert.ToString(sqlite_conn.State) == "Open") sqlite_conn.Close();
+            else
+            {
+                sqlite_conn.Open();
+                sqlite_conn.Close();
+            }
         }
         //-- kết thúc
         #endregion
