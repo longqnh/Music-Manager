@@ -26,7 +26,8 @@ namespace MusicManager.Controls
     /// </summary>
     public partial class SongPlayer : UserControl
     {
-        #region Constructor
+        #region Constructor & Destuctor
+
         public SongPlayer()
         {
             InitializeComponent();
@@ -46,6 +47,18 @@ namespace MusicManager.Controls
             }
         
         }
+     ~ SongPlayer()
+        {
+            if (Convert.ToString(player.PlaybackState) == "Playing" || Convert.ToString(player.PlaybackState) == "Paused")
+            {
+                player.Stop();
+                tbCurDur.Text = "00:00";
+                imgplay.Source = new BitmapImage(new Uri("/Image/Play Button.png", UriKind.Relative));
+                imgStop.Source = new BitmapImage(new Uri("/Image/stop 1.png", UriKind.Relative));
+                imgpause.Source = new BitmapImage(new Uri("/Image/pause.png", UriKind.Relative));
+                this.imgplay.UpdateLayout();
+            };
+        }
         #endregion
 
         #region Properties
@@ -60,12 +73,13 @@ namespace MusicManager.Controls
         #region Events
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
-            if (Convert.ToString(player.PlaybackState) == "Playing")
+            if (Convert.ToString(player.PlaybackState) == "Playing" || Convert.ToString(player.PlaybackState)=="Paused")
             {
                 player.Stop();
                 tbCurDur.Text = "00:00";
                 imgplay.Source = new BitmapImage(new Uri("/Image/Play Button.png", UriKind.Relative));
                 imgStop.Source = new BitmapImage(new Uri("/Image/stop 1.png", UriKind.Relative));
+                imgpause.Source = new BitmapImage(new Uri("/Image/pause.png", UriKind.Relative));
                 this.imgplay.UpdateLayout();
             };
         }

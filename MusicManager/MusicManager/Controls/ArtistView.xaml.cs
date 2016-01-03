@@ -72,7 +72,7 @@ namespace MusicManager.Controls
         }
         public void ResetArtistList()
         {
-            this._ArtistList.Clear();
+          if(this._ArtistList.Count>0)  this._ArtistList.Clear();
             imgCurArtist.Source = null;
             imgNextArtist.Source = null;
             imgPreArtist.Source = null;

@@ -99,7 +99,7 @@ namespace MusicManager.Controls
         #region Methods
         public void ResetAlbumList()
         {
-            this._AlbumList.Clear();
+            if(this._AlbumList.Count>0) this._AlbumList.Clear();
             imgCurAlbum.Source = null;
             imgNextAlbum.Source = null;
             imgPreAlbum.Source = null;

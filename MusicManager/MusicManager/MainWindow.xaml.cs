@@ -34,7 +34,7 @@ namespace MusicManager
                 CreateAlbumList();
                 CreateArtistList();
 
-                
+
             }
             catch
             {
@@ -45,8 +45,8 @@ namespace MusicManager
             _Timer.Tick += _Timer_Tick;
             _Timer.Interval = TimeSpan.FromMilliseconds(100);
             Loadbutt.IsEnabled = false;
-            
-           
+
+
         }
 
         SQLiteConnection sqlite_conn = new SQLiteConnection("Data Source = music.db");
@@ -103,11 +103,16 @@ namespace MusicManager
                 _Media = fbd.SelectedPath;
                 Loadbutt.IsEnabled = true;
             }
-            
+
         }
         private void Button_Click_1(object sender, RoutedEventArgs e) //load
         {
             if (Convert.ToString(sqlite_conn.State) == "Closed") sqlite_conn.Open();
+            else
+            {
+                sqlite_conn.Close();
+                sqlite_conn.Open();
+            }
             sqlite_cmd = sqlite_conn.CreateCommand();
             sqlite_cmd.CommandText = "delete from Song";
             sqlite_cmd.ExecuteNonQuery();
@@ -132,7 +137,7 @@ namespace MusicManager
                 this.AddListToDB(_MusicList);
                 //CreateAlbumList();
                 //CreateArtistList();
-                
+
             }
             else
             {
@@ -170,7 +175,7 @@ namespace MusicManager
             this.Total = FileList.Count;
             foreach (FileInfo musicfile in FileList)
             {
-                string albumname, artistname,genre,path;
+                string albumname, artistname, genre, path;
                 int temp;
                 song = TagLib.File.Create((string)(musicfile.FullName)); // with a path of file we create a file tag
                 if (song.Tag.Album != null)
@@ -184,7 +189,7 @@ namespace MusicManager
                     };
                 }
                 else albumname = "Unknow";
-                if (song.Tag.Artists.Count()>0)
+                if (song.Tag.Artists.Count() > 0)
                 {
                     artistname = song.Tag.Artists[0];
                     if (artistname.IndexOf("'") > 0)
@@ -245,15 +250,15 @@ namespace MusicManager
                 //----- path
                 path = musicfile.FullName;
                 if (path.IndexOf("'") > 0)
-                    {
-                        temp = path.IndexOf("'");
-                        path = path.Insert(temp, "'");
-                    }
-                
-                
-                
+                {
+                    temp = path.IndexOf("'");
+                    path = path.Insert(temp, "'");
+                }
 
-                sqlite_cmd.CommandText = "INSERT INTO Song(Songid,Title,Dur,Year,Path,Bitrate,Genre,AlbumID,ArtistId) VALUES ('" + ID_Song + "','" + titletemp + "','" + song.Properties.Duration + "','" + song.Tag.Year + "','" + path+ "'," + song.Properties.AudioBitrate + ",'" + genre+ "','" + tmp_ID_Album + "','" + tmp_ID_Artist + "');";
+
+
+
+                sqlite_cmd.CommandText = "INSERT INTO Song(Songid,Title,Dur,Year,Path,Bitrate,Genre,AlbumID,ArtistId) VALUES ('" + ID_Song + "','" + titletemp + "','" + song.Properties.Duration + "','" + song.Tag.Year + "','" + path + "'," + song.Properties.AudioBitrate + ",'" + genre + "','" + tmp_ID_Album + "','" + tmp_ID_Artist + "');";
                 sqlite_cmd.ExecuteNonQuery();
                 ID_Song++;
                 Count++;
@@ -277,7 +282,7 @@ namespace MusicManager
         #endregion
 
         #region Methods
- 
+
         //--- Hàm thêm list<fileinfo> vào database 
         private void AddListToDB(List<FileInfo> List)
         {
@@ -297,7 +302,7 @@ namespace MusicManager
             sqlite_cmd.CommandText = "select * from Album";
             SQLiteDataReader Dtreader;
             Dtreader = sqlite_cmd.ExecuteReader();
-            int i=0;
+            int i = 0;
             while (Dtreader.Read())
             {
                 Album temp = new Album();
@@ -363,7 +368,7 @@ namespace MusicManager
             }
             this.SongList.ctAlbumView.ReceiveAlbumList(Albums, this);
             sqlite_conn.Close();
-        }       
+        }
         private void CreateArtistList()
         {
             if (Convert.ToString(sqlite_conn.State) == "Closed") sqlite_conn.Open();
@@ -389,8 +394,8 @@ namespace MusicManager
             }// Create List AlbumName With an Album ADD song;
             Dtreader.Close();
             foreach (Artist art in AL)
-            {   
-                art.Songlist= new List<Song>();
+            {
+                art.Songlist = new List<Song>();
                 sqlite_cmd.CommandText = "SELECT  * FROM Artist,Song Where Song.ArtistID = Artist.ArtistID and artist.ArtistID=" + art.ID + ";";
                 Dtreader = sqlite_cmd.ExecuteReader();
                 while (Dtreader.Read())
@@ -402,7 +407,7 @@ namespace MusicManager
                     asong.Bitrate = Dtreader.GetInt32(7);
                     string time = Dtreader.GetString(4);
                     asong.Dur = TimeSpan.Parse(time);
-                    asong.Artist= art.Name;
+                    asong.Artist = art.Name;
                     TagLib.File tlfile2 = TagLib.File.Create(@asong.Path);
                     string extension;
                     extension = System.IO.Path.GetExtension(asong.Path);
@@ -415,11 +420,11 @@ namespace MusicManager
                 Dtreader.Close();
             }
             sqlite_conn.Close();
-           this.SongList.ctArtistView.ReceiveArtistList(AL, this);
+            this.SongList.ctArtistView.ReceiveArtistList(AL, this);
         }
         private void SongList_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
         }
         //-- kết thúc
         #endregion
