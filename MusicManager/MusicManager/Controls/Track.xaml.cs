@@ -22,12 +22,13 @@ namespace MusicManager.Controls
     public partial class Track : UserControl
     {
         #region Constructor
-        public Track(MainWindow main, short index, short trackno)
+        public Track(MainWindow main, short index, short trackno, bool artist = false)
         {
             InitializeComponent();
             this._Main = main;
             this._Index = index;
             this._TrackNo = trackno;
+            _inArtist = artist;
         }
         #endregion
 
@@ -35,18 +36,18 @@ namespace MusicManager.Controls
         private MainWindow _Main;
         private short _Index;
         private short _TrackNo;
+        private bool _inArtist;
         #endregion
 
         #region Events
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Song tmp;
-            //get song reference
-            tmp = this._Main.SongList.ctAlbumView.SongX_OfAlbum(_Index, _TrackNo); 
+            Song tmp = _inArtist ? _Main.SongList.ctArtistView.SongX_OfAlbum(_Index, _TrackNo) : _Main.SongList.ctAlbumView.SongX_OfAlbum(_Index, _TrackNo);
+            _Main.TrackInfo.LoadInfo(tmp); // load trackinfo
 
-            this._Main.TrackInfo.LoadInfo(tmp); // load trackinfo
             if (e.LeftButton == MouseButtonState.Pressed && e.ClickCount == 2)
                 this._Main.PlayList.AddtoList(tmp); // add track to playlist
+
         }
         #endregion
     }

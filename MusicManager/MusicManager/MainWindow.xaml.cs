@@ -261,7 +261,6 @@ namespace MusicManager
             _Timer.Stop();
             sqlite_conn.Close();
             #endregion
-            this.Title = "MusicManager - Load Completed";
         }
         private void mWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {

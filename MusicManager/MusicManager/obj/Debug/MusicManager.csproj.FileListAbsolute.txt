@@ -283,3 +283,7 @@ D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\bin\Debug\CSCore.dll
 D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\bin\Debug\CSCore.xml
 D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\UserControl1.baml
 D:\Projects\mmpj\Music-Manager\MusicManager\MusicManager\obj\Debug\UserControl1.g.cs
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\CSCore.dll
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\bin\Debug\CSCore.xml
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\UserControl1.baml
+C:\Users\Administrator\Documents\Projects\Music-Manager\MusicManager\MusicManager\obj\Debug\UserControl1.g.cs

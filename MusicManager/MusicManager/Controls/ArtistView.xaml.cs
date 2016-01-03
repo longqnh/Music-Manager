@@ -27,28 +27,29 @@ namespace MusicManager.Controls
         }
         #endregion
 
+        #region Properties
         private int _Cur = 0;
         private List<Artist> _ArtistList;
         private MainWindow _Main;
+        #endregion
 
         #region Methods
         private void CreateSongListofArtist(int index)
         {
-            this.pnTrackList.Children.Clear(); // first, remove all the song contenting
-            //then add songlist of _ArtistList[index]
-            int i;
+            this.pnTrackList.Children.Clear();
+
+            short i;
             for (i = 0; i < this._ArtistList[index].Songlist.Count; i++)
             {
                 Song tmp = this._ArtistList[index].Songlist[i];
 
-                Track track = new Track(_Main, (short)index, (short)i);
+                Track track = new Track(_Main, (short)index, i, true);
                 track.tbNo.Text = i + ".";
 
                 track.tbTitle.Text = tmp.Title;
                 track.tbDur.Text = "0" + tmp.Dur.Minutes.ToString() + ":" + tmp.Dur.Seconds;
                 this.pnTrackList.Children.Add(track);
             }
-
         }
         public void ReceiveArtistList(List<Artist> list, MainWindow main)
         {
@@ -75,6 +76,10 @@ namespace MusicManager.Controls
             imgCurArtist.Source = null;
             imgNextArtist.Source = null;
             imgPreArtist.Source = null;
+        }
+        public Song SongX_OfAlbum(short index, short x) // return song x of artist[index]
+        {
+            return this._ArtistList[index].Songlist[x];
         }
         private void PreArtist()
         {
