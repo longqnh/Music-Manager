@@ -61,28 +61,6 @@ namespace MusicManager.Controls
                     imgPreAlbum.Source = _AlbumList[_Cur - 1].cover;
 
         }
-        //private void imgNextAlbum_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    if(_AlbumList[_Cur].cover==null) 
-        //        imgPreAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
-        //    else 
-        //        imgPreAlbum.Source = _AlbumList[_Cur].cover;
-
-        //    _Cur++;
-        //    if (_AlbumList[_Cur].cover == null) 
-        //        imgCurAlbum.Source = new BitmapImage(new Uri(_AlbumList[_Cur].CoverPath, UriKind.Relative));
-        //    else 
-        //        imgCurAlbum.Source=_AlbumList[_Cur].cover;
-
-        //    tbAlbumName.Text = _AlbumList[_Cur].Name;
-        //    tbArtist.Text = _AlbumList[_Cur].AlbumArtist;
-        //    tbYear.Text = Convert.ToString(_AlbumList[_Cur].Year);
-
-        //    this.CreateSongListofAlbum(_Cur);
-        //    if (_Cur == _AlbumList.Count - 1) // this current album is the last album
-        //        imgNextAlbum.Source = null;
-        //    this.PreAlbum();
-        //}
         private void imgNextAlbum_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.NextAlbum();
@@ -112,7 +90,7 @@ namespace MusicManager.Controls
 
             //cover path
             for (int i = 0; i < this._AlbumList.Count; i++)
-                this._AlbumList[i].CoverPath = "/Albums/6.jpg";
+                this._AlbumList[i].CoverPath = "/Image/default.jpg";
 
             // set image on form
             if(_AlbumList[_Cur].cover==null)

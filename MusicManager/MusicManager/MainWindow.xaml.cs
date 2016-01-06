@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using System.Windows.Forms;
 using System.IO;
 using MusicManager.Classes;
-using HundredMilesSoftware.UltraID3Lib;
 using System.Data.SQLite;
 using AudioPlayerSample;
 namespace MusicManager
@@ -423,7 +422,6 @@ namespace MusicManager
         {
 
         }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (Convert.ToString(sqlite_conn.State) == "Open") sqlite_conn.Close();
