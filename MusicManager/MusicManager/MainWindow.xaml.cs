@@ -267,11 +267,13 @@ namespace MusicManager
         }
         private void mWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
+            sqlite_conn.Open();
             this.Title = "MusicManager - Load Completed";
             this.SongList.ctAlbumView.ResetAlbumList();
             this.CreateAlbumList();
             this.SongList.ctArtistView.ResetArtistList();
             this.CreateArtistList();
+            sqlite_conn.Close();
         }
         void _Timer_Tick(object sender, EventArgs e)
         {
