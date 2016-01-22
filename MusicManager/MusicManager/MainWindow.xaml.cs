@@ -27,7 +27,9 @@ namespace MusicManager
         public MainWindow()
         {
             InitializeComponent();
+            sqlite_conn = new SQLiteConnection("Data Source = music.db");
             SongList.Main = PlayList.Main = TrackInfo.Main = this;
+            sqlite_conn.Open();
             try
             {
                 CreateAlbumList();
@@ -36,20 +38,19 @@ namespace MusicManager
             catch
             {
             }
+            sqlite_conn.Close();
             mWorker.DoWork += mWorker_DoWork;
             mWorker.RunWorkerCompleted += mWorker_RunWorkerCompleted;
             _Timer.Tick += _Timer_Tick;
             _Timer.Interval = TimeSpan.FromMilliseconds(100);
             Loadbutt.IsEnabled = false;
-
-
         }
         
-        SQLiteConnection sqlite_conn = new SQLiteConnection("Data Source = music.db");
+        SQLiteConnection sqlite_conn;// = new SQLiteConnection("Data Source = music.db");
         SQLiteCommand sqlite_cmd;
 
         #region Properties
-        private string _Media;
+        private string _Path;
         private List<FileInfo> _MusicList; //list of files that are music file
         int ID_Album = 0;
         int ID_Artist = 0;
@@ -96,19 +97,21 @@ namespace MusicManager
             System.Windows.Forms.DialogResult _result = STAShowDialog(fbd);
             if (_result == System.Windows.Forms.DialogResult.OK)
             {
-                _Media = fbd.SelectedPath;
+                _Path = fbd.SelectedPath;
                 Loadbutt.IsEnabled = true;
             }
 
         }
         private void Button_Click_1(object sender, RoutedEventArgs e) //load
         {
-            if (Convert.ToString(sqlite_conn.State) == "Closed") sqlite_conn.Open();
-            else
-            {
-                sqlite_conn.Close();
-                sqlite_conn.Open();
-            }
+            //if (Convert.ToString(sqlite_conn.State) == "Closed") sqlite_conn.Open();
+            //else
+            //{
+            //    sqlite_conn.Close();
+            //    sqlite_conn.Open();
+            //}
+            sqlite_conn.Open();
+
             sqlite_cmd = sqlite_conn.CreateCommand();
             sqlite_cmd.CommandText = "delete from Song";
             sqlite_cmd.ExecuteNonQuery();
@@ -116,10 +119,12 @@ namespace MusicManager
             sqlite_cmd.ExecuteNonQuery();
             sqlite_cmd.CommandText = "delete from Artist";
             sqlite_cmd.ExecuteNonQuery();
+
             sqlite_conn.Close();
-            if (_Media != null)
+
+            if (_Path != null)
             {
-                DirectoryInfo dir = new DirectoryInfo(_Media);
+                DirectoryInfo dir = new DirectoryInfo(_Path);
                 foreach (FileInfo file in dir.GetFiles("*.*", SearchOption.AllDirectories))
                 {
                     if (file.Extension == ".wmv" || file.Extension == ".mp3" || file.Extension == ".mp4"
@@ -127,13 +132,10 @@ namespace MusicManager
                         || file.Extension == ".m4a" || file.Extension == ".wav")
                         _MusicList.Add(file);
                 }
-                //this.CreateAlbumList(_MusicList);
+
                 loaded = true;
                 if (_MusicList != null) Loadbutt.IsEnabled = true;
                 this.AddListToDB(_MusicList);
-                //CreateAlbumList();
-                //CreateArtistList();
-
             }
             else
             {
@@ -151,13 +153,16 @@ namespace MusicManager
             Count = 0;
             _Timer.Start();
             TagLib.File song;
+
             //Open connection 
-            if (Convert.ToString(sqlite_conn.State) == "Closed") sqlite_conn.Open();
-            else
-            {
-                sqlite_conn.Close();
-                sqlite_conn.Open();
-            }
+            //if (Convert.ToString(sqlite_conn.State) == "Closed") sqlite_conn.Open();
+            //else
+            //{
+            //    sqlite_conn.Close();
+            //    sqlite_conn.Open();
+            //}
+            sqlite_conn.Open();
+
             //create command
             sqlite_cmd = sqlite_conn.CreateCommand();
             int tmp_ID_Album, tmp_ID_Artist;
@@ -251,9 +256,6 @@ namespace MusicManager
                     path = path.Insert(temp, "'");
                 }
 
-
-
-
                 sqlite_cmd.CommandText = "INSERT INTO Song(Songid,Title,Dur,Year,Path,Bitrate,Genre,AlbumID,ArtistId) VALUES ('" + ID_Song + "','" + titletemp + "','" + song.Properties.Duration + "','" + song.Tag.Year + "','" + path + "'," + song.Properties.AudioBitrate + ",'" + genre + "','" + tmp_ID_Album + "','" + tmp_ID_Artist + "');";
                 sqlite_cmd.ExecuteNonQuery();
                 ID_Song++;
@@ -287,18 +289,22 @@ namespace MusicManager
         }
         private void CreateAlbumList()
         {
-            if (Convert.ToString(sqlite_conn.State) == "Closed") sqlite_conn.Open();
-            else
-            {
-                sqlite_conn.Close();
-                sqlite_conn.Open();
-            }
-            sqlite_cmd = sqlite_conn.CreateCommand();
+            //if (Convert.ToString(sqlite_conn.State) == "Closed") sqlite_conn.Open();
+            //else
+            //{
+            //    sqlite_conn.Close();
+            //    sqlite_conn.Open();
+            //}
+            //sqlite_cmd = sqlite_conn.CreateCommand();
+            
+            //sqlite_cmd.CommandText = "select * from Album";
+
+            string query = "select * from Album";
+
+            SQLiteCommand cmd = new SQLiteCommand(query, sqlite_conn);
+            SQLiteDataReader Dtreader = cmd.ExecuteReader();
+
             List<Album> Albums = new List<Album>();
-            sqlite_cmd.CommandText = "select * from Album";
-            SQLiteDataReader Dtreader;
-            Dtreader = sqlite_cmd.ExecuteReader();
-            int i = 0;
             while (Dtreader.Read())
             {
                 Album temp = new Album();
@@ -306,11 +312,16 @@ namespace MusicManager
                 temp.Name = Dtreader.GetString(1);
                 Albums.Add(temp);
             }// Create List AlbumName With an Album ADD song;
-            Dtreader.Close();
+            //Dtreader.Close();
+
             foreach (Album album in Albums)
             {
-                sqlite_cmd.CommandText = "SELECT  * FROM Album,Song Where Song.AlbumId = Album.AlbumId and Album.AlbumID=" + album.ID + ";";
-                Dtreader = sqlite_cmd.ExecuteReader();
+                //sqlite_cmd.CommandText = "SELECT  * FROM Album,Song Where Song.AlbumId = Album.AlbumId and Album.AlbumID=" + album.ID + ";";
+
+                string query1 = "SELECT  * FROM Album,Song Where Song.AlbumId = Album.AlbumId and Album.AlbumID=" + album.ID + ";";
+
+                SQLiteCommand cmd1 = new SQLiteCommand(query1, sqlite_conn);
+                Dtreader = cmd1.ExecuteReader();
                 while (Dtreader.Read())
                 {
                     // Song song = new Song(Dtreader.GetString(3), "test", album.Name, (short?)(Dtreader.GetInt32(5)), Dtreader.GetString(8), 3, (short)Dtreader.GetInt32(7), , Dtreader.GetString(6));
@@ -320,13 +331,16 @@ namespace MusicManager
                     asong.Year = (short?)Dtreader.GetInt32(5);
                     asong.Bitrate = Dtreader.GetInt32(7);
                     string time = Dtreader.GetString(4);
+                    asong.Title = Dtreader.GetString(3);
+                    //Dtreader.Close();
+
                     asong.Dur = TimeSpan.Parse(time);
                     asong.Album = album.Name;
                     TagLib.File tlfile2 = TagLib.File.Create(@asong.Path);
                     string extension;
                     extension = System.IO.Path.GetExtension(asong.Path);
                     asong.filetype = Convert.ToString(extension);
-                    asong.Title = Dtreader.GetString(3);
+                    
                     asong.Track = (short?)tlfile2.Tag.TrackCount;
                     if (!album.havecover)
                     {
@@ -359,41 +373,48 @@ namespace MusicManager
                         }
                     }
                     album.TrackList.Add(asong);
-                }
-                Dtreader.Close();
+                }   
             }
             this.SongList.ctAlbumView.ReceiveAlbumList(Albums, this);
-            sqlite_conn.Close();
+            //sqlite_conn.Close();
         }
         private void CreateArtistList()
         {
-            if (Convert.ToString(sqlite_conn.State) == "Closed") sqlite_conn.Open();
-            else
-            {
-                sqlite_conn.Close();
-                sqlite_conn.Open();
-            }
-            sqlite_cmd = sqlite_conn.CreateCommand();
-            sqlite_cmd.CommandText = "select * from Artist";
-            SQLiteDataReader Dtreader;
-            Dtreader = sqlite_cmd.ExecuteReader();
+            //if (Convert.ToString(sqlite_conn.State) == "Closed") sqlite_conn.Open();
+            //else
+            //{
+            //    sqlite_conn.Close();
+            //    sqlite_conn.Open();
+            //}
+            //sqlite_cmd = sqlite_conn.CreateCommand();
+            //sqlite_cmd.CommandText = "select * from Artist";
 
-            //int i=0;
-            List<Artist> AL = new List<Artist>();
+            string query = "select * from Artist";
+
+            SQLiteCommand cmd = new SQLiteCommand(query, sqlite_conn);
+            SQLiteDataReader Dtreader = cmd.ExecuteReader();
+
+            List<Artist> Artists = new List<Artist>();
             while (Dtreader.Read())
             {
                 Artist temp = new Artist();
                 temp.ID = Dtreader.GetInt32(0);
                 temp.Name = Dtreader.GetString(1);
-                AL.Add(temp);
+                Artists.Add(temp);
 
             }// Create List AlbumName With an Album ADD song;
-            Dtreader.Close();
-            foreach (Artist art in AL)
-            {
+            //Dtreader.Close();
+
+            foreach (Artist art in Artists)
+            {                
+                //sqlite_cmd.CommandText = "SELECT  * FROM Artist,Song Where Song.ArtistID = Artist.ArtistID and artist.ArtistID=" + art.ID + ";";
+
+                string query1 = "SELECT  * FROM Artist,Song Where Song.ArtistID = Artist.ArtistID and artist.ArtistID=" + art.ID + ";";
+
+                SQLiteCommand cmd1 = new SQLiteCommand(query1, sqlite_conn);
+                Dtreader = cmd1.ExecuteReader();
+
                 art.Songlist = new List<Song>();
-                sqlite_cmd.CommandText = "SELECT  * FROM Artist,Song Where Song.ArtistID = Artist.ArtistID and artist.ArtistID=" + art.ID + ";";
-                Dtreader = sqlite_cmd.ExecuteReader();
                 while (Dtreader.Read())
                 {
                     Song asong = new Song();
@@ -402,25 +423,23 @@ namespace MusicManager
                     asong.Year = (short?)Dtreader.GetInt32(5);
                     asong.Bitrate = Dtreader.GetInt32(7);
                     string time = Dtreader.GetString(4);
+                    asong.Title = Dtreader.GetString(3);
+                    //Dtreader.Close();
+
                     asong.Dur = TimeSpan.Parse(time);
                     asong.Artist = art.Name;
                     TagLib.File tlfile2 = TagLib.File.Create(@asong.Path);
                     string extension;
                     extension = System.IO.Path.GetExtension(asong.Path);
                     asong.filetype = Convert.ToString(extension);
-                    asong.Title = Dtreader.GetString(3);
+                    
                     asong.Track = (short?)tlfile2.Tag.TrackCount;
                     asong.Album = tlfile2.Tag.Album;
                     art.Songlist.Add(asong);
-                }
-                Dtreader.Close();
+                }               
             }
-            sqlite_conn.Close();
-            this.SongList.ctArtistView.ReceiveArtistList(AL, this);
-        }
-        private void SongList_Loaded(object sender, RoutedEventArgs e)
-        {
-
+            //sqlite_conn.Close();
+            this.SongList.ctArtistView.ReceiveArtistList(Artists, this);
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
